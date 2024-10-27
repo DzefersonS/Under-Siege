@@ -6,12 +6,10 @@ using UnityEngine.Rendering;
 [CreateAssetMenu(fileName = "Upgrades SO", menuName = "Under Siege/Create Upgrades SO")]
 public class UpgradesSO : ScriptableObject
 {
-    [SerializeField] private int[] m_DamageUpgradePrices;
-    [SerializeField] private int[] m_AttackSpeedUpgradePrices;
-    [SerializeField] private int[] m_MovementSpeedUpgradePrices;
+    [SerializeField] private int[] m_PlayerUpgradePrices;
+    [SerializeField] private int[] m_CultistPrices;
 
-    public int[] DamageUpgradePrices => m_DamageUpgradePrices;
-    public int[] AttackSpeedUpgradePrices => m_AttackSpeedUpgradePrices;
-    public int[] MovementSpeedUpgradePrices => m_MovementSpeedUpgradePrices;
+    public int[] PlayerUpgradePrices => m_PlayerUpgradePrices;
+    public int[] CultistPrices => m_CultistPrices;
 }
 

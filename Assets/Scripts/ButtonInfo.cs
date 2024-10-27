@@ -15,5 +15,4 @@ public class ButtonInfo : MonoBehaviour
         QuantityTxt.text = ShopManager.GetComponent<ShopManager>().shopItems[3, itemID].ToString();
 
     }
-
 }
