@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Event
+  - ShopCanvas
   layers:
   - Default
   - TransparentFX
