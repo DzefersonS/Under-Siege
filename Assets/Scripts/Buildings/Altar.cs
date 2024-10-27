@@ -11,7 +11,9 @@ public class Altar : MonoBehaviour
         _shopCanvas = GameObject.Find("ShopCanvas").GetComponent<Canvas>();
 
         if (_shopCanvas != null)
+        {
             _shopCanvas.enabled = false;
+        }
     }
 
     void Update()
