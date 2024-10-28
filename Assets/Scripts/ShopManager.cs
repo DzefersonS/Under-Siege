@@ -6,14 +6,19 @@ using UnityEngine.EventSystems;
 
 public class ShopManager : MonoBehaviour
 {
-    public int[,] shopItems = new int[5, 5];
     [SerializeField] private UpgradesSO _upgradePrices;
-    public float souls;
+    [SerializeField] private GameObject _cultistPrefab;
+    [SerializeField] private GameObject _cultistParent;
+    [SerializeField] private Vector2 _spawnPosition;
+
     public TMP_Text SoulsTxt;
+    public int[,] shopItems = new int[5, 5];
+    public float souls;
 
 
     void Start()
     {
+
         SoulsTxt.text = souls.ToString();
 
         //Item ID's
@@ -81,7 +86,16 @@ public class ShopManager : MonoBehaviour
 
     public void SpawnCultist()
     {
-        //Instantialize a cultist
+        if (Random.Range(1, 3) == 1)
+            _spawnPosition = new Vector2(12.5f, -2.07f);
+        else
+            _spawnPosition = new Vector2(8.5f, -2.07f);
+
+
+
+
+        Instantiate(_cultistPrefab, _spawnPosition, Quaternion.identity, _cultistParent.transform);
+
         // a whole load of other balogney is going to happen here...
     }
 

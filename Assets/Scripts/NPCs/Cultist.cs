@@ -40,6 +40,7 @@ public class Cultist : MonoBehaviour
             }
 
             transform.Translate(direction * _speed * Time.deltaTime, Space.World);
+
             yield return null;
         }
     }

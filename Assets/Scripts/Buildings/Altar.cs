@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Altar : MonoBehaviour
 {
-    [SerializeField] private Canvas _shopCanvas;
+    [SerializeField] private GameObject _shopCanvas;
 
     void Start()
     {
-        _shopCanvas = GameObject.Find("ShopCanvas").GetComponent<Canvas>();
 
         if (_shopCanvas != null)
         {
-            _shopCanvas.enabled = false;
+            _shopCanvas.SetActive(false);
         }
     }
 
@@ -26,7 +25,7 @@ public class Altar : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            _shopCanvas.enabled = true;
+            _shopCanvas.SetActive(true);
 
         }
     }
@@ -35,7 +34,7 @@ public class Altar : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            _shopCanvas.enabled = false;
+            _shopCanvas.SetActive(false);
 
         }
     }
