@@ -504,7 +504,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
   - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
   m_TimeBetweenWaves: 1
-  m_DeadBodyContainer: {fileID: 0}
+  m_DeadBodyContainer: {fileID: 766150562}
   m_DeadBodyPoolSO: {fileID: 11400000, guid: 13ffc837b5b4ea34ba7ecb81c32ebdea, type: 2}
 --- !u!4 &1941699042
 Transform:
