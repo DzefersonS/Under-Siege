@@ -19,8 +19,8 @@ public class CultistManager : MonoBehaviour
     {
         if (Time.time >= nextBodyCheckTime)
         {
-            FindDeadBodies();
             nextBodyCheckTime = Time.time + bodyCheckCooldown;
+            FindDeadBodies();
         }
         if (_deadBodies.Count > 0)
             CollectBody();
@@ -51,6 +51,7 @@ public class CultistManager : MonoBehaviour
         foreach (Collider2D body in bodiesInRange)
         {
             // Check if the collider is tagged "DeadBody"
+
             if (body.CompareTag("DeadBody") && !_deadBodies.Contains(body.gameObject))
             {
                 _deadBodies.Enqueue(body.gameObject);
@@ -81,17 +82,22 @@ public class CultistManager : MonoBehaviour
     //Sends cultist to collect a body
     private void CollectBody()
     {
-        GameObject deadbody = PopFreeDeadBody();
-        Cultist c = FindFreeCultist();
-        // _deadBodies.Remove(deadbody);
+        Cultist freeCultist = FindFreeCultist();
 
-        if (c != null && deadbody != null)
+        // Only dequeue a body if a free cultist is available
+        if (freeCultist != null && _deadBodies.Count > 0)
         {
-            c.CollectDeadBody(deadbody);
+            DeadBody deadbody = _deadBodies.Dequeue().GetComponent<DeadBody>();
+
+            if (deadbody != null && !deadbody.isClaimed)
+            {
+                deadbody.AssignCultist(freeCultist.gameObject);
+                freeCultist.CollectDeadBody(deadbody.gameObject);
+            }
+            else
+            {
+                Debug.LogWarning("Dequeued a null dead body.");
+            }
         }
-        else
-            Debug.Log("Deadbody:" + deadbody + ", Cultist: " + c + ", DeadBody count: " + _deadBodies.Count);
     }
-
-
 }

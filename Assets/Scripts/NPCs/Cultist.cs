@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum State
@@ -64,10 +65,11 @@ public class Cultist : MonoBehaviour
 
             yield return MoveToXPositionCoroutine(closestBody.position.x);
 
+            //If other cultist managed to pick up the body before this one
             if (closestBody == null)
             {
                 isBusy = false;
-                StopAllCoroutines();
+                yield break;
             }
             // Destroy the dead body once close enough
             Destroy(closestBody.gameObject);

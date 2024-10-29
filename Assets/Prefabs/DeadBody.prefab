@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3812026450044592903}
   - component: {fileID: 4900790634912615063}
   - component: {fileID: 8980859963675192581}
+  - component: {fileID: 6387364297969752662}
   m_Layer: 0
   m_Name: DeadBody
   m_TagString: DeadBody
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4264988990634795443}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.77, y: -2.1, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
@@ -130,3 +131,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.28860673, y: 0.10417028}
   m_EdgeRadius: 0
+--- !u!114 &6387364297969752662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4264988990634795443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72a534d9bad44d44a98a4d3be79310bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTaken: 0
+  _timeToSelfDestruct: 60

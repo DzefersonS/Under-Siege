@@ -4,16 +4,51 @@ using UnityEngine;
 
 public class DeadBody : MonoBehaviour
 {
-    public bool isTaken = false;
+    [SerializeField] private float _timeToSelfDestruct;
+    [SerializeField] private GameObject _claimingCultist; //Cultist that will take the body
+
+    public bool isClaimed = false;
+
+    private float claimCheckCooldown = 1f;
+    private float nextClaimCheckTime = 3f;
+
     void Start()
     {
-        isTaken = false;
+        isClaimed = false;
+        StartCoroutine(DestroyByTime());
+    }
+
+    private void Update()
+    {
+        if (Time.time >= nextClaimCheckTime)
+        {
+            nextClaimCheckTime = Time.time + claimCheckCooldown;
+
+            //Check if the cultist is still alive 
+            if (_claimingCultist == null)
+                Unclaim();
+        }
     }
 
 
-    public bool GetIsTaken()
+    public void AssignCultist(GameObject cultist)
     {
-        return isTaken;
+        _claimingCultist = cultist;
+        isClaimed = true; //just for good measure
+    }
+
+    public void Unclaim()
+    {
+        _claimingCultist = null;
+        isClaimed = false;
+
+    }
+
+    private IEnumerator DestroyByTime()
+    {
+        yield return new WaitForSeconds(_timeToSelfDestruct);
+
+        Destroy(gameObject);
     }
 
 }
