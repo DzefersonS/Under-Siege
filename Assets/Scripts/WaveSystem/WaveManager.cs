@@ -52,6 +52,7 @@ public class WaveManager : MonoBehaviour
         {
             Enemy enemy = (Enemy)m_CurrentWave.enemies[^m_EnemiesLeftToSpawn].GetFreeObject();
             enemy.transform.position = Vector3.zero;
+            enemy.Initialize();
             Debug.Log("Spawned enemy!");
             --m_EnemiesLeftToSpawn;
             if (m_EnemiesLeftToSpawn == 0)

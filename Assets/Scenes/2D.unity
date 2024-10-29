@@ -421,6 +421,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1849485121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849485114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36683cd0c1be20b428e0fc737162830d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerInputsSO: {fileID: 11400000, guid: a1f98fa1a1ebfd34abae25b4fbf87d4b, type: 2}
+  m_PlayerDataSO: {fileID: 11400000, guid: d40adb63b6186cd4b8ef7ef0e19b3264, type: 2}
+  m_ProjectilePoolSO: {fileID: 11400000, guid: 391c0ec2ec49c59449e5842336b3d38d, type: 2}
+  m_PlayerProjectileContainer: {fileID: 468370659}
+  m_ProjectileSpawnAnchor: {fileID: 1278533594}
 --- !u!1 &1941699040
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,17 +501,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyPoolSOs:
   - {fileID: 11400000, guid: 202d291fde683d149a0bf1cbb4805d93, type: 2}
-  m_GameObject: {fileID: 1849485114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36683cd0c1be20b428e0fc737162830d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PlayerInputsSO: {fileID: 11400000, guid: a1f98fa1a1ebfd34abae25b4fbf87d4b, type: 2}
-  m_PlayerDataSO: {fileID: 11400000, guid: d40adb63b6186cd4b8ef7ef0e19b3264, type: 2}
-  m_ProjectilePoolSO: {fileID: 11400000, guid: 391c0ec2ec49c59449e5842336b3d38d, type: 2}
-  m_PlayerProjectileContainer: {fileID: 468370659}
-  m_ProjectileSpawnAnchor: {fileID: 1278533594}
 --- !u!1 &1949442081
 GameObject:
   m_ObjectHideFlags: 0
