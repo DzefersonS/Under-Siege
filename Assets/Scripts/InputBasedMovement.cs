@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputBasedMovement : MonoBehaviour
@@ -12,12 +13,21 @@ public class InputBasedMovement : MonoBehaviour
     [SerializeField] private float m_Gravity;
 
     private Vector2 m_MoveDirection = default;
+    private float m_RotationY = default;
 
     private void Update()
     {
         float movingRight = Input.GetKey(m_PlayerInputsSO.moveRight) ? 1.0f : 0.0f;
         float movingLeft = Input.GetKey(m_PlayerInputsSO.moveLeft) ? -1.0f : 0.0f;
         m_MoveDirection = new Vector2(movingLeft + movingRight, m_PlayerRB.velocity.y).normalized;
+        if (movingLeft != 0.0f)
+        {
+            transform.rotation = Quaternion.Euler(0.0f, -180.0f, 0.0f);
+        }
+        if (movingRight != 0.0f)
+        {
+            transform.rotation = Quaternion.identity;
+        }
 
         if (Input.GetKey(m_PlayerInputsSO.jump) && m_PlayerRB.velocity.y == 0.0f)
         {
