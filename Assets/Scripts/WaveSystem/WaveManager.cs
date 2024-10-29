@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
+using Utils;
 
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private EnemyEventSO m_EnemyDeathEventSO;
     [SerializeField] private WaveSO[] m_Waves;
     [SerializeField] private float m_TimeBetweenWaves;
+    [SerializeField] private Transform m_DeadBodyContainer;
+    [SerializeField] private ObjectPoolSO m_DeadBodyPoolSO;
 
     private WaveSO m_CurrentWave = default;
     private Action<float> m_UpdateAction = default;
@@ -16,11 +19,12 @@ public class WaveManager : MonoBehaviour
 
     private void Awake()
     {
+        m_EnemyDeathEventSO.Register(OnEnemyDeath);
         m_TimeRemaining = m_TimeBetweenWaves;
         m_CurrentWaveIndex = 0;
         m_CurrentWave = m_Waves[m_CurrentWaveIndex];
         m_UpdateAction = DoCountdownBetweenWaves;
-        m_EnemyDeathEventSO.Register(OnEnemyDeath);
+        m_DeadBodyPoolSO.container = m_DeadBodyContainer;
     }
 
     private void Update()
@@ -31,6 +35,7 @@ public class WaveManager : MonoBehaviour
     private void OnDestroy()
     {
         m_EnemyDeathEventSO.Unregister(OnEnemyDeath);
+        m_DeadBodyPoolSO.DestroyContainer();
     }
 
     private void DoCountdownBetweenWaves(float deltaTime)
@@ -69,6 +74,11 @@ public class WaveManager : MonoBehaviour
 
     private void OnEnemyDeath()
     {
+        Debug.Log("Enemies alive: " + m_EnemiesAlive);
+        var body = m_DeadBodyPoolSO.GetFreeObject();
+        body.transform.position = m_EnemyDeathEventSO.value.transform.position;
+        body.Initialize();
+
         if (--m_EnemiesAlive == 0)
         {
             Debug.Log("all enemies ded!");
@@ -86,6 +96,5 @@ public class WaveManager : MonoBehaviour
                 enabled = true;
             }
         }
-        Debug.Log("Enemies alive: " + m_EnemiesAlive);
     }
 }
