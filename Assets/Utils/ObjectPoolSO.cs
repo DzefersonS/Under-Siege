@@ -78,7 +78,7 @@ namespace Utils
                 var obj = Instantiate(m_PoolablePrefab);
                 obj.transform.SetParent(m_Container);
                 obj.gameObject.SetActive(false);
-                obj.transform.localScale = Vector3.one;
+                //obj.transform.localScale = Vector3.one;
                 obj.freeToPoolCallback = FreeObject;
                 m_Objects[i] = obj;
             }

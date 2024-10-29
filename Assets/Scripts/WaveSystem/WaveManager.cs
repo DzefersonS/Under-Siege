@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    [SerializeField] private EnemyEventSO m_EnemyDeathEventSO;
     [SerializeField] private WaveSO[] m_Waves;
     [SerializeField] private float m_TimeBetweenWaves;
 
@@ -18,11 +19,18 @@ public class WaveManager : MonoBehaviour
         m_TimeRemaining = m_TimeBetweenWaves;
         m_CurrentWaveIndex = 0;
         m_CurrentWave = m_Waves[m_CurrentWaveIndex];
+        m_EnemyDeathEventSO.Register(OnEnemyDeath);
+        m_UpdateAction = DoCountdownBetweenWaves;
     }
 
     private void Update()
     {
         m_UpdateAction.Invoke(Time.deltaTime);
+    }
+
+    private void OnDestroy()
+    {
+        m_EnemyDeathEventSO.Unregister(OnEnemyDeath);
     }
 
     private void DoCountdownBetweenWaves(float deltaTime)
@@ -31,6 +39,8 @@ public class WaveManager : MonoBehaviour
         if (m_TimeRemaining < 0.0f)
         {
             m_UpdateAction = EnemySpawnTimer;
+            m_EnemiesAlive = m_CurrentWave.enemies.Length;
+            m_EnemiesLeftToSpawn = m_EnemiesAlive;
             m_TimeRemaining += m_CurrentWave.timeBetweenSpawns;
         }
     }
@@ -40,11 +50,13 @@ public class WaveManager : MonoBehaviour
         m_TimeRemaining -= deltaTime;
         if (m_TimeRemaining < 0.0f)
         {
-            // call to spawn enemy
+            Enemy enemy = (Enemy)m_CurrentWave.enemies[^m_EnemiesLeftToSpawn].GetFreeObject();
+            enemy.transform.position = Vector3.zero;
+            Debug.Log("Spawned enemy!");
             --m_EnemiesLeftToSpawn;
-            ++m_EnemiesAlive;
             if (m_EnemiesLeftToSpawn == 0)
             {
+                Debug.Log("Finished spawning wave!");
                 enabled = false;
             }
             else
@@ -52,5 +64,14 @@ public class WaveManager : MonoBehaviour
                 m_TimeRemaining += m_CurrentWave.timeBetweenSpawns;
             }
         }
+    }
+
+    private void OnEnemyDeath()
+    {
+        if (--m_EnemiesAlive == 0)
+        {
+            Debug.Log("all enemies ded lulmao");
+        }
+        Debug.Log("Enemies alive: " + m_EnemiesAlive);
     }
 }

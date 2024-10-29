@@ -7,8 +7,8 @@ using Utils;
 public class WaveSO : ScriptableObject
 {
     [SerializeField] private float m_TimeBetweenSpawns;
-    [SerializeField] private Poolable[] m_Enemies;
+    [SerializeField] private ObjectPoolSO[] m_Enemies;
 
     public float timeBetweenSpawns => m_TimeBetweenSpawns;
-    public Poolable[] enemies => m_Enemies;
+    public ObjectPoolSO[] enemies => m_Enemies;
 }
