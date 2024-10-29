@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 382021499261652962}
   - component: {fileID: 7970930070649125018}
   m_Layer: 0
-  m_Name: Test_deadEnemy
-  m_TagString: Untagged
+  m_Name: DeadBody
+  m_TagString: Cultist_Carried_DeadBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 6859610955948518560}
   m_Layer: 0
   m_Name: Cultist
-  m_TagString: Untagged
+  m_TagString: Cultist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,6 +207,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
+  bodyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  state: 0
 --- !u!50 &4659723765986164377
 Rigidbody2D:
   serializedVersion: 4

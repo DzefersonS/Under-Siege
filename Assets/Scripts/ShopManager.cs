@@ -7,17 +7,16 @@ using UnityEngine.EventSystems;
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private UpgradesSO _upgradePrices;
-    [SerializeField] private GameObject _cultistPrefab;
-    [SerializeField] private GameObject _cultistParent;
-    [SerializeField] private Vector2 _spawnPosition;
+    [SerializeField] private CultistManager _cultistManager;
 
     public TMP_Text SoulsTxt;
     public int[,] shopItems = new int[5, 5];
-    public float souls;
+    public int souls;
 
 
     void Start()
     {
+        _cultistManager = GameObject.Find("CultistManager").GetComponent<CultistManager>();
 
         SoulsTxt.text = souls.ToString();
 
@@ -86,17 +85,18 @@ public class ShopManager : MonoBehaviour
 
     public void SpawnCultist()
     {
-        if (Random.Range(1, 3) == 1)
-            _spawnPosition = new Vector2(12.5f, -2.07f);
-        else
-            _spawnPosition = new Vector2(8.5f, -2.07f);
+        _cultistManager.SpawnCultist();
+    }
 
+    public void AddSouls(int amount)
+    {
+        souls += amount;
+        SoulsTxt.text = souls.ToString();
 
-
-
-        Instantiate(_cultistPrefab, _spawnPosition, Quaternion.identity, _cultistParent.transform);
-
-        // a whole load of other balogney is going to happen here...
+    }
+    public int GetSouls()
+    {
+        return souls;
     }
 
 
