@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
             projectile.transform.rotation = transform.rotation;
             //dirty code, fix later
             projectile.rigidBody.velocity = new Vector3(4.0f * (transform.rotation.eulerAngles.y > 0 ? -1 : 1), 0.0f, 0.0f);
+            projectile.Initialize();
             m_AttackCooldown = 1.0f / m_PlayerDataSO.playerAttackSpeed;
         }
     }

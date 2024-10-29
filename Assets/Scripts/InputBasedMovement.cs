@@ -13,7 +13,6 @@ public class InputBasedMovement : MonoBehaviour
     [SerializeField] private float m_Gravity;
 
     private Vector2 m_MoveDirection = default;
-    private float m_RotationY = default;
 
     private void Update()
     {
