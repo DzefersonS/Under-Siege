@@ -471,6 +471,7 @@ MonoBehaviour:
   m_EnemyDeathEventSO: {fileID: 11400000, guid: 8442cda6b63a514489e5cf3673a3c920, type: 2}
   m_Waves:
   - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
+  - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
   m_TimeBetweenWaves: 3
 --- !u!4 &1941699042
 Transform:

@@ -19,8 +19,8 @@ public class WaveManager : MonoBehaviour
         m_TimeRemaining = m_TimeBetweenWaves;
         m_CurrentWaveIndex = 0;
         m_CurrentWave = m_Waves[m_CurrentWaveIndex];
-        m_EnemyDeathEventSO.Register(OnEnemyDeath);
         m_UpdateAction = DoCountdownBetweenWaves;
+        m_EnemyDeathEventSO.Register(OnEnemyDeath);
     }
 
     private void Update()
@@ -71,7 +71,20 @@ public class WaveManager : MonoBehaviour
     {
         if (--m_EnemiesAlive == 0)
         {
-            Debug.Log("all enemies ded lulmao");
+            Debug.Log("all enemies ded!");
+            if (++m_CurrentWaveIndex > m_Waves.Length)
+            {
+                Debug.Log("finished spawning waves!");
+                //todo: this is for testing, not a thing we plan to have happen
+                return;
+            }
+            else
+            {
+                Debug.Log("Starting next wave!");
+                m_CurrentWave = m_Waves[m_CurrentWaveIndex];
+                m_UpdateAction = DoCountdownBetweenWaves;
+                enabled = true;
+            }
         }
         Debug.Log("Enemies alive: " + m_EnemiesAlive);
     }
