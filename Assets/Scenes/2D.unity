@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Waves:
   - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
   - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
-  m_TimeBetweenWaves: 3
+  m_TimeBetweenWaves: 1
 --- !u!4 &1941699042
 Transform:
   m_ObjectHideFlags: 0
