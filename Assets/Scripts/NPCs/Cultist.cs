@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum State
-{
-    Idle,
-    Collect,
-    COUNT
-}
+
 
 
 
@@ -16,20 +11,48 @@ public class Cultist : MonoBehaviour
 {
 
     [SerializeField] private float _speed = 1f;
-    [SerializeField] private bool isBusy = false;
+
     [SerializeField] private State state = State.Idle;
 
-    [SerializeField] public bool IsCarryingBody = false;
+    [SerializeField] private Animator m_Animator;
+
+    private Transform _graveyardLocation;
+
+
+    //All bools will be deleted once state system is fully done, for now , let them stay
+    public bool IsCarryingBody { get; private set; }
+    public bool isBusy { get; private set; }
+    public bool isIdling { get; set; }
 
 
 
     public void MoveToXPosition(float xPos)
     {
-        StartCoroutine(MoveToXPositionCoroutine(xPos));
-
+        StartCoroutine(MoveToXPositionRoutine(xPos));
     }
 
-    private IEnumerator MoveToXPositionCoroutine(float xPos)
+    private void Start()
+    {
+        LocateGraveyard();
+    }
+
+
+    private void LocateGraveyard()
+    {
+        Collider2D[] bodiesInRange = Physics2D.OverlapCircleAll(transform.position, 9999);
+
+        foreach (Collider2D body in bodiesInRange)
+        {
+            // Check if the collider is tagged "DeadBody"
+
+            if (body.name == "Graveyard")
+            {
+                _graveyardLocation = body.transform;
+            }
+        }
+    }
+
+    private IEnumerator MoveToXPositionRoutine(float xPos)
     {
         while (Mathf.Abs(transform.position.x - xPos) > 0.01f)
         {
@@ -56,52 +79,99 @@ public class Cultist : MonoBehaviour
     {
         StartCoroutine(CollectDeadBodyCoroutine(_deadbody));
     }
+    public void Idle()
+    {
+        //This requires a bit of fixing
+        // StartCoroutine(IdleRoutine());
+    }
 
     private IEnumerator CollectDeadBodyCoroutine(GameObject _deadbody)
     {
         Transform closestBody = _deadbody.transform;
-        state = State.Collect;
 
         if (closestBody != null)
         {
             isBusy = true;
+            state = State.Collect;
 
-            yield return MoveToXPositionCoroutine(closestBody.position.x);
 
-            //If other cultist managed to pick up the body before this one
+            yield return MoveToXPositionRoutine(closestBody.position.x);
+
+            //If other cultist managed to pick up the body before this one(shouldn't happen, but just in case)
             if (closestBody == null)
             {
+                state = State.Idle;
                 isBusy = false;
                 yield break;
             }
             // Destroy the dead body once close enough
             Destroy(closestBody.gameObject);
             IsCarryingBody = true;
+            state = State.Carry;
 
             // Enable child component (dead body) of cultist
             transform.GetChild(0).gameObject.SetActive(true);
 
 
             // Walk towards the grave
-            yield return MoveToXPositionCoroutine(-10); //for now its -10, will put a graveyard position later
+            yield return MoveToXPositionRoutine(_graveyardLocation.position.x); //for now its -10, will put a graveyard position later
 
-            //transform.GetChild(0).gameObject.SetActive(false);// Disable the deadbody element.
             IsCarryingBody = false;
 
             // Switch to idle state
             isBusy = false;
+            state = State.Idle;
+
         }
         else
         {
+            state = State.Idle;
             isBusy = false;
             Debug.Log("No DeadBody found in range.");
         }
     }
 
-    public bool IsBusy()
+    //Will be implemented in the future
+    IEnumerator IdleRoutine()
     {
-        return isBusy;
+        isIdling = true;
+        state = State.Idle;
+        //Bounds for base, once we have them
+        float xBoundsMin = -10;
+        float xBoundsMax = 10;
+
+        StartCoroutine(MoveToXPositionRoutine(Random.Range(xBoundsMin, xBoundsMax)));
+
+        yield return null;
+
     }
+
+    public void ChangeState(State newState)
+    {
+        state = newState;
+    }
+
+    public State GetState()
+    {
+        return state;
+    }
+
+    public void Death()
+    {
+        //Initiate the death sequence
+
+    }
+
+
+
+    public enum State
+    {
+        Idle,
+        Collect,
+        Carry,
+        COUNT
+    }
+
 
 }
 

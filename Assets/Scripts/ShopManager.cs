@@ -58,6 +58,7 @@ public class ShopManager : MonoBehaviour
 
             //Update amount of souls left
             SoulsTxt.SetText(souls.ToString());
+
             //Update purchased quantity text
             ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItems[3, referencedItemId].ToString();
 

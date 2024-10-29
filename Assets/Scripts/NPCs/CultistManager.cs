@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
 public class CultistManager : MonoBehaviour
 {
 
@@ -15,6 +18,12 @@ public class CultistManager : MonoBehaviour
     private float bodyCheckCooldown = 1f;
     private float nextBodyCheckTime = 0f;
 
+
+
+    private void Start()
+    {
+    }
+
     void Update()
     {
         if (Time.time >= nextBodyCheckTime)
@@ -22,6 +31,7 @@ public class CultistManager : MonoBehaviour
             nextBodyCheckTime = Time.time + bodyCheckCooldown;
             FindDeadBodies();
         }
+
         if (_deadBodies.Count > 0)
             CollectBody();
     }
@@ -65,9 +75,9 @@ public class CultistManager : MonoBehaviour
     {
         foreach (var cultist in _cultists)
         {
-            if (!cultist.IsBusy())
+            if (cultist.GetState() == Cultist.State.Idle)
             {
-                Debug.Log("Found a cultist" + cultist.IsBusy());
+
                 return cultist;
             }
         }
@@ -102,6 +112,21 @@ public class CultistManager : MonoBehaviour
         }
     }
 
+
+    //For future implementation.
+    private void StartIdling()
+    {
+        foreach (var cultist in _cultists)
+        {
+            if (cultist.GetState() == Cultist.State.Idle)
+            {
+                cultist.Idle();
+            }
+
+        }
+
+    }
+
     private void TerminateCultist()
     {
         //Unclaim a body if he has claimed it.
@@ -111,6 +136,8 @@ public class CultistManager : MonoBehaviour
         //Play death animation.
 
     }
+
+
 
 }
 
