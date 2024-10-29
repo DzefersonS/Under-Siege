@@ -140,8 +140,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4264988990634795443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72a534d9bad44d44a98a4d3be79310bd, type: 3}
+  m_Script: {fileID: 11500000, guid: f3c2cc09504b06f41b6d0d3defbdc420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTaken: 0
   _timeToSelfDestruct: 60
+  _deadBodyEventSO: {fileID: 11400000, guid: 33e34857e4ded3045a7d05aa5026dc11, type: 2}
+  isClaimed: 0

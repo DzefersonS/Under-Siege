@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
-public class DeadBody : MonoBehaviour
+public class DeadBody : Poolable
 {
     [SerializeField] private float _timeToSelfDestruct;
+    [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
     private GameObject _claimingCultist; //Cultist that will take the body
 
     public bool isClaimed = false;
@@ -30,6 +32,10 @@ public class DeadBody : MonoBehaviour
         }
     }
 
+    public override void Initialize()
+    {
+        _deadBodyEventSO.value = this;
+    }
 
     public void AssignCultist(GameObject cultist)
     {
@@ -48,7 +54,7 @@ public class DeadBody : MonoBehaviour
     {
         yield return new WaitForSeconds(_timeToSelfDestruct);
 
-        Destroy(gameObject);
+        FreeToPool();
     }
 
 }

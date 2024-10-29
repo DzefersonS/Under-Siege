@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d978c50e93a5079449ce75e4fdd43d61, type: 3}
-  m_Name: Player Inputs SO
+  m_Script: {fileID: 11500000, guid: a3c164af4776f2e4db70f06588f448f8, type: 3}
+  m_Name: Dead Body Object Pool SO
   m_EditorClassIdentifier: 
-  m_MoveLeft: 97
-  m_MoveRight: 100
-  m_Jump: 32
-  m_Attack: 323
+  m_PoolablePrefab: {fileID: 6387364297969752662, guid: 826c23e94e922c94183666faf7118d44, type: 3}
+  m_BufferSize: 6
