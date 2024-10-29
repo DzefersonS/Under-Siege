@@ -16,8 +16,11 @@ public class Cultist : MonoBehaviour
 {
 
     [SerializeField] private float _speed = 1f;
-    [SerializeField] private State state = State.Idle;
     [SerializeField] private bool isBusy = false;
+    [SerializeField] private State state = State.Idle;
+
+    [SerializeField] public bool IsCarryingBody = false;
+
 
 
     public void MoveToXPosition(float xPos)
@@ -73,6 +76,7 @@ public class Cultist : MonoBehaviour
             }
             // Destroy the dead body once close enough
             Destroy(closestBody.gameObject);
+            IsCarryingBody = true;
 
             // Enable child component (dead body) of cultist
             transform.GetChild(0).gameObject.SetActive(true);
@@ -81,7 +85,8 @@ public class Cultist : MonoBehaviour
             // Walk towards the grave
             yield return MoveToXPositionCoroutine(-10); //for now its -10, will put a graveyard position later
 
-            transform.GetChild(0).gameObject.SetActive(false);// first child element of cultist
+            //transform.GetChild(0).gameObject.SetActive(false);// Disable the deadbody element.
+            IsCarryingBody = false;
 
             // Switch to idle state
             isBusy = false;

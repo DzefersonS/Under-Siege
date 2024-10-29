@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Graveyard : MonoBehaviour
 {
-    [SerializeField] private ShopManager _shopManager;
+    private ShopManager _shopManager;
     void Start()
     {
         _shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
@@ -15,6 +15,13 @@ public class Graveyard : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)// not done
     {
         if (other.tag == "Cultist")
-            _shopManager.AddSouls(1);
+        {
+            if (other.GetComponent<Cultist>().IsCarryingBody)
+
+                _shopManager.AddSouls(1);
+
+            other.transform.GetChild(0).gameObject.SetActive(false);//Disable the deadbody object
+
+        }
     }
 }

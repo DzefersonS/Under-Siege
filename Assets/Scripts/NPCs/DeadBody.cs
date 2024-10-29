@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeadBody : MonoBehaviour
 {
     [SerializeField] private float _timeToSelfDestruct;
-    [SerializeField] private GameObject _claimingCultist; //Cultist that will take the body
+    private GameObject _claimingCultist; //Cultist that will take the body
 
     public bool isClaimed = false;
 

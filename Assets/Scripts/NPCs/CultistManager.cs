@@ -83,9 +83,10 @@ public class CultistManager : MonoBehaviour
     private void CollectBody()
     {
         Cultist freeCultist = FindFreeCultist();
+        GameObject deadbodyGO = _deadBodies.Peek();//Checking if null
 
         // Only dequeue a body if a free cultist is available
-        if (freeCultist != null && _deadBodies.Count > 0)
+        if (freeCultist != null && _deadBodies.Count > 0 && deadbodyGO != null)
         {
             DeadBody deadbody = _deadBodies.Dequeue().GetComponent<DeadBody>();
 
@@ -94,10 +95,22 @@ public class CultistManager : MonoBehaviour
                 deadbody.AssignCultist(freeCultist.gameObject);
                 freeCultist.CollectDeadBody(deadbody.gameObject);
             }
-            else
-            {
-                Debug.LogWarning("Dequeued a null dead body.");
-            }
+        }
+        if (deadbodyGO == null)
+        {
+            _deadBodies.Dequeue();// remove the null shit from queue.
         }
     }
+
+    private void TerminateCultist()
+    {
+        //Unclaim a body if he has claimed it.
+        //Remove cultist from list
+        //If Cultist was carrying a body, maybe drop it?
+        //Create a deadbody at cultist location
+        //Play death animation.
+
+    }
+
 }
+

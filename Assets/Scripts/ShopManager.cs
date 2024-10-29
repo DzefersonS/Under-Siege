@@ -24,7 +24,7 @@ public class ShopManager : MonoBehaviour
         shopItems[1, 1] = 1; //dmg
         shopItems[1, 2] = 2; //attack speed
         shopItems[1, 3] = 3; // movement speed
-        shopItems[1, 4] = 4; // something
+        shopItems[1, 4] = 4; // Cultist
 
         //Price
         shopItems[2, 1] = _upgradePrices.PlayerUpgradePrices[1];//Dmg

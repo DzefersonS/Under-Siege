@@ -624,24 +624,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288011074}
   m_CullTransparentMesh: 1
---- !u!1 &308945716 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4264988990634795443, guid: 18136e322e10a754ab99bf717c27664f, type: 3}
-  m_PrefabInstance: {fileID: 1048929709}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &308945717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308945716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72a534d9bad44d44a98a4d3be79310bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isTaken: 0
 --- !u!1 &432831975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,17 +2262,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeadBody
       objectReference: {fileID: 0}
-    - target: {fileID: 4264988990634795443, guid: 18136e322e10a754ab99bf717c27664f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4264988990634795443, guid: 18136e322e10a754ab99bf717c27664f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 308945717}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18136e322e10a754ab99bf717c27664f, type: 3}
 --- !u!1 &1070698447
 GameObject:
@@ -3547,7 +3522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradePrices: {fileID: 11400000, guid: 7f65dd8bcdbcfb743ab634fc1b5dec32, type: 2}
-  _cultistManager: {fileID: 0}
+  _cultistManager: {fileID: 149945863}
   SoulsTxt: {fileID: 1624725254}
   souls: 1000
 --- !u!4 &1622666718
