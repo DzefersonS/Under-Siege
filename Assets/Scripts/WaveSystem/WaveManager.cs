@@ -82,7 +82,7 @@ public class WaveManager : MonoBehaviour
         if (--m_EnemiesAlive == 0)
         {
             Debug.Log("all enemies ded!");
-            if (++m_CurrentWaveIndex > m_Waves.Length)
+            if (++m_CurrentWaveIndex >= m_Waves.Length)
             {
                 Debug.Log("finished spawning waves!");
                 //todo: this is for testing, not a thing we plan to have happen
