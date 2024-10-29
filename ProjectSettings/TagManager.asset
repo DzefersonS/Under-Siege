@@ -4,6 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Event
+  - ShopCanvas
+  - DeadBody
+  - Cultist_Carried_DeadBody
+  - Cultist
+  - CultistManager
   - PlayerProjectile
   - Enemy
   layers:

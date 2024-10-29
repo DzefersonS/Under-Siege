@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42c51978e3f507498fc2dffce3d39f3, type: 3}
+  m_Name: Upgrades SO
+  m_EditorClassIdentifier: 
+  m_PlayerUpgradePrices: 00000000320000003200000064000000640000006400000064000000640000006400000064000000
+  m_CultistPrices: 000000000a000000320000007d000000960000009600000096000000960000009600000096000000
