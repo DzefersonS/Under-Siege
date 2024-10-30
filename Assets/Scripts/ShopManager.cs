@@ -10,7 +10,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private CultistManager _cultistManager;
 
     public TMP_Text SoulsTxt;
-    public int[,] shopItems = new int[5, 5];
+    public int[,] shopItems = new int[5, 6];
+    public int shrineLevel = 0;
     public int souls;
 
 
@@ -25,18 +26,24 @@ public class ShopManager : MonoBehaviour
         shopItems[1, 2] = 2; //attack speed
         shopItems[1, 3] = 3; // movement speed
         shopItems[1, 4] = 4; // Cultist
+        shopItems[1, 5] = 5; // Shrine
+
 
         //Price
         shopItems[2, 1] = _upgradePrices.PlayerUpgradePrices[1];//Dmg
         shopItems[2, 2] = _upgradePrices.PlayerUpgradePrices[1];//atk speed
         shopItems[2, 3] = _upgradePrices.PlayerUpgradePrices[1];// movmenet speed
         shopItems[2, 4] = _upgradePrices.CultistPrices[1];      //cultist
+        shopItems[2, 5] = _upgradePrices.ShrinePrices[1];       //Shrine
+
 
         //Quantity
         shopItems[3, 1] = 0;
         shopItems[3, 2] = 0;
         shopItems[3, 3] = 0;
         shopItems[3, 4] = 0;
+        shopItems[3, 5] = 0;
+
 
     }
 
@@ -44,7 +51,7 @@ public class ShopManager : MonoBehaviour
     {
 
     }
-
+    //Altar
     public void Buy()
     {
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
@@ -74,6 +81,12 @@ public class ShopManager : MonoBehaviour
             {
                 shopItems[2, referencedItemId] = _upgradePrices.CultistPrices[shopItems[3, referencedItemId]];
                 SpawnCultist();
+            }
+            //Set a new price for shrine
+            else if (referencedItemId == 5)
+            {
+                shopItems[2, referencedItemId] = _upgradePrices.ShrinePrices[shopItems[3, referencedItemId]];
+                shrineLevel++;
             }
         }
     }
