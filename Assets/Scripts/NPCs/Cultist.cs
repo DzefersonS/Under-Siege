@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Utils;
 
 
 
@@ -17,6 +18,9 @@ public class Cultist : MonoBehaviour
     [SerializeField] private Animator m_Animator;
 
     private Transform _graveyardLocation;
+
+    [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
+
 
 
     //All bools will be deleted once state system is fully done, for now , let them stay
@@ -81,6 +85,7 @@ public class Cultist : MonoBehaviour
     }
     public void Idle()
     {
+
         //This requires a bit of fixing
         // StartCoroutine(IdleRoutine());
     }
@@ -94,8 +99,10 @@ public class Cultist : MonoBehaviour
             isBusy = true;
             state = State.Collect;
 
+            m_Animator.SetTrigger("Sprint");
 
             yield return MoveToXPositionRoutine(closestBody.position.x);
+            m_Animator.SetTrigger("Idle");
 
             //If other cultist managed to pick up the body before this one(shouldn't happen, but just in case)
             if (closestBody == null)
@@ -105,16 +112,22 @@ public class Cultist : MonoBehaviour
                 yield break;
             }
             // Destroy the dead body once close enough
-            Destroy(closestBody.gameObject);
+            m_Animator.SetTrigger("Collect");
+            yield return new WaitForSeconds(1f);
+
+            closestBody.GetComponent<DeadBody>().FreeToPool();
             IsCarryingBody = true;
             state = State.Carry;
 
             // Enable child component (dead body) of cultist
             transform.GetChild(0).gameObject.SetActive(true);
 
+            m_Animator.SetTrigger("Carry");
 
             // Walk towards the grave
             yield return MoveToXPositionRoutine(_graveyardLocation.position.x); //for now its -10, will put a graveyard position later
+
+            transform.GetChild(0).gameObject.SetActive(false);//Disable the deadbody object
 
             IsCarryingBody = false;
 

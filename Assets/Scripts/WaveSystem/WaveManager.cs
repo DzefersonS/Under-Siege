@@ -58,11 +58,9 @@ public class WaveManager : MonoBehaviour
             Enemy enemy = (Enemy)m_CurrentWave.enemies[^m_EnemiesLeftToSpawn].GetFreeObject();
             enemy.transform.position = Vector3.zero;
             enemy.Initialize();
-            Debug.Log("Spawned enemy!");
             --m_EnemiesLeftToSpawn;
             if (m_EnemiesLeftToSpawn == 0)
             {
-                Debug.Log("Finished spawning wave!");
                 enabled = false;
             }
             else
@@ -74,23 +72,19 @@ public class WaveManager : MonoBehaviour
 
     private void OnEnemyDeath()
     {
-        Debug.Log("Enemies alive: " + m_EnemiesAlive);
         var body = m_DeadBodyPoolSO.GetFreeObject();
         body.transform.position = m_EnemyDeathEventSO.value.transform.position;
         body.Initialize();
 
         if (--m_EnemiesAlive == 0)
         {
-            Debug.Log("all enemies ded!");
             if (++m_CurrentWaveIndex >= m_Waves.Length)
             {
-                Debug.Log("finished spawning waves!");
                 //todo: this is for testing, not a thing we plan to have happen
                 return;
             }
             else
             {
-                Debug.Log("Starting next wave!");
                 m_CurrentWave = m_Waves[m_CurrentWaveIndex];
                 m_UpdateAction = DoCountdownBetweenWaves;
                 enabled = true;

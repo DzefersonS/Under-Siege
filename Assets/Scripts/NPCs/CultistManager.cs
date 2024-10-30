@@ -7,36 +7,39 @@ using UnityEngine;
 
 public class CultistManager : MonoBehaviour
 {
+    [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
+    [SerializeField] private GameObject _cultistPrefab;
+    [SerializeField] private GameObject _cultistParent;
+    [SerializeField] private Vector2 _spawnPosition;
 
     [SerializeField] private List<Cultist> _cultists = new List<Cultist>();
     [SerializeField] private Queue<GameObject> _deadBodies = new Queue<GameObject>();
 
-    [SerializeField] private GameObject _cultistPrefab;
-    [SerializeField] private GameObject _cultistParent;
-    [SerializeField] private Vector2 _spawnPosition;
 
     private float bodyCheckCooldown = 1f;
     private float nextBodyCheckTime = 0f;
 
 
-
-    private void Start()
+    private void Awake()
     {
+        _deadBodyEventSO.Register(AddDeadBodyToQueue);
+    }
+    private void OnDestroy()
+    {
+        _deadBodyEventSO.Unregister(AddDeadBodyToQueue);
+    }
+
+    private void AddDeadBodyToQueue()
+    {
+        DeadBody deadBody = _deadBodyEventSO.value;
+        _deadBodies.Enqueue(deadBody.gameObject);
     }
 
     void Update()
     {
-        if (Time.time >= nextBodyCheckTime)
-        {
-            nextBodyCheckTime = Time.time + bodyCheckCooldown;
-            FindDeadBodies();
-        }
-
         if (_deadBodies.Count > 0)
             CollectBody();
     }
-
-
 
 
     public void SpawnCultist()
@@ -53,23 +56,6 @@ public class CultistManager : MonoBehaviour
 
     }
 
-    //Adds bodies to the list
-    private Queue<GameObject> FindDeadBodies()
-    {
-        Collider2D[] bodiesInRange = Physics2D.OverlapCircleAll(transform.position, 9999);
-
-        foreach (Collider2D body in bodiesInRange)
-        {
-            // Check if the collider is tagged "DeadBody"
-
-            if (body.CompareTag("DeadBody") && !_deadBodies.Contains(body.gameObject))
-            {
-                _deadBodies.Enqueue(body.gameObject);
-            }
-        }
-
-        return _deadBodies;
-    }
     //Finds a free cultist
     private Cultist FindFreeCultist()
     {
@@ -77,16 +63,10 @@ public class CultistManager : MonoBehaviour
         {
             if (cultist.GetState() == Cultist.State.Idle)
             {
-
                 return cultist;
             }
         }
         return null;
-    }
-
-    private GameObject PopFreeDeadBody()
-    {
-        return _deadBodies.Dequeue();
     }
 
     //Sends cultist to collect a body
@@ -102,7 +82,7 @@ public class CultistManager : MonoBehaviour
 
             if (deadbody != null && !deadbody.isClaimed)
             {
-                deadbody.AssignCultist(freeCultist.gameObject);
+                deadbody.Claim(freeCultist.gameObject);
                 freeCultist.CollectDeadBody(deadbody.gameObject);
             }
         }

@@ -9,11 +9,17 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform m_PlayerProjectileContainer;
     [SerializeField] private Transform m_ProjectileSpawnAnchor;
 
+    [SerializeField] private ObjectPoolSO _enemyPoolSO;
+    [SerializeField] private Transform _enemyContainer;
+
+
+
     private float m_AttackCooldown = 0.0f;
 
     private void Awake()
     {
         m_ProjectilePoolSO.container = m_PlayerProjectileContainer;
+        _enemyPoolSO.container = _enemyContainer; // DELETE THIS 
     }
 
     private void Update()
@@ -34,10 +40,21 @@ public class Player : MonoBehaviour
             projectile.Initialize();
             m_AttackCooldown = 1.0f / m_PlayerDataSO.playerAttackSpeed;
         }
+
+        //delete
+        if (Input.GetKeyDown(m_PlayerInputsSO.jump))
+        {
+            Enemy enemy = (Enemy)_enemyPoolSO.GetFreeObject();
+            enemy.transform.position = transform.position;
+            enemy.transform.rotation = transform.rotation;
+            enemy.Initialize();
+        }
+
     }
 
     private void OnDestroy()
     {
         m_ProjectilePoolSO.DestroyContainer();
+        _enemyPoolSO.DestroyContainer();//delete
     }
 }

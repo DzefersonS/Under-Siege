@@ -20,7 +20,17 @@ public class Graveyard : MonoBehaviour
 
                 _shopManager.AddSouls(1);
 
-            other.transform.GetChild(0).gameObject.SetActive(false);//Disable the deadbody object
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)// not done
+    {
+        if (other.tag == "Cultist")
+        {
+            if (other.GetComponent<Cultist>().IsCarryingBody)
+
+                other.transform.GetChild(0).gameObject.SetActive(false);//Disable the deadbody object
 
         }
     }
