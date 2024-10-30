@@ -51,6 +51,11 @@ public class DeadBody : Poolable
         isClaimed = false;
     }
 
+    public GameObject GetClaimant()
+    {
+        return _claimingCultist;
+    }
+
     private IEnumerator DestroyByTime()
     {
         yield return new WaitForSeconds(_timeToSelfDestruct);

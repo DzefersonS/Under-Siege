@@ -13,7 +13,7 @@ public class CultistManager : MonoBehaviour
     [SerializeField] private Vector2 _spawnPosition;
 
     [SerializeField] private List<Cultist> _cultists = new List<Cultist>();
-    [SerializeField] private Queue<GameObject> _deadBodies = new Queue<GameObject>();
+    [SerializeField] private Queue<DeadBody> _deadBodies = new Queue<DeadBody>();
 
 
     private float bodyCheckCooldown = 1f;
@@ -32,7 +32,7 @@ public class CultistManager : MonoBehaviour
     private void AddDeadBodyToQueue()
     {
         DeadBody deadBody = _deadBodyEventSO.value;
-        _deadBodies.Enqueue(deadBody.gameObject);
+        _deadBodies.Enqueue(deadBody);
     }
 
     void Update()
@@ -73,12 +73,12 @@ public class CultistManager : MonoBehaviour
     private void CollectBody()
     {
         Cultist freeCultist = FindFreeCultist();
-        GameObject deadbodyGO = _deadBodies.Peek();//Checking if null
+        GameObject deadbodyGO = _deadBodies.Peek().gameObject;//Checking if null
 
         // Only dequeue a body if a free cultist is available
         if (freeCultist != null && _deadBodies.Count > 0 && deadbodyGO != null)
         {
-            DeadBody deadbody = _deadBodies.Dequeue().GetComponent<DeadBody>();
+            DeadBody deadbody = _deadBodies.Dequeue();
 
             if (deadbody != null && !deadbody.isClaimed)
             {
@@ -107,13 +107,21 @@ public class CultistManager : MonoBehaviour
 
     }
 
-    private void TerminateCultist()
+    private void TerminateCultist(Cultist cultist)
     {
-        //Unclaim a body if he has claimed it.
-        //Remove cultist from list
-        //If Cultist was carrying a body, maybe drop it?
-        //Create a deadbody at cultist location
-        //Play death animation.
+        //Remove this cultist from the body
+        foreach (var body in _deadBodies)
+        {
+            if (body.GetClaimant() == cultist.gameObject)
+                body.Unclaim();
+        }
+
+        Cultist tempCultist = cultist;
+        _cultists.Remove(cultist);
+
+        //If Cultist was carrying a body, maybe drop it???
+
+        tempCultist.Death();
 
     }
 

@@ -38,6 +38,7 @@ public class Cultist : MonoBehaviour
     private void Start()
     {
         LocateGraveyard();
+        Death();
     }
 
 
@@ -171,7 +172,22 @@ public class Cultist : MonoBehaviour
 
     public void Death()
     {
-        //Initiate the death sequence
+        StartCoroutine(DeathRoutine());
+    }
+
+    IEnumerator DeathRoutine()
+    {
+        m_Animator.SetTrigger("Death");
+        if (IsCarryingBody)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);//Disable the deadbody object
+        }
+
+        //Spawn deadbody on cultists location maybe? idk
+
+
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
 
     }
 

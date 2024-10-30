@@ -23,9 +23,9 @@ public class ShopManager : MonoBehaviour
         _UIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
 
         if (_UIManager == null)
-            Debug.Log("In ShopManager UI Manager is null");
+            Debug.LogWarning("In ShopManager, UI Manager is null");
         if (_cultistManager == null)
-            Debug.Log("In ShopManager Cultist Manager is null");
+            Debug.LogWarning("In ShopManager, Cultist Manager is null");
 
         _UIManager.UpdateSoulsText(souls);
 
