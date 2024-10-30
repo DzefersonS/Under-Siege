@@ -7,7 +7,7 @@ public class DeadBody : Poolable
 {
     [SerializeField] private float _timeToSelfDestruct;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
-    private GameObject _claimingCultist; //Cultist that will take the body
+    [SerializeField] private GameObject _claimingCultist; //Cultist that will take the body
 
     public bool isClaimed = false;
 
@@ -34,10 +34,12 @@ public class DeadBody : Poolable
 
     public override void Initialize()
     {
+        isClaimed = false;
+        _claimingCultist = null;
         _deadBodyEventSO.value = this;
     }
 
-    public void AssignCultist(GameObject cultist)
+    public void Claim(GameObject cultist)
     {
         _claimingCultist = cultist;
         isClaimed = true; //just for good measure
@@ -47,13 +49,16 @@ public class DeadBody : Poolable
     {
         _claimingCultist = null;
         isClaimed = false;
+    }
 
+    public GameObject GetClaimant()
+    {
+        return _claimingCultist;
     }
 
     private IEnumerator DestroyByTime()
     {
         yield return new WaitForSeconds(_timeToSelfDestruct);
-
         FreeToPool();
     }
 

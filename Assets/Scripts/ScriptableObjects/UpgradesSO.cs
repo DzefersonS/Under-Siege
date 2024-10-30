@@ -8,8 +8,11 @@ public class UpgradesSO : ScriptableObject
 {
     [SerializeField] private int[] m_PlayerUpgradePrices;
     [SerializeField] private int[] m_CultistPrices;
+    [SerializeField] private int[] m_ShrinePrices;
+
 
     public int[] PlayerUpgradePrices => m_PlayerUpgradePrices;
     public int[] CultistPrices => m_CultistPrices;
+    public int[] ShrinePrices => m_ShrinePrices;
 }
 

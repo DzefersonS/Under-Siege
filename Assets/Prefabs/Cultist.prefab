@@ -207,10 +207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
-  bodyLayer:
-    serializedVersion: 2
-    m_Bits: 0
   state: 0
+  m_Animator: {fileID: 3293523229664769761}
+  _deadBodyEventSO: {fileID: 11400000, guid: 33e34857e4ded3045a7d05aa5026dc11, type: 2}
 --- !u!50 &4659723765986164377
 Rigidbody2D:
   serializedVersion: 4
