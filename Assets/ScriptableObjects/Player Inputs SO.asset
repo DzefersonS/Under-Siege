@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveLeft: 97
   m_MoveRight: 100
-  m_Jump: 256
+  m_Jump: 119
   m_Attack: 32
