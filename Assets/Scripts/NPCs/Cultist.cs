@@ -38,7 +38,6 @@ public class Cultist : MonoBehaviour
     private void Start()
     {
         LocateGraveyard();
-        Death();
     }
 
 

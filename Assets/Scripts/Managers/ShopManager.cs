@@ -53,6 +53,7 @@ public class ShopManager : MonoBehaviour
         shopItems[3, 4] = 0;
         shopItems[3, 5] = 0;
 
+        shrineLevel = shopItems[3, 5];
 
     }
 
@@ -111,8 +112,6 @@ public class ShopManager : MonoBehaviour
             else if (itemId == 5)// if buying shrine upgrade
                 return true;
         }
-
-        Debug.Log("cant buy, Shrine lvl" + shrineLevel);
         return false;
     }
 
