@@ -9,6 +9,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float m_TimeBetweenWaves;
     [SerializeField] private Transform m_DeadBodyContainer;
     [SerializeField] private ObjectPoolSO m_DeadBodyPoolSO;
+    [SerializeField] private EnemySpawner m_EnemySpawner;
 
     private WaveSO m_CurrentWave = default;
     private Action<float> m_UpdateAction = default;
@@ -55,9 +56,7 @@ public class WaveManager : MonoBehaviour
         m_TimeRemaining -= deltaTime;
         if (m_TimeRemaining < 0.0f)
         {
-            Enemy enemy = (Enemy)m_CurrentWave.enemies[^m_EnemiesLeftToSpawn].GetFreeObject();
-            enemy.transform.position = Vector3.zero;
-            enemy.Initialize();
+            m_EnemySpawner.SpawnEnemy(m_CurrentWave.enemies[^m_EnemiesLeftToSpawn]);
             Debug.Log("Spawned enemy!");
             --m_EnemiesLeftToSpawn;
             if (m_EnemiesLeftToSpawn == 0)
