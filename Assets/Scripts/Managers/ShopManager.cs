@@ -8,8 +8,10 @@ public class ShopManager : MonoBehaviour
 {
     [SerializeField] private UpgradesSO _upgradePrices;
     [SerializeField] private CultistManager _cultistManager;
+    [SerializeField] private UIManager _UIManager;
 
-    public TMP_Text SoulsTxt;
+    [SerializeField] private int maxUpgradesPerLevel = 5;
+
     public int[,] shopItems = new int[5, 6];
     public int shrineLevel = 0;
     public int souls;
@@ -18,8 +20,15 @@ public class ShopManager : MonoBehaviour
     void Start()
     {
         _cultistManager = GameObject.Find("CultistManager").GetComponent<CultistManager>();
+        _UIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
 
-        SoulsTxt.text = souls.ToString();
+        if (_UIManager == null)
+            Debug.Log("In ShopManager UI Manager is null");
+        if (_cultistManager == null)
+            Debug.Log("In ShopManager Cultist Manager is null");
+
+        _UIManager.UpdateSoulsText(souls);
+
 
         //Item ID's
         shopItems[1, 1] = 1; //dmg
@@ -57,14 +66,14 @@ public class ShopManager : MonoBehaviour
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
         int referencedItemId = ButtonRef.GetComponent<ButtonInfo>().itemID;
 
-        if (souls >= shopItems[2, referencedItemId])
+        if (IsEligibleForPurchase(referencedItemId))
         {
             souls -= shopItems[2, referencedItemId];
 
             shopItems[3, referencedItemId]++;
 
             //Update amount of souls left
-            SoulsTxt.SetText(souls.ToString());
+            _UIManager.UpdateSoulsText(souls);
 
             //Update purchased quantity text
             ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItems[3, referencedItemId].ToString();
@@ -80,7 +89,7 @@ public class ShopManager : MonoBehaviour
             else if (referencedItemId == 4)
             {
                 shopItems[2, referencedItemId] = _upgradePrices.CultistPrices[shopItems[3, referencedItemId]];
-                SpawnCultist();
+                _cultistManager.SpawnCultist();
             }
             //Set a new price for shrine
             else if (referencedItemId == 5)
@@ -91,21 +100,33 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    private bool IsEligibleForPurchase(int itemId)
+    {
+        //check if enough souls
+        if (souls >= shopItems[2, itemId])
+        {
+            //check if shrine needs upgrading
+            if (maxUpgradesPerLevel * shrineLevel >= shopItems[3, itemId] + 1)
+                return true;
+            else if (itemId == 5)// if buying shrine upgrade
+                return true;
+        }
+
+        Debug.Log("cant buy, Shrine lvl" + shrineLevel);
+        return false;
+    }
+
+
     public int GetItemQuantity(int itemId)
     {
         int quantity = shopItems[3, itemId];
         return quantity;
     }
 
-    public void SpawnCultist()
-    {
-        _cultistManager.SpawnCultist();
-    }
-
     public void AddSouls(int amount)
     {
         souls += amount;
-        SoulsTxt.text = souls.ToString();
+        _UIManager.UpdateSoulsText(souls);
 
     }
     public int GetSouls()
@@ -113,5 +134,9 @@ public class ShopManager : MonoBehaviour
         return souls;
     }
 
+    public void DecreaseQuantity(int itemId, int amountToDecrease)
+    {
+        shopItems[3, itemId] -= amountToDecrease;
+    }
 
 }

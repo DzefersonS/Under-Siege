@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Shrine : MonoBehaviour
 {
-    [SerializeField] private GameObject _shrineCanvas;
-    void Start()
-    {
-        _shrineCanvas.SetActive(false);
-    }
+    [SerializeField] private GameObjectEventSO _gameObjectEventSO;
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
-            _shrineCanvas.SetActive(true);
+        {
+            _gameObjectEventSO.value = this.gameObject;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Player")
-            _shrineCanvas.SetActive(false);
+            _gameObjectEventSO.value = this.gameObject;
+
     }
 }

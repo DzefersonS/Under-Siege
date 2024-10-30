@@ -4,23 +4,13 @@ using UnityEngine;
 
 public class Altar : MonoBehaviour
 {
-    [SerializeField] private GameObject _shopCanvas;
     [SerializeField] private bool isAccessible; // Currently does nothing, will do something when waves become a thing
+    [SerializeField] private GameObjectEventSO _gameObjectEventSO;
+
 
     void Start()
     {
-
-        if (_shopCanvas != null)
-        {
-            _shopCanvas.SetActive(false);
-        }
-
         isAccessible = true;
-    }
-
-    void Update()
-    {
-
     }
 
 
@@ -28,7 +18,7 @@ public class Altar : MonoBehaviour
     {
         if (other.tag == "Player" && isAccessible)
         {
-            _shopCanvas.SetActive(true);
+            _gameObjectEventSO.value = this.gameObject;
 
         }
     }
@@ -37,7 +27,7 @@ public class Altar : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            _shopCanvas.SetActive(false);
+            _gameObjectEventSO.value = this.gameObject;
 
         }
     }

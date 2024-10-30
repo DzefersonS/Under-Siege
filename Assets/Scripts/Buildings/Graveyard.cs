@@ -12,6 +12,8 @@ public class Graveyard : MonoBehaviour
 
     }
 
+    /* Currently known bug: If deadbody appears on Graveyards location, when cultist picks it up, it will not register as delivered */
+
     private void OnTriggerEnter2D(Collider2D other)// not done
     {
         if (other.tag == "Cultist")
