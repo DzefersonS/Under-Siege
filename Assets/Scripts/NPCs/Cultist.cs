@@ -4,24 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Utils;
 
-
-
-
-
 public class Cultist : MonoBehaviour
 {
-
-    [SerializeField] private float _speed = 1f;
-
-    [SerializeField] private State state = State.Idle;
-
-    [SerializeField] private Animator m_Animator;
-
-    private Transform _graveyardLocation;
-
-    [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
-
-
 
     //All bools will be deleted once state system is fully done, for now , let them stay
     public bool IsCarryingBody { get; private set; }
@@ -29,6 +13,45 @@ public class Cultist : MonoBehaviour
     public bool isIdling { get; set; }
 
 
+    [SerializeField] private float _speed = 1f;
+
+
+    [SerializeField] private Animator m_Animator;
+
+    private Transform _graveyardLocation;
+
+    [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
+
+    [SerializeField] private State[] _cultistStates;
+
+    [SerializeField] private ECultistState _state = ECultistState.Idle;
+    private ECultistState _currentState = default;
+    public enum ECultistState
+    {
+        Idle, // chilling around the base
+        Collect, // Moving towards the dead body
+        Carry, // Carrying the dead body towards grave
+        Flee,   //Run away from enemy nearby
+        COUNT
+    }
+
+
+    public void Initialize()
+    {
+        ChangeState(ECultistState.Idle);
+    }
+
+    private void ChangeState(ECultistState newState)
+    {
+        _cultistStates[(int)_currentState]?.ExitState();
+        _currentState = newState;
+        _cultistStates[(int)_currentState].EnterState();
+    }
+
+    private void Update()
+    {
+
+    }
 
     public void MoveToXPosition(float xPos)
     {
@@ -97,7 +120,7 @@ public class Cultist : MonoBehaviour
         if (closestBody != null)
         {
             isBusy = true;
-            state = State.Collect;
+            _currentState = ECultistState.Collect;
 
             m_Animator.SetTrigger("Sprint");
 
@@ -107,7 +130,7 @@ public class Cultist : MonoBehaviour
             //If other cultist managed to pick up the body before this one(shouldn't happen, but just in case)
             if (closestBody == null)
             {
-                state = State.Idle;
+                _currentState = ECultistState.Idle;
                 isBusy = false;
                 yield break;
             }
@@ -117,7 +140,7 @@ public class Cultist : MonoBehaviour
 
             closestBody.GetComponent<DeadBody>().FreeToPool();
             IsCarryingBody = true;
-            state = State.Carry;
+            _currentState = ECultistState.Carry;
 
             // Enable child component (dead body) of cultist
             transform.GetChild(0).gameObject.SetActive(true);
@@ -133,12 +156,12 @@ public class Cultist : MonoBehaviour
 
             // Switch to idle state
             isBusy = false;
-            state = State.Idle;
+            _currentState = ECultistState.Idle;
 
         }
         else
         {
-            state = State.Idle;
+            _currentState = ECultistState.Carry;
             isBusy = false;
             Debug.Log("No DeadBody found in range.");
         }
@@ -148,7 +171,7 @@ public class Cultist : MonoBehaviour
     IEnumerator IdleRoutine()
     {
         isIdling = true;
-        state = State.Idle;
+        _currentState = ECultistState.Idle;
         //Bounds for base, once we have them
         float xBoundsMin = -10;
         float xBoundsMax = 10;
@@ -159,14 +182,9 @@ public class Cultist : MonoBehaviour
 
     }
 
-    public void ChangeState(State newState)
+    public ECultistState GetCultistState()
     {
-        state = newState;
-    }
-
-    public State GetState()
-    {
-        return state;
+        return _currentState;
     }
 
     public void Death()
@@ -192,13 +210,6 @@ public class Cultist : MonoBehaviour
 
 
 
-    public enum State
-    {
-        Idle,
-        Collect,
-        Carry,
-        COUNT
-    }
 
 
 }

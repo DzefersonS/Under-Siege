@@ -61,7 +61,7 @@ public class CultistManager : MonoBehaviour
     {
         foreach (var cultist in _cultists)
         {
-            if (cultist.GetState() == Cultist.State.Idle)
+            if (cultist.GetCultistState() == Cultist.ECultistState.Idle)
             {
                 return cultist;
             }
@@ -98,7 +98,7 @@ public class CultistManager : MonoBehaviour
     {
         foreach (var cultist in _cultists)
         {
-            if (cultist.GetState() == Cultist.State.Idle)
+            if (cultist.GetCultistState() == Cultist.ECultistState.Idle)
             {
                 cultist.Idle();
             }
