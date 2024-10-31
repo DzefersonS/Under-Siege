@@ -5,12 +5,15 @@ public class InputBasedMovement : MonoBehaviour
 {
     [SerializeField] private PlayerInputsSO m_PlayerInputsSO;
     [SerializeField] private Rigidbody2D m_PlayerRB;
+    [SerializeField] private Animator m_Animator;
 
     [SerializeField] private float m_MaxVelocity;
     [SerializeField] private float m_Acceleration;
     [SerializeField] private float m_Decceleration;
     [SerializeField] private float m_JumpForce;
     [SerializeField] private float m_Gravity;
+    [SerializeField] private float m_JumpAnimationThreshold = 5f;
+    [SerializeField] private float m_FallAnimationThreshold = -2f;
 
     private Vector2 m_MoveDirection = default;
 
@@ -32,6 +35,8 @@ public class InputBasedMovement : MonoBehaviour
         {
             m_PlayerRB.velocity = new Vector2(m_PlayerRB.velocity.x, m_JumpForce);
         }
+
+        UpdateAnimationStates();
     }
 
     private void FixedUpdate()
@@ -66,5 +71,29 @@ public class InputBasedMovement : MonoBehaviour
         float velocityY = m_PlayerRB.velocity.y;
         velocityY -= m_Gravity * fixedDeltaTime;
         return velocityY;
+    }
+
+    private void UpdateAnimationStates()
+    {
+        bool isMoving = m_MoveDirection.x != 0.0f;
+        m_Animator.SetBool("IsRunning", isMoving);
+
+        float verticalVelocity = m_PlayerRB.velocity.y;
+        
+        if (verticalVelocity > m_JumpAnimationThreshold)
+        {
+            m_Animator.SetBool("IsJumping", true);
+            m_Animator.SetBool("IsFalling", false);
+        }
+        else if (verticalVelocity < m_FallAnimationThreshold)
+        {
+            m_Animator.SetBool("IsJumping", false);
+            m_Animator.SetBool("IsFalling", true);
+        }
+        else
+        {
+            m_Animator.SetBool("IsJumping", false);
+            m_Animator.SetBool("IsFalling", false);
+        }
     }
 }
