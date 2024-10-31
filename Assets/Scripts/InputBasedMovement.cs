@@ -34,8 +34,6 @@ public class InputBasedMovement : MonoBehaviour
         if (Input.GetKey(m_PlayerInputsSO.jump) && m_PlayerRB.velocity.y == 0.0f)
         {
             m_PlayerRB.velocity = new Vector2(m_PlayerRB.velocity.x, m_JumpForce);
-            m_Animator.SetBool("IsJumping", true);
-            m_Animator.SetBool("IsFalling", false);
         }
 
         UpdateAnimationStates();
