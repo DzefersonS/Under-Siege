@@ -18,7 +18,7 @@ public class Graveyard : MonoBehaviour
     {
         if (other.tag == "Cultist")
         {
-            if (other.GetComponent<Cultist>().IsCarryingBody)
+            if (other.GetComponent<Cultist>().isCarryingBody)
 
                 _shopManager.AddSouls(1);
 
@@ -30,7 +30,7 @@ public class Graveyard : MonoBehaviour
     {
         if (other.tag == "Cultist")
         {
-            if (other.GetComponent<Cultist>().IsCarryingBody)
+            if (other.GetComponent<Cultist>().isCarryingBody)
 
                 other.transform.GetChild(0).gameObject.SetActive(false);//Disable the deadbody object
 

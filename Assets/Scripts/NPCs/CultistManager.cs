@@ -16,8 +16,6 @@ public class CultistManager : MonoBehaviour
     [SerializeField] private Queue<DeadBody> _deadBodies = new Queue<DeadBody>();
 
 
-    private float bodyCheckCooldown = 1f;
-    private float nextBodyCheckTime = 0f;
 
 
     private void Awake()
@@ -61,7 +59,7 @@ public class CultistManager : MonoBehaviour
     {
         foreach (var cultist in _cultists)
         {
-            if (cultist.GetCultistState() == Cultist.ECultistState.Idle)
+            if (cultist.isFree)
             {
                 return cultist;
             }
@@ -82,8 +80,8 @@ public class CultistManager : MonoBehaviour
 
             if (deadbody != null && !deadbody.isClaimed)
             {
-                deadbody.Claim(freeCultist.gameObject);
-                freeCultist.CollectDeadBody(deadbody.gameObject);
+                deadbody.Claim(freeCultist);
+                freeCultist.ChangeState(new CollectState(deadbody));
             }
         }
         if (deadbodyGO == null)
@@ -92,39 +90,11 @@ public class CultistManager : MonoBehaviour
         }
     }
 
-
-    //For future implementation.
-    private void StartIdling()
+    private void UnclaimBody()
     {
-        foreach (var cultist in _cultists)
-        {
-            if (cultist.GetCultistState() == Cultist.ECultistState.Idle)
-            {
-                cultist.Idle();
-            }
 
-        }
 
     }
-
-    private void TerminateCultist(Cultist cultist)
-    {
-        //Remove this cultist from the body
-        foreach (var body in _deadBodies)
-        {
-            if (body.GetClaimant() == cultist.gameObject)
-                body.Unclaim();
-        }
-
-        Cultist tempCultist = cultist;
-        _cultists.Remove(cultist);
-
-        //If Cultist was carrying a body, maybe drop it???
-
-        tempCultist.Death();
-
-    }
-
 
 
 }
