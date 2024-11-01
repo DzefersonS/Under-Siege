@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class CarryState : CultistBaseState
 {
     private GameObject _graveyardGO;
     private Vector2 _direction;
     private float speed = 2.5f;
-    public override void EnterState(Cultist cultist)
+    public override void EnterState()
     {
         Debug.Log("State: Carry");
         cultist.isFree = false; // Make sure cultist is not free
@@ -21,13 +20,11 @@ public class CarryState : CultistBaseState
 
     }
 
-    public override void UpdateState(Cultist cultist)
+    public override void UpdateState()
     {
         cultist.CheckForEnemies();
 
-
-
-        //Go to dead body
+        //Go to graveyard
         if ((Mathf.Abs(cultist.transform.position.x - _graveyardGO.transform.position.x) > 0.01f))
         {
             cultist.transform.Translate(_direction * speed * Time.deltaTime, Space.World);
@@ -35,7 +32,7 @@ public class CarryState : CultistBaseState
         else
         {
             cultist.transform.GetChild(0).gameObject.SetActive(false);//Enable the illusion of dead body
-            cultist.ChangeState(cultist.IdleState);
+            cultist.ChangeState(Cultist.ECultistState.Idle);
         }
     }
 
@@ -52,7 +49,7 @@ public class CarryState : CultistBaseState
 
         foreach (Collider2D body in bodiesInRange)
         {
-            // Check if the collider is tagged "DeadBody"
+            // Check if the collider is tagged "Graveyard"
             if (body.name == "Graveyard")
             {
                 _graveyardGO = body.gameObject;

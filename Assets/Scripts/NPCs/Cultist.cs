@@ -1,39 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Cultist : MonoBehaviour
 {
-    CultistBaseState currentState = default;
+
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
-    public IdleState IdleState = new IdleState();
+    [SerializeField] private CultistBaseState[] m_CultistStates;
+    public ECultistState m_CurrentState = default;
 
     public bool isFree { get; set; }
     public bool isCarryingBody { get; set; }
-
 
     public string stateName; // debugging, remove later
 
     private float _detectionRange = 2f;
 
+
+    public enum ECultistState
+    {
+        Idle = 0,
+        Collect,
+        Carry,
+        Flee,
+        COUNT
+    }
+
     private void Start()
     {
-        currentState = IdleState;
+        m_CultistStates = new CultistBaseState[(int)ECultistState.COUNT];
+
+        // Assign and initialize each state
+        m_CultistStates[(int)ECultistState.Idle] = new IdleState();
+        m_CultistStates[(int)ECultistState.Collect] = new CollectState();
+        m_CultistStates[(int)ECultistState.Carry] = new CarryState();
+        m_CultistStates[(int)ECultistState.Flee] = new FleeState();
+
+        foreach (var state in m_CultistStates)
+        {
+            state.SetCultist(this);
+        }
+
+        m_CurrentState = ECultistState.Idle;
         isFree = true;
         isCarryingBody = false;
-        currentState.EnterState(this);
+        ChangeState(ECultistState.Idle);
     }
     private void Update()
     {
-        stateName = currentState.ToString();
-        currentState.UpdateState(this);
+        stateName = m_CurrentState.ToString();
+        m_CultistStates[(int)m_CurrentState].UpdateState();
     }
 
-    public void ChangeState(CultistBaseState newState)
+    public void ChangeState(ECultistState newState, DeadBody deadbody = null, Transform enemyTransform = null)
     {
-        currentState.ExitState();
-        currentState = newState;
-        currentState.EnterState(this);
+        m_CultistStates[(int)m_CurrentState]?.ExitState();
+        m_CurrentState = newState;
+
+        // If switching to CollectState, set the DeadBody reference
+        if (newState == ECultistState.Collect && deadbody != null)
+        {
+            var collectState = (CollectState)m_CultistStates[(int)ECultistState.Collect];
+            collectState.SetDeadBody(deadbody);
+        }
+        if (newState == ECultistState.Flee && enemyTransform != null)
+        {
+            m_CultistStates[(int)m_CurrentState].EnterState();
+            var fleeState = (FleeState)m_CultistStates[(int)ECultistState.Flee];
+            fleeState.SetEnemyTransform(enemyTransform);
+
+        }
+
+        m_CultistStates[(int)m_CurrentState].EnterState();
+
     }
 
     public void RotateCultist(Vector2 direction)
@@ -53,7 +93,7 @@ public class Cultist : MonoBehaviour
     {
         return (gameObject.transform.position.x < this.transform.position.x) ? Vector2.left : Vector2.right;
     }
-    public void CheckForEnemies()
+    public bool CheckForEnemies()
     {
         // 2m detection range
         // Check if an enemy is nearby
@@ -63,11 +103,11 @@ public class Cultist : MonoBehaviour
         {
             if (hitCollider.CompareTag("Enemy"))
             {
-                ChangeState(new FleeState(hitCollider.transform));
-                return;
+                ChangeState(ECultistState.Flee, null, hitCollider.transform);
+                return true;
             }
         }
-
+        return false;
     }
 
 

@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class FleeState : CultistBaseState
 {
-    private Transform enemyTransform;
+    private Transform _enemyTransform;
     private float fleeSpeed = 3f;
 
     private float fleeDuration = 1.5f; // Duration the cultist should stay in FleeState
     private float fleeTimer;
 
-    public FleeState(Transform enemy)
+    public void SetEnemyTransform(Transform enemy)
     {
-        enemyTransform = enemy;
+        _enemyTransform = enemy;
     }
 
-    public override void EnterState(Cultist cultist)
+
+    public override void EnterState()
     {
         Debug.Log("State: Flee");
         fleeTimer = 0f;
@@ -23,24 +24,22 @@ public class FleeState : CultistBaseState
         cultist.isFree = false;
         if (cultist.isCarryingBody)
         {
-            cultist.transform.GetChild(0).gameObject.SetActive(false);//Enable the illusion of dead body
+            cultist.transform.GetChild(0).gameObject.SetActive(false);//Disable the illusion of dead body
             cultist.isCarryingBody = false;
 
-
             //somehow instantiate a body in here
-
         }
     }
 
-    public override void UpdateState(Cultist cultist)
+    public override void UpdateState()
     {
         fleeTimer += Time.deltaTime;
 
 
-        if (enemyTransform != null)
+        if (_enemyTransform != null)
         {
             // Determine horizontal direction away from the enemy
-            Vector2 fleeDirection = cultist.transform.position.x < enemyTransform.position.x
+            Vector2 fleeDirection = cultist.transform.position.x < _enemyTransform.position.x
                 ? Vector2.left
                 : Vector2.right;
 
@@ -52,18 +51,19 @@ public class FleeState : CultistBaseState
 
             if (fleeTimer >= fleeDuration)
             {
-                float distanceToEnemy = Vector2.Distance(cultist.transform.position, enemyTransform.position);
+                float distanceToEnemy = Vector2.Distance(cultist.transform.position, _enemyTransform.position);
                 if (distanceToEnemy > 2f)
                 {
-                    cultist.ChangeState(cultist.IdleState);
+                    cultist.ChangeState(Cultist.ECultistState.Idle);
                 }
             }
         }
     }
-
     public override void ExitState()
     {
         Debug.Log("Exiting Flee State");
     }
+
+
 
 }

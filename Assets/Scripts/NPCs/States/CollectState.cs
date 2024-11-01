@@ -10,14 +10,15 @@ public class CollectState : CultistBaseState
     Vector2 direction;
     private float speed = 3f;
 
-    public CollectState(DeadBody deadbody)
+
+    public void SetDeadBody(DeadBody deadbody)
     {
         _deadbody = deadbody;
     }
 
     //On entered state, remove yourself from available cultists,
-    //rotate to the desired direction,
-    public override void EnterState(Cultist cultist)
+    //rotate to the desired direction,`
+    public override void EnterState()
     {
         Debug.Log("State: Collect");
         cultist.isFree = false;
@@ -27,9 +28,10 @@ public class CollectState : CultistBaseState
         cultist.RotateCultist(direction);
 
     }
-    public override void UpdateState(Cultist cultist)
+    public override void UpdateState()
     {
-        cultist.CheckForEnemies();
+        if (cultist.CheckForEnemies())
+            _deadbody.Unclaim();
 
 
         //Go to dead body
@@ -41,7 +43,7 @@ public class CollectState : CultistBaseState
         {
             cultist.transform.GetChild(0).gameObject.SetActive(true);//Enable the illusion of dead body
             cultist.FreeDeadBody(_deadbody);
-            cultist.ChangeState(new CarryState());
+            cultist.ChangeState(Cultist.ECultistState.Carry);
         }
 
     }

@@ -81,7 +81,7 @@ public class CultistManager : MonoBehaviour
             if (deadbody != null && !deadbody.isClaimed)
             {
                 deadbody.Claim(freeCultist);
-                freeCultist.ChangeState(new CollectState(deadbody));
+                freeCultist.ChangeState(Cultist.ECultistState.Collect, deadbody);
             }
         }
         if (deadbodyGO == null)

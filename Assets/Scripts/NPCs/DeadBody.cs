@@ -27,7 +27,7 @@ public class DeadBody : Poolable
             nextClaimCheckTime = Time.time + claimCheckCooldown;
 
             //Check if the cultist is still alive 
-            if (_claimingCultist == null)
+            if (_claimingCultist == null || _claimingCultist.isFree == true)
                 Unclaim();
         }
     }
