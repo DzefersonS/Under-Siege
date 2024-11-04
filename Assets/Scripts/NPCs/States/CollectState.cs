@@ -31,13 +31,16 @@ public class CollectState : CultistBaseState
     public override void UpdateState()
     {
         if (cultist.CheckForEnemies())
+        {
             _deadbody.Unclaim();
+            Debug.Log("Unclaimed & fleeing");
+        }
 
 
         //Go to dead body
         if ((Mathf.Abs(cultist.transform.position.x - _deadbody.transform.position.x) > 0.01f))
         {
-            cultist.transform.Translate(direction * speed * Time.deltaTime, Space.World);
+            cultist.transform.Translate(direction * cultist.cultistDataSO.collectSpeed * Time.deltaTime, Space.World);
         }
         else
         {

@@ -17,7 +17,7 @@ public class IdleState : CultistBaseState
     }
     public override void UpdateState()
     {
-        cultist.transform.Translate(Vector2.zero);
+        cultist.transform.Translate(Vector2.zero * cultist.cultistDataSO.idleSpeed * Time.deltaTime);
 
         cultist.CheckForEnemies();
 

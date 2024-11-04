@@ -5,18 +5,16 @@ using UnityEngine.UIElements;
 
 public class Cultist : MonoBehaviour
 {
-
+    [SerializeField] public CultistDataSO cultistDataSO;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
+
     [SerializeField] private CultistBaseState[] m_CultistStates;
+
+
     public ECultistState m_CurrentState = default;
 
     public bool isFree { get; set; }
     public bool isCarryingBody { get; set; }
-
-    public string stateName; // debugging, remove later
-
-    private float _detectionRange = 2f;
-
 
     public enum ECultistState
     {
@@ -31,7 +29,7 @@ public class Cultist : MonoBehaviour
     {
         m_CultistStates = new CultistBaseState[(int)ECultistState.COUNT];
 
-        // Assign and initialize each state
+        // State initialization
         m_CultistStates[(int)ECultistState.Idle] = new IdleState();
         m_CultistStates[(int)ECultistState.Collect] = new CollectState();
         m_CultistStates[(int)ECultistState.Carry] = new CarryState();
@@ -49,7 +47,6 @@ public class Cultist : MonoBehaviour
     }
     private void Update()
     {
-        stateName = m_CurrentState.ToString();
         m_CultistStates[(int)m_CurrentState].UpdateState();
     }
 
@@ -58,7 +55,6 @@ public class Cultist : MonoBehaviour
         m_CultistStates[(int)m_CurrentState]?.ExitState();
         m_CurrentState = newState;
 
-        // If switching to CollectState, set the DeadBody reference
         if (newState == ECultistState.Collect && deadbody != null)
         {
             var collectState = (CollectState)m_CultistStates[(int)ECultistState.Collect];
@@ -66,14 +62,11 @@ public class Cultist : MonoBehaviour
         }
         if (newState == ECultistState.Flee && enemyTransform != null)
         {
-            m_CultistStates[(int)m_CurrentState].EnterState();
             var fleeState = (FleeState)m_CultistStates[(int)ECultistState.Flee];
             fleeState.SetEnemyTransform(enemyTransform);
-
         }
 
         m_CultistStates[(int)m_CurrentState].EnterState();
-
     }
 
     public void RotateCultist(Vector2 direction)
@@ -97,7 +90,7 @@ public class Cultist : MonoBehaviour
     {
         // 2m detection range
         // Check if an enemy is nearby
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _detectionRange);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, cultistDataSO.enemyDetectionRange);
 
         foreach (var hitCollider in hitColliders)
         {

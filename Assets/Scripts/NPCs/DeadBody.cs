@@ -42,13 +42,14 @@ public class DeadBody : Poolable
     public void Claim(Cultist cultist)
     {
         _claimingCultist = cultist;
-        isClaimed = true; //just for good measure
+        isClaimed = true;
     }
 
     public void Unclaim()
     {
         _claimingCultist = null;
         isClaimed = false;
+        _deadBodyEventSO.value = this;
     }
 
     public Cultist GetClaimant()

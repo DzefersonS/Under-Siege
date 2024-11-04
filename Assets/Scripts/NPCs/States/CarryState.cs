@@ -6,7 +6,6 @@ public class CarryState : CultistBaseState
 {
     private GameObject _graveyardGO;
     private Vector2 _direction;
-    private float speed = 2.5f;
     public override void EnterState()
     {
         Debug.Log("State: Carry");
@@ -27,7 +26,7 @@ public class CarryState : CultistBaseState
         //Go to graveyard
         if ((Mathf.Abs(cultist.transform.position.x - _graveyardGO.transform.position.x) > 0.01f))
         {
-            cultist.transform.Translate(_direction * speed * Time.deltaTime, Space.World);
+            cultist.transform.Translate(_direction * cultist.cultistDataSO.carrySpeed * Time.deltaTime, Space.World);
         }
         else
         {

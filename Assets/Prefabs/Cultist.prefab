@@ -185,8 +185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e1c1ca231eb3b47b5a0560de5203c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cultistDataSO: {fileID: 11400000, guid: 9771059228764e34eb60f7fb3b7cd89a, type: 2}
   _deadBodyEventSO: {fileID: 0}
-  stateName: 
+  m_CultistStates: []
+  m_CurrentState: 0
 --- !u!95 &3293523229664769761
 Animator:
   serializedVersion: 5

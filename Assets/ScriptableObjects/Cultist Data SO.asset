@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1179aa22e998c43a258fc391fbefa7, type: 3}
+  m_Name: Cultist Data SO
+  m_EditorClassIdentifier: 
+  m_Health: 10
+  m_IdleSpeed: 3
+  m_CollectSpeed: 3
+  m_CarrySpeed: 3
+  m_FleeSpeed: 3
+  m_EnemyDetectionRange: 2

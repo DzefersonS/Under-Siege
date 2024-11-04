@@ -5,8 +5,6 @@ using UnityEngine;
 public class FleeState : CultistBaseState
 {
     private Transform _enemyTransform;
-    private float fleeSpeed = 3f;
-
     private float fleeDuration = 1.5f; // Duration the cultist should stay in FleeState
     private float fleeTimer;
 
@@ -46,7 +44,7 @@ public class FleeState : CultistBaseState
             cultist.RotateCultist(fleeDirection);
 
             // Move the cultist in the flee direction
-            cultist.transform.Translate(fleeDirection * fleeSpeed * Time.deltaTime, Space.World);
+            cultist.transform.Translate(fleeDirection * cultist.cultistDataSO.fleeSpeed * Time.deltaTime, Space.World);
 
 
             if (fleeTimer >= fleeDuration)

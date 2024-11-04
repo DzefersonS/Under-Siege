@@ -10,13 +10,9 @@ public class CultistManager : MonoBehaviour
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
     [SerializeField] private GameObject _cultistPrefab;
     [SerializeField] private GameObject _cultistParent;
-    [SerializeField] private Vector2 _spawnPosition;
 
     [SerializeField] private List<Cultist> _cultists = new List<Cultist>();
     [SerializeField] private Queue<DeadBody> _deadBodies = new Queue<DeadBody>();
-
-
-
 
     private void Awake()
     {
@@ -42,12 +38,15 @@ public class CultistManager : MonoBehaviour
 
     public void SpawnCultist()
     {
-        if (Random.Range(1, 3) == 1)
-            _spawnPosition = new Vector2(12.5f, -2.07f);
-        else
-            _spawnPosition = new Vector2(8.5f, -2.07f);
+        //between 7 & 13
+        //Altar pos is 10
+        int minimum = 7;
+        int maximum = 13;
+        int spawnXCoordinates = Random.Range(minimum, maximum + 1);
 
-        GameObject cultistGameObject = Instantiate(_cultistPrefab, _spawnPosition, Quaternion.identity, _cultistParent.transform);
+        Vector2 spawnPosition = new Vector2(spawnXCoordinates, -2.07f);
+
+        GameObject cultistGameObject = Instantiate(_cultistPrefab, spawnPosition, Quaternion.identity, _cultistParent.transform);
 
         Cultist c = cultistGameObject.GetComponent<Cultist>();
         _cultists.Add(c);
@@ -89,13 +88,6 @@ public class CultistManager : MonoBehaviour
             _deadBodies.Dequeue();// remove the null shit from queue.
         }
     }
-
-    private void UnclaimBody()
-    {
-
-
-    }
-
 
 }
 

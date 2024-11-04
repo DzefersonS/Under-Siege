@@ -6,6 +6,7 @@ using UnityEngine;
 public class Graveyard : MonoBehaviour
 {
     private ShopManager _shopManager;
+
     void Start()
     {
         _shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
@@ -33,7 +34,8 @@ public class Graveyard : MonoBehaviour
             if (other.GetComponent<Cultist>().isCarryingBody)
 
                 other.transform.GetChild(0).gameObject.SetActive(false);//Disable the deadbody object
-
         }
     }
+
+
 }
