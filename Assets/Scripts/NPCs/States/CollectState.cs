@@ -20,7 +20,6 @@ public class CollectState : CultistBaseState
     //rotate to the desired direction,`
     public override void EnterState()
     {
-        Debug.Log("State: Collect");
         cultist.isFree = false;
         cultist.isCarryingBody = false;
 
@@ -33,7 +32,6 @@ public class CollectState : CultistBaseState
         if (cultist.CheckForEnemies())
         {
             _deadbody.Unclaim();
-            Debug.Log("Unclaimed & fleeing");
         }
 
 

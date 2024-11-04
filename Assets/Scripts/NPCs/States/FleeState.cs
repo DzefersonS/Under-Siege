@@ -16,7 +16,6 @@ public class FleeState : CultistBaseState
 
     public override void EnterState()
     {
-        Debug.Log("State: Flee");
         fleeTimer = 0f;
 
         cultist.isFree = false;

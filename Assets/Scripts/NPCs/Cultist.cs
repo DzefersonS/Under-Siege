@@ -27,14 +27,6 @@ public class Cultist : MonoBehaviour
 
     private void Start()
     {
-        m_CultistStates = new CultistBaseState[(int)ECultistState.COUNT];
-
-        // State initialization
-        m_CultistStates[(int)ECultistState.Idle] = new IdleState();
-        m_CultistStates[(int)ECultistState.Collect] = new CollectState();
-        m_CultistStates[(int)ECultistState.Carry] = new CarryState();
-        m_CultistStates[(int)ECultistState.Flee] = new FleeState();
-
         foreach (var state in m_CultistStates)
         {
             state.SetCultist(this);

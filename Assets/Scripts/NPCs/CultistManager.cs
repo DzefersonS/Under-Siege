@@ -39,7 +39,7 @@ public class CultistManager : MonoBehaviour
     public void SpawnCultist()
     {
         //between 7 & 13
-        //Altar pos is 10
+        //Altar pos is 10, most likely will have to add better way of detecting it
         int minimum = 7;
         int maximum = 13;
         int spawnXCoordinates = Random.Range(minimum, maximum + 1);

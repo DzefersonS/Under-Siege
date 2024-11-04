@@ -8,7 +8,6 @@ public class CarryState : CultistBaseState
     private Vector2 _direction;
     public override void EnterState()
     {
-        Debug.Log("State: Carry");
         cultist.isFree = false; // Make sure cultist is not free
         cultist.isCarryingBody = true;
 
@@ -30,7 +29,7 @@ public class CarryState : CultistBaseState
         }
         else
         {
-            cultist.transform.GetChild(0).gameObject.SetActive(false);//Enable the illusion of dead body
+            cultist.transform.GetChild(0).gameObject.SetActive(false);//Disable the illusion of dead body
             cultist.ChangeState(Cultist.ECultistState.Idle);
         }
     }
