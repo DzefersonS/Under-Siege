@@ -8,6 +8,7 @@ public class DeadBody : Poolable
     [SerializeField] private float _timeToSelfDestruct;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
     [SerializeField] private Cultist _claimingCultist; //Cultist that will take the body
+    private Transform container;
 
     public bool isClaimed = false;
 
@@ -37,6 +38,7 @@ public class DeadBody : Poolable
         isClaimed = false;
         _claimingCultist = null;
         _deadBodyEventSO.value = this;
+        container = transform.parent;
     }
 
     public void Claim(Cultist cultist)
@@ -50,6 +52,8 @@ public class DeadBody : Poolable
         _claimingCultist = null;
         isClaimed = false;
         _deadBodyEventSO.value = this;
+
+        transform.parent = container;
     }
 
     public Cultist GetClaimant()

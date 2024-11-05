@@ -6,6 +6,7 @@ public class CarryState : CultistBaseState
 {
     private GameObject _graveyardGO;
     private Vector2 _direction;
+    private DeadBody _deadbody;
     public override void EnterState()
     {
         cultist.isFree = false; // Make sure cultist is not free
@@ -18,18 +19,26 @@ public class CarryState : CultistBaseState
 
     }
 
+    public void SetDeadBody(DeadBody deadbody)
+    {
+        _deadbody = deadbody;
+    }
+
     public override void UpdateState()
     {
-        cultist.CheckForEnemies();
+        if (cultist.CheckForEnemies())
+        {
+            _deadbody.Unclaim();
+        }
 
         //Go to graveyard
-        if ((Mathf.Abs(cultist.transform.position.x - _graveyardGO.transform.position.x) > 0.01f))
+        if ((Mathf.Abs(transform.position.x - _graveyardGO.transform.position.x) > 0.01f))
         {
-            cultist.transform.Translate(_direction * cultist.cultistDataSO.carrySpeed * Time.deltaTime, Space.World);
+            transform.Translate(_direction * cultist.cultistDataSO.carrySpeed * Time.deltaTime, Space.World);
         }
         else
         {
-            cultist.transform.GetChild(0).gameObject.SetActive(false);//Disable the illusion of dead body
+            _deadbody.FreeToPool();
             cultist.ChangeState(Cultist.ECultistState.Idle);
         }
     }

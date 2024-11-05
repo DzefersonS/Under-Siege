@@ -57,6 +57,12 @@ public class Cultist : MonoBehaviour
             var fleeState = (FleeState)m_CultistStates[(int)ECultistState.Flee];
             fleeState.SetEnemyTransform(enemyTransform);
         }
+        if (newState == ECultistState.Carry && deadbody != null)
+        {
+            var carryState = (CarryState)m_CultistStates[(int)ECultistState.Carry];
+            carryState.SetDeadBody(deadbody);
+
+        }
 
         m_CultistStates[(int)m_CurrentState].EnterState();
     }
