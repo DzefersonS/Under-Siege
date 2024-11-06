@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollectState : CultistBaseState
 {
     private DeadBody _deadbody;
-    Vector2 direction;
+    private Vector2 _direction;
 
     public void SetDeadBody(DeadBody deadbody)
     {
@@ -16,12 +16,8 @@ public class CollectState : CultistBaseState
     //rotate to the desired direction,`
     public override void EnterState()
     {
-        cultist.isFree = false;
-        cultist.isCarryingBody = false;
-
-        direction = cultist.FindTurningDirection(_deadbody.gameObject);
-        cultist.RotateCultist(direction);
-
+        _direction = cultist.FindTurningDirection(_deadbody.gameObject);
+        cultist.RotateCultist(_direction);
     }
     public override void UpdateState()
     {
@@ -34,7 +30,7 @@ public class CollectState : CultistBaseState
         //Go to dead body
         if ((Mathf.Abs(cultist.transform.position.x - _deadbody.transform.position.x) > 0.5f))
         {
-            transform.Translate(direction * cultist.cultistDataSO.collectSpeed * Time.deltaTime, Space.World);
+            transform.Translate(_direction * cultist.cultistDataSO.collectSpeed * Time.deltaTime, Space.World);
         }
         else
         {

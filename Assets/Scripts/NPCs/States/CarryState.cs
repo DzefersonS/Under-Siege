@@ -9,9 +9,6 @@ public class CarryState : CultistBaseState
     private DeadBody _deadbody;
     public override void EnterState()
     {
-        cultist.isFree = false; // Make sure cultist is not free
-        cultist.isCarryingBody = true;
-
         LocateGraveyard(cultist);
         _direction = cultist.FindTurningDirection(_graveyardGO);
 
@@ -52,7 +49,7 @@ public class CarryState : CultistBaseState
 
     private void LocateGraveyard(Cultist cultist)
     {
-        Collider2D[] bodiesInRange = Physics2D.OverlapCircleAll(cultist.transform.position, 9999);
+        Collider2D[] bodiesInRange = Physics2D.OverlapCircleAll(cultist.transform.position, 100);
 
         foreach (Collider2D body in bodiesInRange)
         {

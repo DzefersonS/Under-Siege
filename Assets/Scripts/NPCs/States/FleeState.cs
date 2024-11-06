@@ -6,8 +6,8 @@ public class FleeState : CultistBaseState
 {
     private Transform _enemyTransform;
 
-    private float fleeDuration = 1.5f; // Duration the cultist should stay in FleeState
-    private float fleeTimer;
+    private float _fleeDuration = 1.5f; // Duration the cultist should stay in FleeState
+    private float _fleeTimer;
 
     public void SetEnemyTransform(Transform enemy)
     {
@@ -17,17 +17,12 @@ public class FleeState : CultistBaseState
 
     public override void EnterState()
     {
-        fleeTimer = 0f;
-        cultist.isFree = false;
-        if (cultist.isCarryingBody)
-        {
-            cultist.isCarryingBody = false;
-        }
+        _fleeTimer = 0f;
     }
 
     public override void UpdateState()
     {
-        fleeTimer += Time.deltaTime;
+        _fleeTimer += Time.deltaTime;
 
 
         if (_enemyTransform != null)
@@ -43,7 +38,7 @@ public class FleeState : CultistBaseState
             transform.Translate(fleeDirection * cultist.cultistDataSO.fleeSpeed * Time.deltaTime, Space.World);
 
 
-            if (fleeTimer >= fleeDuration)
+            if (_fleeTimer >= _fleeDuration)
             {
                 float distanceToEnemy = Vector2.Distance(transform.position, _enemyTransform.position);
                 if (distanceToEnemy > 2f)

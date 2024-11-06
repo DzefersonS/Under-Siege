@@ -7,14 +7,10 @@ public class Cultist : MonoBehaviour
 {
     [SerializeField] public CultistDataSO cultistDataSO;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
-
     [SerializeField] private CultistBaseState[] m_CultistStates;
 
 
     public ECultistState m_CurrentState = default;
-
-    public bool isFree { get; set; }
-    public bool isCarryingBody { get; set; }
 
     public enum ECultistState
     {
@@ -33,8 +29,6 @@ public class Cultist : MonoBehaviour
         }
 
         m_CurrentState = ECultistState.Idle;
-        isFree = true;
-        isCarryingBody = false;
         ChangeState(ECultistState.Idle);
     }
     private void Update()
@@ -84,6 +78,7 @@ public class Cultist : MonoBehaviour
     {
         return (gameObject.transform.position.x < this.transform.position.x) ? Vector2.left : Vector2.right;
     }
+
     public bool CheckForEnemies()
     {
         // 2m detection range
@@ -107,12 +102,10 @@ public class Cultist : MonoBehaviour
         deadBody.FreeToPool();
     }
 
-
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 2f);
+        Gizmos.DrawWireSphere(transform.position, cultistDataSO.enemyDetectionRange);
     }
 
 }
