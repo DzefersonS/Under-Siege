@@ -37,7 +37,7 @@ public class FleeState : CultistBaseState
             if (_fleeTimer >= _fleeDuration)
             {
                 float distanceToEnemy = Vector2.Distance(transform.position, _enemyTransform.position);
-                if (distanceToEnemy > 2f)
+                if (distanceToEnemy > cultist.cultistDataSO.enemyDetectionRange)
                 {
                     cultist.ChangeState(Cultist.ECultistState.Idle);
                 }

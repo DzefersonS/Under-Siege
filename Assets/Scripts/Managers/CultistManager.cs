@@ -14,6 +14,11 @@ public class CultistManager : MonoBehaviour
     [SerializeField] private List<Cultist> _cultists = new List<Cultist>();
     [SerializeField] private Queue<DeadBody> _deadBodies = new Queue<DeadBody>();
 
+    [SerializeField] private int CultistSpawnPositionXMinimum;
+    [SerializeField] private int CultistSpawnPositionXMaximum;
+    [SerializeField] private float CultistSpawnPositionY;
+
+
     private void Awake()
     {
         _deadBodyEventSO.Register(AddDeadBodyToQueue);
@@ -38,13 +43,9 @@ public class CultistManager : MonoBehaviour
 
     public void SpawnCultist()
     {
-        //between 7 & 13
-        //Altar pos is 10, most likely will have to add better way of detecting it
-        int minimum = 7;
-        int maximum = 13;
-        int spawnXCoordinates = Random.Range(minimum, maximum + 1);
+        int spawnXCoordinates = Random.Range(CultistSpawnPositionXMinimum, CultistSpawnPositionXMaximum);
 
-        Vector2 spawnPosition = new Vector2(spawnXCoordinates, -2.07f);
+        Vector2 spawnPosition = new Vector2(spawnXCoordinates, CultistSpawnPositionY);
 
         GameObject cultistGameObject = Instantiate(_cultistPrefab, spawnPosition, Quaternion.identity, _cultistParent.transform);
 

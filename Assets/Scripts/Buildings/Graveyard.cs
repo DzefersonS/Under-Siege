@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class Graveyard : MonoBehaviour
 {
-    private ShopManager _shopManager;
+    [SerializeField] private ShopManager _shopManager;
 
     void Start()
     {
-        _shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
-
+        if (_shopManager == null)
+        {
+            Debug.LogWarning("ShopManager is null");
+            _shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

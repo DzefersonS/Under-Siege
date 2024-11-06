@@ -560,6 +560,9 @@ MonoBehaviour:
   _cultistPrefab: {fileID: 7891461925583871033, guid: f1d88345128111841829b47e2453dcec, type: 3}
   _cultistParent: {fileID: 1475149536}
   _cultists: []
+  CultistSpawnPositionXMinimum: 7
+  CultistSpawnPositionXMaximum: 13
+  CultistSpawnPositionY: -2.07
 --- !u!4 &149945864
 Transform:
   m_ObjectHideFlags: 0
@@ -2042,6 +2045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d98a85b6919479349a57892fdfa0ed71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shopManager: {fileID: 1622666717}
 --- !u!61 &742157871
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Cultist : MonoBehaviour
 {
@@ -9,7 +8,6 @@ public class Cultist : MonoBehaviour
     [SerializeField] public CultistDataSO cultistDataSO;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
     [SerializeField] private CultistBaseState[] m_CultistStates;
-
 
     public ECultistState m_CurrentState = default;
 
@@ -44,19 +42,15 @@ public class Cultist : MonoBehaviour
 
         if (newState == ECultistState.Collect && deadbody != null)
         {
-            var collectState = (CollectState)m_CultistStates[(int)ECultistState.Collect];
-            collectState.SetDeadBody(deadbody);
+            ((CollectState)m_CultistStates[(int)ECultistState.Collect]).SetDeadBody(deadbody);
         }
         if (newState == ECultistState.Flee && enemyTransform != null)
         {
-            var fleeState = (FleeState)m_CultistStates[(int)ECultistState.Flee];
-            fleeState.SetEnemyTransform(enemyTransform);
+            ((FleeState)m_CultistStates[(int)ECultistState.Flee]).SetEnemyTransform(enemyTransform);
         }
         if (newState == ECultistState.Carry && deadbody != null)
         {
-            var carryState = (CarryState)m_CultistStates[(int)ECultistState.Carry];
-            carryState.SetDeadBody(deadbody);
-
+            ((CarryState)m_CultistStates[(int)ECultistState.Carry]).SetDeadBody(deadbody);
         }
 
         m_CultistStates[(int)m_CurrentState].EnterState();
@@ -97,7 +91,6 @@ public class Cultist : MonoBehaviour
         return false;
     }
 
-
     public void FreeDeadBody(DeadBody deadBody)
     {
         deadBody.FreeToPool();
@@ -108,6 +101,4 @@ public class Cultist : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, cultistDataSO.enemyDetectionRange);
     }
-
 }
-

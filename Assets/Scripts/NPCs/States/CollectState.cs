@@ -12,14 +12,13 @@ public class CollectState : CultistBaseState
         _deadbody = deadbody;
     }
 
-    //On entered state, remove yourself from available cultists,
-    //rotate to the desired direction,`
     public override void EnterState()
     {
         _direction = cultist.FindTurningDirection(_deadbody.gameObject);
         cultist.RotateCultist(_direction);
         cultist.m_Animator.SetBool("IsRunning", true);
     }
+
     public override void UpdateState()
     {
         if (cultist.CheckForEnemies())
@@ -45,8 +44,4 @@ public class CollectState : CultistBaseState
     {
         cultist.m_Animator.SetBool("IsRunning", false);
     }
-
 }
-
-
-
