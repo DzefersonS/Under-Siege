@@ -32,7 +32,7 @@ public class CollectState : CultistBaseState
 
 
         //Go to dead body
-        if ((Mathf.Abs(cultist.transform.position.x - _deadbody.transform.position.x) > 0.1f))
+        if ((Mathf.Abs(cultist.transform.position.x - _deadbody.transform.position.x) > 0.5f))
         {
             transform.Translate(direction * cultist.cultistDataSO.collectSpeed * Time.deltaTime, Space.World);
         }

@@ -58,7 +58,7 @@ public class CultistManager : MonoBehaviour
     {
         foreach (var cultist in _cultists)
         {
-            if (cultist.isFree)
+            if (cultist.m_CurrentState == Cultist.ECultistState.Idle)
             {
                 return cultist;
             }

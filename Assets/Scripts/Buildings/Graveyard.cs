@@ -13,27 +13,12 @@ public class Graveyard : MonoBehaviour
 
     }
 
-    /* Currently known bug: If deadbody appears on Graveyards location, when cultist picks it up, it will not register as delivered */
-
-    private void OnTriggerEnter2D(Collider2D other)// not done
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Cultist")
+        if (other.tag == "DeadBody")
         {
-            if (other.GetComponent<Cultist>().isCarryingBody)
-
-                _shopManager.AddSouls(1);
-
-
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)// not done
-    {
-        if (other.tag == "Cultist")
-        {
-            if (other.GetComponent<Cultist>().isCarryingBody)
-
-                other.transform.GetChild(0).gameObject.SetActive(false);//Disable the deadbody object
+            _shopManager.AddSouls(1);
+            other.GetComponent<DeadBody>().FreeToPool();
         }
     }
 

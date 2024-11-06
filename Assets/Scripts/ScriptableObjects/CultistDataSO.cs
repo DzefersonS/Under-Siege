@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class CultistDataSO : ScriptableObject
 {
-    [SerializeField] private int m_Health;
-    [SerializeField] private int m_IdleSpeed;
-    [SerializeField] private int m_CollectSpeed;
-    [SerializeField] private int m_CarrySpeed;
-    [SerializeField] private int m_FleeSpeed;
-    [SerializeField] private int m_EnemyDetectionRange;
+    [SerializeField] private float m_Health;
+    [SerializeField] private float m_IdleSpeed;
+    [SerializeField] private float m_CollectSpeed;
+    [SerializeField] private float m_CarrySpeed;
+    [SerializeField] private float m_FleeSpeed;
+    [SerializeField] private float m_EnemyDetectionRange;
 
 
 
-    public int health { get => m_Health; set => m_Health = value; }
-    public int idleSpeed { get => m_IdleSpeed; set => m_IdleSpeed = value; }
-    public int collectSpeed { get => m_CollectSpeed; set => m_CollectSpeed = value; }
-    public int carrySpeed { get => m_CarrySpeed; set => m_CarrySpeed = value; }
-    public int fleeSpeed { get => m_FleeSpeed; set => m_FleeSpeed = value; }
-    public int enemyDetectionRange { get => m_EnemyDetectionRange; set => m_EnemyDetectionRange = value; }
+    public float health { get => m_Health; set => m_Health = value; }
+    public float idleSpeed { get => m_IdleSpeed; set => m_IdleSpeed = value; }
+    public float collectSpeed { get => m_CollectSpeed; set => m_CollectSpeed = value; }
+    public float carrySpeed { get => m_CarrySpeed; set => m_CarrySpeed = value; }
+    public float fleeSpeed { get => m_FleeSpeed; set => m_FleeSpeed = value; }
+    public float enemyDetectionRange { get => m_EnemyDetectionRange; set => m_EnemyDetectionRange = value; }
 }

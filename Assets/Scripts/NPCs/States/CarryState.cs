@@ -38,7 +38,7 @@ public class CarryState : CultistBaseState
         }
         else
         {
-            _deadbody.FreeToPool();
+            //_deadbody.FreeToPool();
             cultist.ChangeState(Cultist.ECultistState.Idle);
         }
     }
