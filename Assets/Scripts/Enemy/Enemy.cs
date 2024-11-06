@@ -25,7 +25,7 @@ public class Enemy : Poolable, IAttackable
         m_CurrentHealth = m_Health;
         transform.rotation = Quaternion.Euler(0.0f, transform.position.x > 0 ? 180.0f : 0.0f, 0.0f);
         ChangeState(EEnemyState.Moving);
-    }   
+    }
     private void Awake()
     {
         if (m_Animator == null)
@@ -54,7 +54,7 @@ public class Enemy : Poolable, IAttackable
         FreeToPool();
     }
 
-    public void Damage(float damageAmount)
+    public void Damage(int damageAmount)
     {
         if ((m_CurrentHealth -= damageAmount) <= 0)
         {
