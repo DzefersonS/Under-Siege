@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8222765471241036175}
   - component: {fileID: 2743533080301743792}
   - component: {fileID: -1768741158977980143}
+  - component: {fileID: -8927024027867542695}
   - component: {fileID: 3293523229664769761}
   - component: {fileID: 4659723765986164377}
   - component: {fileID: 6859610955948518560}
@@ -104,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e1c1ca231eb3b47b5a0560de5203c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Animator: {fileID: 3293523229664769761}
   cultistDataSO: {fileID: 11400000, guid: 9771059228764e34eb60f7fb3b7cd89a, type: 2}
   _deadBodyEventSO: {fileID: 0}
   m_CultistStates:
@@ -111,7 +113,8 @@ MonoBehaviour:
   - {fileID: 2743533080301743792}
   - {fileID: -1768741158977980143}
   - {fileID: 8222765471241036175}
-  m_Animator: {fileID: 3293523229664769761}
+  - {fileID: -8927024027867542695}
+  deadBody: {fileID: 0}
   m_CurrentState: 0
 --- !u!114 &5892424661676535880
 MonoBehaviour:
@@ -159,6 +162,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc8515c44c3500849a0673690c393e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8927024027867542695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7891461925583871033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96dfb4f523548bb44bd8976b4afd741c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &3293523229664769761
