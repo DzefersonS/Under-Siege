@@ -39,11 +39,11 @@ public class ShopManager : MonoBehaviour
 
 
         //Price
-        shopItems[2, 1] = _upgradePrices.PlayerUpgradePrices[1];//Dmg
-        shopItems[2, 2] = _upgradePrices.PlayerUpgradePrices[1];//atk speed
-        shopItems[2, 3] = _upgradePrices.PlayerUpgradePrices[1];// movmenet speed
-        shopItems[2, 4] = _upgradePrices.CultistPrices[1];      //cultist
-        shopItems[2, 5] = _upgradePrices.ShrinePrices[1];       //Shrine
+        shopItems[2, 1] = _upgradePrices.PlayerUpgradePrices[0];//Dmg
+        shopItems[2, 2] = _upgradePrices.PlayerUpgradePrices[0];//atk speed
+        shopItems[2, 3] = _upgradePrices.PlayerUpgradePrices[0];// movmenet speed
+        shopItems[2, 4] = _upgradePrices.CultistPrices[0];      //cultist
+        shopItems[2, 5] = _upgradePrices.ShrinePrices[0];       //Shrine
 
 
         //Quantity
@@ -98,6 +98,8 @@ public class ShopManager : MonoBehaviour
                 shopItems[2, referencedItemId] = _upgradePrices.ShrinePrices[shopItems[3, referencedItemId]];
                 shrineLevel++;
             }
+
+
         }
     }
 

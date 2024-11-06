@@ -5,35 +5,25 @@ using UnityEngine;
 
 public class Graveyard : MonoBehaviour
 {
-    private ShopManager _shopManager;
+    [SerializeField] private ShopManager _shopManager;
+
     void Start()
     {
-        _shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
-
-    }
-
-    /* Currently known bug: If deadbody appears on Graveyards location, when cultist picks it up, it will not register as delivered */
-
-    private void OnTriggerEnter2D(Collider2D other)// not done
-    {
-        if (other.tag == "Cultist")
+        if (_shopManager == null)
         {
-            if (other.GetComponent<Cultist>().IsCarryingBody)
-
-                _shopManager.AddSouls(1);
-
-
+            Debug.LogWarning("ShopManager is null");
+            _shopManager = GameObject.Find("ShopManager").GetComponent<ShopManager>();
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)// not done
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Cultist")
+        if (other.tag == "DeadBody")
         {
-            if (other.GetComponent<Cultist>().IsCarryingBody)
-
-                other.transform.GetChild(0).gameObject.SetActive(false);//Disable the deadbody object
-
+            _shopManager.AddSouls(1);
+            other.GetComponent<DeadBody>().FreeToPool();
         }
     }
+
+
 }

@@ -7,7 +7,8 @@ public class DeadBody : Poolable
 {
     [SerializeField] private float _timeToSelfDestruct;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
-    [SerializeField] private GameObject _claimingCultist; //Cultist that will take the body
+    [SerializeField] private Cultist _claimingCultist; //Cultist that will take the body
+    private Transform container;
 
     public bool isClaimed = false;
 
@@ -27,7 +28,7 @@ public class DeadBody : Poolable
             nextClaimCheckTime = Time.time + claimCheckCooldown;
 
             //Check if the cultist is still alive 
-            if (_claimingCultist == null)
+            if (_claimingCultist == null || _claimingCultist.m_CurrentState == Cultist.ECultistState.Idle)
                 Unclaim();
         }
     }
@@ -37,21 +38,25 @@ public class DeadBody : Poolable
         isClaimed = false;
         _claimingCultist = null;
         _deadBodyEventSO.value = this;
+        container = transform.parent;
     }
 
-    public void Claim(GameObject cultist)
+    public void Claim(Cultist cultist)
     {
         _claimingCultist = cultist;
-        isClaimed = true; //just for good measure
+        isClaimed = true;
     }
 
     public void Unclaim()
     {
         _claimingCultist = null;
         isClaimed = false;
+        _deadBodyEventSO.value = this;
+
+        transform.parent = container;
     }
 
-    public GameObject GetClaimant()
+    public Cultist GetClaimant()
     {
         return _claimingCultist;
     }
