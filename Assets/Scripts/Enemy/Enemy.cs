@@ -6,6 +6,7 @@ public class Enemy : Poolable
     [SerializeField] private int m_Health;
     [SerializeField] private EnemyEventSO m_EnemyDeathEventSO;
     [SerializeField] private State[] m_EnemyStates;
+    [SerializeField] private Animator m_Animator;
 
     private enum EEnemyState
     {
@@ -23,12 +24,32 @@ public class Enemy : Poolable
         m_CurrentHealth = m_Health;
         transform.rotation = Quaternion.Euler(0.0f, transform.position.x > 0 ? 180.0f : 0.0f, 0.0f);
         ChangeState(EEnemyState.Moving);
+    }   
+    private void Awake()
+    {
+        if (m_Animator == null)
+        {
+            m_Animator = GetComponent<Animator>();
+        }
     }
 
     private void Update()
     {
         m_EnemyStates[(int)m_CurrentState].UpdateState(Time.deltaTime);
+
+        UpdateAnimation();
     }
+
+    private void UpdateAnimation()
+    {
+        print("Updating animation");
+        if (m_Animator != null)
+        {
+            if (m_CurrentState == EEnemyState.Moving) print("Moving");
+            m_Animator.SetBool("IsRunning", m_CurrentState == EEnemyState.Moving);
+        }
+    }
+
 
     private void ChangeState(EEnemyState newState)
     {
