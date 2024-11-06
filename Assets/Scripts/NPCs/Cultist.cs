@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cultist : MonoBehaviour
+public class Cultist : MonoBehaviour, IAttackable
 {
     [SerializeField] public Animator m_Animator;
     [SerializeField] public CultistDataSO cultistDataSO;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
     [SerializeField] private CultistBaseState[] m_CultistStates;
+
+    public DeadBody deadBody;
+    private int health;
+
 
     public ECultistState m_CurrentState = default;
 
@@ -17,6 +21,7 @@ public class Cultist : MonoBehaviour
         Collect,
         Carry,
         Flee,
+        Death,
         COUNT
     }
 
@@ -27,6 +32,7 @@ public class Cultist : MonoBehaviour
             state.SetCultist(this);
         }
 
+        health = (int)cultistDataSO.health;
         m_CurrentState = ECultistState.Idle;
         ChangeState(ECultistState.Idle);
     }
@@ -42,15 +48,11 @@ public class Cultist : MonoBehaviour
 
         if (newState == ECultistState.Collect && deadbody != null)
         {
-            ((CollectState)m_CultistStates[(int)ECultistState.Collect]).SetDeadBody(deadbody);
+            deadBody = deadbody;
         }
         if (newState == ECultistState.Flee && enemyTransform != null)
         {
             ((FleeState)m_CultistStates[(int)ECultistState.Flee]).SetEnemyTransform(enemyTransform);
-        }
-        if (newState == ECultistState.Carry && deadbody != null)
-        {
-            ((CarryState)m_CultistStates[(int)ECultistState.Carry]).SetDeadBody(deadbody);
         }
 
         m_CultistStates[(int)m_CurrentState].EnterState();
@@ -60,11 +62,11 @@ public class Cultist : MonoBehaviour
     {
         if (direction == Vector2.left)
         {
-            this.transform.rotation = Quaternion.Euler(0, 180, 0); // Face left
+            transform.rotation = Quaternion.Euler(0, 180, 0); // Face left
         }
         else
         {
-            this.transform.rotation = Quaternion.Euler(0, 0, 0); // Face right
+            transform.rotation = Quaternion.Euler(0, 0, 0); // Face right
         }
     }
 
@@ -100,5 +102,12 @@ public class Cultist : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, cultistDataSO.enemyDetectionRange);
+    }
+
+    public void Damage(int damageAmount)
+    {
+        health -= damageAmount;
+        if (health <= 0)
+            ChangeState(ECultistState.Death);
     }
 }

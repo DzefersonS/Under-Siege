@@ -13,7 +13,6 @@ public class FleeState : CultistBaseState
     {
         _fleeTimer = 0f;
         cultist.m_Animator.SetBool("IsRunning", true);
-
     }
 
     public override void UpdateState()
@@ -53,9 +52,5 @@ public class FleeState : CultistBaseState
     public override void ExitState()
     {
         cultist.m_Animator.SetBool("IsRunning", false);
-
     }
-
-
-
 }

@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class CollectState : CultistBaseState
 {
-    private DeadBody _deadbody;
     private Vector2 _direction;
-
-    public void SetDeadBody(DeadBody deadbody)
-    {
-        _deadbody = deadbody;
-    }
 
     public override void EnterState()
     {
-        _direction = cultist.FindTurningDirection(_deadbody.gameObject);
+        _direction = cultist.FindTurningDirection(cultist.deadBody.gameObject);
         cultist.RotateCultist(_direction);
         cultist.m_Animator.SetBool("IsRunning", true);
     }
@@ -23,19 +17,20 @@ public class CollectState : CultistBaseState
     {
         if (cultist.CheckForEnemies())
         {
-            _deadbody.Unclaim();
+            cultist.deadBody.Unclaim();
+            return;
         }
 
 
         //Go to dead body
-        if ((Mathf.Abs(cultist.transform.position.x - _deadbody.transform.position.x) > 0.1f))
+        if ((Mathf.Abs(cultist.transform.position.x - cultist.deadBody.transform.position.x) > 0.1f))
         {
             transform.Translate(_direction * cultist.cultistDataSO.collectSpeed * Time.deltaTime, Space.World);
         }
         else
         {
-            _deadbody.transform.parent = transform;
-            cultist.ChangeState(Cultist.ECultistState.Carry, _deadbody);
+            cultist.deadBody.transform.parent = transform;
+            cultist.ChangeState(Cultist.ECultistState.Carry, cultist.deadBody);
         }
 
     }

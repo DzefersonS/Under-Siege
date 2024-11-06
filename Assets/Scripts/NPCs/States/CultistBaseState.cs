@@ -6,6 +6,7 @@ public abstract class CultistBaseState : MonoBehaviour
 {
     protected Cultist cultist;
 
+
     public abstract void EnterState();
     public abstract void UpdateState();
     public abstract void ExitState();

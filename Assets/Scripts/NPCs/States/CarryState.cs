@@ -6,7 +6,7 @@ public class CarryState : CultistBaseState
 {
     private GameObject _graveyardGO;
     private Vector2 _direction;
-    private DeadBody _deadbody;
+
     public override void EnterState()
     {
         LocateGraveyard(cultist);
@@ -15,16 +15,12 @@ public class CarryState : CultistBaseState
         cultist.m_Animator.SetBool("IsIdling", true);
     }
 
-    public void SetDeadBody(DeadBody deadbody)
-    {
-        _deadbody = deadbody;
-    }
-
     public override void UpdateState()
     {
         if (cultist.CheckForEnemies())
         {
-            _deadbody.Unclaim();
+            cultist.deadBody.Unclaim();
+            return;
         }
 
         //Go to graveyard
@@ -34,7 +30,6 @@ public class CarryState : CultistBaseState
         }
         else
         {
-            //_deadbody.FreeToPool();
             cultist.ChangeState(Cultist.ECultistState.Idle);
         }
     }
@@ -42,10 +37,7 @@ public class CarryState : CultistBaseState
     public override void ExitState()
     {
         cultist.m_Animator.SetBool("IsIdling", false);
-
     }
-
-
 
     private void LocateGraveyard(Cultist cultist)
     {
