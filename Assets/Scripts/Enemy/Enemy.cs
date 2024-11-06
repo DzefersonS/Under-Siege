@@ -6,6 +6,8 @@ public class Enemy : Poolable
     [SerializeField] private int m_Health;
     [SerializeField] private EnemyEventSO m_EnemyDeathEventSO;
     [SerializeField] private State[] m_EnemyStates;
+    [SerializeField] private Animator m_Animator;
+    [SerializeField] private float m_DeathAnimationDuration = 1.0f;
 
     private enum EEnemyState
     {
@@ -23,11 +25,20 @@ public class Enemy : Poolable
         m_CurrentHealth = m_Health;
         transform.rotation = Quaternion.Euler(0.0f, transform.position.x > 0 ? 180.0f : 0.0f, 0.0f);
         ChangeState(EEnemyState.Moving);
+    }   
+    private void Awake()
+    {
+        if (m_Animator == null)
+        {
+            m_Animator = GetComponent<Animator>();
+        }
     }
 
     private void Update()
     {
         m_EnemyStates[(int)m_CurrentState].UpdateState(Time.deltaTime);
+
+        m_Animator.SetBool("IsRunning", m_CurrentState == EEnemyState.Moving);
     }
 
     private void ChangeState(EEnemyState newState)
@@ -36,14 +47,17 @@ public class Enemy : Poolable
         m_CurrentState = newState;
         m_EnemyStates[(int)m_CurrentState].EnterState();
     }
-
+    private void OnDeathAnimationComplete()
+    {
+        m_EnemyDeathEventSO.value = this;
+        FreeToPool();
+    }
     public void TakeDamage(int damage)
     {
         if ((m_CurrentHealth -= damage) <= 0)
         {
-            // open endpoint to spawn a corpse; either listen to the event in a corpse spawner script, or add it here
-            m_EnemyDeathEventSO.value = this;
-            FreeToPool();
+            m_Animator.SetBool("IsDead", true);
+            Invoke("OnDeathAnimationComplete", m_DeathAnimationDuration);
         }
     }
 }
