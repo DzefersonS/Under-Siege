@@ -37,6 +37,9 @@ public class CarryState : CultistBaseState
     public override void ExitState()
     {
         cultist.m_Animator.SetBool("IsIdling", false);
+
+        if (cultist.deadBody != null)
+            cultist.deadBody.Unclaim();
     }
 
     private void LocateGraveyard(Cultist cultist)

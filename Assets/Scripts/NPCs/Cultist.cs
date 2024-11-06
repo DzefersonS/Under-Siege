@@ -10,7 +10,7 @@ public class Cultist : MonoBehaviour, IAttackable
     [SerializeField] private CultistBaseState[] m_CultistStates;
 
     public DeadBody deadBody;
-    private int health;
+    public int _health;
 
 
     public ECultistState m_CurrentState = default;
@@ -32,7 +32,7 @@ public class Cultist : MonoBehaviour, IAttackable
             state.SetCultist(this);
         }
 
-        health = (int)cultistDataSO.health;
+        _health = cultistDataSO.health;
         m_CurrentState = ECultistState.Idle;
         ChangeState(ECultistState.Idle);
     }
@@ -106,8 +106,8 @@ public class Cultist : MonoBehaviour, IAttackable
 
     public void Damage(int damageAmount)
     {
-        health -= damageAmount;
-        if (health <= 0)
+        _health -= damageAmount;
+        if (_health <= 0)
             ChangeState(ECultistState.Death);
     }
 }
