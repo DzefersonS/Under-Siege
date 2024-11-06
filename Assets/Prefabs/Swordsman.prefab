@@ -9,9 +9,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_EnemyDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 69a14385df90736409a1e614cf1fbec4, type: 2}
+    - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_MovementSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_DeathAnimationDuration
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_EnemyStates.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_EnemyStates.Array.data[1]
+      value: 
+      objectReference: {fileID: -5375467593934664823}
     - target: {fileID: -122455393880307056, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_Size.x
       value: 0.63
@@ -94,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_Size.y
-      value: 0.27674526
+      value: 0.38851786
       objectReference: {fileID: 0}
     - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_Offset.x
@@ -102,7 +118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_Offset.y
-      value: 0.00072505325
+      value: -0.05516123
       objectReference: {fileID: 0}
     - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_IsTrigger
@@ -130,7 +146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.27
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -143,6 +159,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3438101363856082243, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 690216988541856054}
+    - targetCorrespondingSourceObject: {fileID: 3438101363856082243, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5375467593934664823}
   m_SourcePrefab: {fileID: 100100000, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
 --- !u!1 &6553260302121246022 stripped
 GameObject:
@@ -170,3 +189,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5375467593934664823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553260302121246022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f06d451e1b11a4d908f901e531a783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AttackAnimationDuration: 1
