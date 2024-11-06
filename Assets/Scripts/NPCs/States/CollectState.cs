@@ -18,6 +18,7 @@ public class CollectState : CultistBaseState
     {
         _direction = cultist.FindTurningDirection(_deadbody.gameObject);
         cultist.RotateCultist(_direction);
+        cultist.m_Animator.SetBool("IsRunning", true);
     }
     public override void UpdateState()
     {
@@ -28,7 +29,7 @@ public class CollectState : CultistBaseState
 
 
         //Go to dead body
-        if ((Mathf.Abs(cultist.transform.position.x - _deadbody.transform.position.x) > 0.5f))
+        if ((Mathf.Abs(cultist.transform.position.x - _deadbody.transform.position.x) > 0.1f))
         {
             transform.Translate(_direction * cultist.cultistDataSO.collectSpeed * Time.deltaTime, Space.World);
         }
@@ -42,8 +43,7 @@ public class CollectState : CultistBaseState
 
     public override void ExitState()
     {
-
-
+        cultist.m_Animator.SetBool("IsRunning", false);
     }
 
 }

@@ -111,6 +111,7 @@ MonoBehaviour:
   - {fileID: 2743533080301743792}
   - {fileID: -1768741158977980143}
   - {fileID: 8222765471241036175}
+  m_Animator: {fileID: 3293523229664769761}
   m_CurrentState: 0
 --- !u!114 &5892424661676535880
 MonoBehaviour:

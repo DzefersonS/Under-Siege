@@ -9,15 +9,11 @@ public class FleeState : CultistBaseState
     private float _fleeDuration = 1.5f; // Duration the cultist should stay in FleeState
     private float _fleeTimer;
 
-    public void SetEnemyTransform(Transform enemy)
-    {
-        _enemyTransform = enemy;
-    }
-
-
     public override void EnterState()
     {
         _fleeTimer = 0f;
+        cultist.m_Animator.SetBool("IsRunning", true);
+
     }
 
     public override void UpdateState()
@@ -48,8 +44,15 @@ public class FleeState : CultistBaseState
             }
         }
     }
+
+    public void SetEnemyTransform(Transform enemy)
+    {
+        _enemyTransform = enemy;
+    }
+
     public override void ExitState()
     {
+        cultist.m_Animator.SetBool("IsRunning", false);
 
     }
 

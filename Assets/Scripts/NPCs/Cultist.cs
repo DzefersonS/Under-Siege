@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class Cultist : MonoBehaviour
 {
+    [SerializeField] public Animator m_Animator;
     [SerializeField] public CultistDataSO cultistDataSO;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
     [SerializeField] private CultistBaseState[] m_CultistStates;

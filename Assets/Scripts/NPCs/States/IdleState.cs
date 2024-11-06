@@ -12,6 +12,7 @@ public class IdleState : CultistBaseState
 
     public override void EnterState()
     {
+        cultist.m_Animator.SetBool("IsIdling", true);
     }
     public override void UpdateState()
     {
@@ -27,6 +28,7 @@ public class IdleState : CultistBaseState
     public override void ExitState()
     {
         _isMoving = false;
+        cultist.m_Animator.SetBool("IsIdling", false);
     }
 
     private void SetNewTargetPosition()

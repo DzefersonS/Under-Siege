@@ -11,9 +11,8 @@ public class CarryState : CultistBaseState
     {
         LocateGraveyard(cultist);
         _direction = cultist.FindTurningDirection(_graveyardGO);
-
         cultist.RotateCultist(_direction);
-
+        cultist.m_Animator.SetBool("IsIdling", true);
     }
 
     public void SetDeadBody(DeadBody deadbody)
@@ -42,6 +41,7 @@ public class CarryState : CultistBaseState
 
     public override void ExitState()
     {
+        cultist.m_Animator.SetBool("IsIdling", false);
 
     }
 
