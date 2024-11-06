@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utils;
 
-public class Enemy : Poolable
+public class Enemy : Poolable, IAttackable
 {
     [SerializeField] private int m_Health;
     [SerializeField] private EnemyEventSO m_EnemyDeathEventSO;
@@ -18,7 +18,7 @@ public class Enemy : Poolable
     }
 
     private EEnemyState m_CurrentState = default;
-    private int m_CurrentHealth = 0;
+    private float m_CurrentHealth = 0;
 
     public override void Initialize()
     {
@@ -47,14 +47,16 @@ public class Enemy : Poolable
         m_CurrentState = newState;
         m_EnemyStates[(int)m_CurrentState].EnterState();
     }
+
     private void OnDeathAnimationComplete()
     {
         m_EnemyDeathEventSO.value = this;
         FreeToPool();
     }
-    public void TakeDamage(int damage)
+
+    public void Damage(float damageAmount)
     {
-        if ((m_CurrentHealth -= damage) <= 0)
+        if ((m_CurrentHealth -= damageAmount) <= 0)
         {
             m_Animator.SetBool("IsDead", true);
             Invoke("OnDeathAnimationComplete", m_DeathAnimationDuration);
