@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4264988990634795443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.77, y: -2.1, z: 0}
+  m_LocalPosition: {x: 1.77, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -145,4 +145,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToSelfDestruct: 60
   _deadBodyEventSO: {fileID: 11400000, guid: 33e34857e4ded3045a7d05aa5026dc11, type: 2}
+  _claimingCultist: {fileID: 0}
   isClaimed: 0
