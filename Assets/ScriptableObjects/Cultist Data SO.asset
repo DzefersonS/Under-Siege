@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e71967147259147a4e35bf20df312d, type: 3}
-  m_Name: Player Data SO
+  m_Script: {fileID: 11500000, guid: 5f1179aa22e998c43a258fc391fbefa7, type: 3}
+  m_Name: Cultist Data SO
   m_EditorClassIdentifier: 
-  m_PlayerDamage: 10
-  m_PlayerSpeed: 0
-  m_PlayerAttackSpeed: 2
+  m_Health: 10
+  m_IdleSpeed: 1.5
+  m_CollectSpeed: 3
+  m_CarrySpeed: 2
+  m_FleeSpeed: 3
+  m_EnemyDetectionRange: 2.5

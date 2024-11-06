@@ -10,14 +10,13 @@ public class CultistManager : MonoBehaviour
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
     [SerializeField] private GameObject _cultistPrefab;
     [SerializeField] private GameObject _cultistParent;
-    [SerializeField] private Vector2 _spawnPosition;
 
     [SerializeField] private List<Cultist> _cultists = new List<Cultist>();
     [SerializeField] private Queue<DeadBody> _deadBodies = new Queue<DeadBody>();
 
-
-    private float bodyCheckCooldown = 1f;
-    private float nextBodyCheckTime = 0f;
+    [SerializeField] private int CultistSpawnPositionXMinimum;
+    [SerializeField] private int CultistSpawnPositionXMaximum;
+    [SerializeField] private float CultistSpawnPositionY;
 
 
     private void Awake()
@@ -44,12 +43,11 @@ public class CultistManager : MonoBehaviour
 
     public void SpawnCultist()
     {
-        if (Random.Range(1, 3) == 1)
-            _spawnPosition = new Vector2(12.5f, -2.07f);
-        else
-            _spawnPosition = new Vector2(8.5f, -2.07f);
+        int spawnXCoordinates = Random.Range(CultistSpawnPositionXMinimum, CultistSpawnPositionXMaximum);
 
-        GameObject cultistGameObject = Instantiate(_cultistPrefab, _spawnPosition, Quaternion.identity, _cultistParent.transform);
+        Vector2 spawnPosition = new Vector2(spawnXCoordinates, CultistSpawnPositionY);
+
+        GameObject cultistGameObject = Instantiate(_cultistPrefab, spawnPosition, Quaternion.identity, _cultistParent.transform);
 
         Cultist c = cultistGameObject.GetComponent<Cultist>();
         _cultists.Add(c);
@@ -61,7 +59,7 @@ public class CultistManager : MonoBehaviour
     {
         foreach (var cultist in _cultists)
         {
-            if (cultist.GetState() == Cultist.State.Idle)
+            if (cultist.m_CurrentState == Cultist.ECultistState.Idle)
             {
                 return cultist;
             }
@@ -82,8 +80,8 @@ public class CultistManager : MonoBehaviour
 
             if (deadbody != null && !deadbody.isClaimed)
             {
-                deadbody.Claim(freeCultist.gameObject);
-                freeCultist.CollectDeadBody(deadbody.gameObject);
+                deadbody.Claim(freeCultist);
+                freeCultist.ChangeState(Cultist.ECultistState.Collect, deadbody);
             }
         }
         if (deadbodyGO == null)
@@ -91,41 +89,6 @@ public class CultistManager : MonoBehaviour
             _deadBodies.Dequeue();// remove the null shit from queue.
         }
     }
-
-
-    //For future implementation.
-    private void StartIdling()
-    {
-        foreach (var cultist in _cultists)
-        {
-            if (cultist.GetState() == Cultist.State.Idle)
-            {
-                cultist.Idle();
-            }
-
-        }
-
-    }
-
-    private void TerminateCultist(Cultist cultist)
-    {
-        //Remove this cultist from the body
-        foreach (var body in _deadBodies)
-        {
-            if (body.GetClaimant() == cultist.gameObject)
-                body.Unclaim();
-        }
-
-        Cultist tempCultist = cultist;
-        _cultists.Remove(cultist);
-
-        //If Cultist was carrying a body, maybe drop it???
-
-        tempCultist.Death();
-
-    }
-
-
 
 }
 
