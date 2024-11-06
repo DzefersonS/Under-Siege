@@ -24,7 +24,7 @@ public class CarryState : CultistBaseState
         }
 
         //Go to graveyard
-        if ((Mathf.Abs(transform.position.x - _graveyardGO.transform.position.x) > 0.01f))
+        if ((Mathf.Abs(transform.position.x - _graveyardGO.transform.position.x) > 0.5f))
         {
             transform.Translate(_direction * cultist.cultistDataSO.carrySpeed * Time.deltaTime, Space.World);
         }

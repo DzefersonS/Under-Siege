@@ -7,6 +7,8 @@ public class Cultist : MonoBehaviour, IAttackable
     [SerializeField] public Animator m_Animator;
     [SerializeField] public CultistDataSO cultistDataSO;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
+    [SerializeField] public CultistEventSO _cultistDeathEventSO;
+
     [SerializeField] private CultistBaseState[] m_CultistStates;
 
     public DeadBody deadBody;
@@ -109,5 +111,11 @@ public class Cultist : MonoBehaviour, IAttackable
         _health -= damageAmount;
         if (_health <= 0)
             ChangeState(ECultistState.Death);
+    }
+
+    public void OnDeathAnimationComplete()
+    {
+        _cultistDeathEventSO.value = this;
+        Destroy(gameObject);
     }
 }

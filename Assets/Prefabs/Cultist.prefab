@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Animator: {fileID: 3293523229664769761}
   cultistDataSO: {fileID: 11400000, guid: 9771059228764e34eb60f7fb3b7cd89a, type: 2}
   _deadBodyEventSO: {fileID: 0}
+  _cultistDeathEventSO: {fileID: 11400000, guid: d1b5c0e7d826b6749adb3f748941596a, type: 2}
   m_CultistStates:
   - {fileID: 5892424661676535880}
   - {fileID: 2743533080301743792}
@@ -115,6 +116,7 @@ MonoBehaviour:
   - {fileID: 8222765471241036175}
   - {fileID: -8927024027867542695}
   deadBody: {fileID: 0}
+  _health: 10
   m_CurrentState: 0
 --- !u!114 &5892424661676535880
 MonoBehaviour:
