@@ -29,7 +29,7 @@ public class PlayerProjectile : Poolable
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<Enemy>().TakeDamage(m_PlayerDataSO.playerDamage);
+            other.GetComponent<IAttackable>().Damage(m_PlayerDataSO.playerDamage);
             Explode();
         }
     }

@@ -72,7 +72,8 @@ public class WaveManager : MonoBehaviour
     private void OnEnemyDeath()
     {
         var body = m_DeadBodyPoolSO.GetFreeObject();
-        body.transform.position = m_EnemyDeathEventSO.value.transform.position;
+        //extremely dirty and lazy code
+        body.transform.position = m_EnemyDeathEventSO.value.transform.GetChild(0).position;
         body.Initialize();
 
         if (--m_EnemiesAlive == 0)

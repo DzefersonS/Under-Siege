@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CultistDataSO : ScriptableObject
 {
-    [SerializeField] private float m_Health;
+    [SerializeField] private int m_Health;
     [SerializeField] private float m_IdleSpeed;
     [SerializeField] private float m_CollectSpeed;
     [SerializeField] private float m_CarrySpeed;
@@ -15,7 +15,7 @@ public class CultistDataSO : ScriptableObject
 
 
 
-    public float health { get => m_Health; set => m_Health = value; }
+    public int health { get => m_Health; set => m_Health = value; }
     public float idleSpeed { get => m_IdleSpeed; set => m_IdleSpeed = value; }
     public float collectSpeed { get => m_CollectSpeed; set => m_CollectSpeed = value; }
     public float carrySpeed { get => m_CarrySpeed; set => m_CarrySpeed = value; }

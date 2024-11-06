@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 
 
@@ -8,6 +9,10 @@ using UnityEngine;
 public class CultistManager : MonoBehaviour
 {
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
+    [SerializeField] private CultistEventSO _cultistDeathEventSO;
+    [SerializeField] private ObjectPoolSO m_DeadBodyPoolSO;
+
+
     [SerializeField] private GameObject _cultistPrefab;
     [SerializeField] private GameObject _cultistParent;
 
@@ -22,10 +27,12 @@ public class CultistManager : MonoBehaviour
     private void Awake()
     {
         _deadBodyEventSO.Register(AddDeadBodyToQueue);
+        _cultistDeathEventSO.Register(OnCultistDeath);
     }
     private void OnDestroy()
     {
         _deadBodyEventSO.Unregister(AddDeadBodyToQueue);
+        _cultistDeathEventSO.Unregister(OnCultistDeath);
     }
 
     private void AddDeadBodyToQueue()
@@ -88,6 +95,16 @@ public class CultistManager : MonoBehaviour
         {
             _deadBodies.Dequeue();// remove the null shit from queue.
         }
+    }
+
+    private void OnCultistDeath()
+    {
+        Cultist c = _cultistDeathEventSO.value;
+        _cultists.Remove(c);
+
+        var body = m_DeadBodyPoolSO.GetFreeObject();
+        body.transform.position = c.transform.position;
+        body.Initialize();
     }
 
 }
