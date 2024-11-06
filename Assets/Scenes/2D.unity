@@ -8420,7 +8420,7 @@ MonoBehaviour:
   m_Playbounds: {fileID: 1714913050}
   m_PlayerTransform: {fileID: 1849485116}
   m_Offset: {x: 0, y: 1, z: -10}
-  m_Smoothing: 1
+  m_Smoothing: 2
 --- !u!1 &2011541710
 GameObject:
   m_ObjectHideFlags: 0
