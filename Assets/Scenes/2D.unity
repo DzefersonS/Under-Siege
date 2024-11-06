@@ -2321,7 +2321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c80978f129d4d8439ecb01614b4e27a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MaxHealth: 500
   _gameObjectEventSO: {fileID: 11400000, guid: 23e26a05aab02fe45ab3d33990e3f523, type: 2}
+  m_Healthbar: {fileID: 871100067}
 --- !u!61 &562701183
 BoxCollider2D:
   m_ObjectHideFlags: 0

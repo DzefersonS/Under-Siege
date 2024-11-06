@@ -196,3 +196,4 @@ MonoBehaviour:
   m_Rigidbody: {fileID: -1875099282754785861}
   m_PlayerDataSO: {fileID: 11400000, guid: d40adb63b6186cd4b8ef7ef0e19b3264, type: 2}
   m_Animator: {fileID: 6374479713352539155}
+  m_TimeToSelfDestruct: 2
