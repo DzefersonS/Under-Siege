@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using Utils;
 
@@ -10,6 +11,10 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Transform m_DeadBodyContainer;
     [SerializeField] private ObjectPoolSO m_DeadBodyPoolSO;
     [SerializeField] private EnemySpawner m_EnemySpawner;
+    [SerializeField] private TextMeshProUGUI m_WaveText;
+
+    private string m_TimeUntilWaveText => $"Time until next wave: {m_TimeRemainingINT}";
+    private string m_EnemiesAliveText => $"Enemies remaining: {m_EnemiesAlive}";
 
     private WaveSO m_CurrentWave = default;
     private Action<float> m_UpdateAction = default;
@@ -17,6 +22,7 @@ public class WaveManager : MonoBehaviour
     private int m_CurrentWaveIndex = default;
     private int m_EnemiesAlive = 0;
     private int m_EnemiesLeftToSpawn = 0;
+    private int m_TimeRemainingINT;
 
     private void Awake()
     {
@@ -42,6 +48,8 @@ public class WaveManager : MonoBehaviour
     private void DoCountdownBetweenWaves(float deltaTime)
     {
         m_TimeRemaining -= deltaTime;
+        m_TimeRemainingINT = (int)m_TimeRemaining;
+        m_WaveText.text = m_TimeUntilWaveText;
         if (m_TimeRemaining < 0.0f)
         {
             m_UpdateAction = EnemySpawnTimer;
@@ -53,6 +61,7 @@ public class WaveManager : MonoBehaviour
 
     private void EnemySpawnTimer(float deltaTime)
     {
+        m_WaveText.text = m_EnemiesAliveText;
         m_TimeRemaining -= deltaTime;
         if (m_TimeRemaining < 0.0f)
         {
@@ -87,8 +96,13 @@ public class WaveManager : MonoBehaviour
             {
                 m_CurrentWave = m_Waves[m_CurrentWaveIndex];
                 m_UpdateAction = DoCountdownBetweenWaves;
+                m_TimeRemaining = m_TimeBetweenWaves;
                 enabled = true;
             }
+        }
+        else
+        {
+            m_WaveText.text = m_EnemiesAliveText;
         }
     }
 }

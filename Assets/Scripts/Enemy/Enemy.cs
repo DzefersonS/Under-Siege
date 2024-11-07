@@ -7,6 +7,7 @@ public class Enemy : Poolable, IAttackable
     [SerializeField] private State[] m_EnemyStates;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private EnemyDataSO m_EnemyDataSO;
+    [SerializeField] private AudioSource m_HitSFX;
     [SerializeField] private float m_DeathAnimationDuration = 1.0f;
     [SerializeField] private float m_MovementSpeed;
 
@@ -51,7 +52,7 @@ public class Enemy : Poolable, IAttackable
 
     private void Update()
     {
-        m_EnemyStates[(int)m_CurrentState].UpdateState(Time.deltaTime);
+        m_EnemyStates[(int)m_CurrentState]?.UpdateState(Time.deltaTime);
 
         m_Animator.SetBool("IsRunning", m_CurrentState == EEnemyState.Moving);
 
@@ -96,6 +97,8 @@ public class Enemy : Poolable, IAttackable
 
     public void Damage(int damageAmount)
     {
+        m_HitSFX.Play();
+
         if ((m_CurrentHealth -= damageAmount) <= 0)
         {
             m_Animator.SetBool("IsDead", true);
