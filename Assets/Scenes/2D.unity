@@ -4208,7 +4208,7 @@ MonoBehaviour:
   m_Waves:
   - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
   - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
-  m_TimeBetweenWaves: 4
+  m_TimeBetweenWaves: 3
   m_DeadBodyContainer: {fileID: 424928877}
   m_DeadBodyPoolSO: {fileID: 11400000, guid: 13ffc837b5b4ea34ba7ecb81c32ebdea, type: 2}
   m_EnemySpawner: {fileID: 1014139923}
@@ -7020,7 +7020,7 @@ Transform:
   m_GameObject: {fileID: 1526645939}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.173, y: 0.19, z: 0}
+  m_LocalPosition: {x: 0.398, y: 0.138, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8409,11 +8409,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36683cd0c1be20b428e0fc737162830d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerMovement: {fileID: 1849485119}
   m_PlayerInputsSO: {fileID: 11400000, guid: a1f98fa1a1ebfd34abae25b4fbf87d4b, type: 2}
   m_PlayerDataSO: {fileID: 11400000, guid: d40adb63b6186cd4b8ef7ef0e19b3264, type: 2}
   m_ProjectilePoolSO: {fileID: 11400000, guid: 391c0ec2ec49c59449e5842336b3d38d, type: 2}
   m_PlayerProjectileContainer: {fileID: 819257215}
   m_ProjectileSpawnAnchor: {fileID: 1526645940}
+  m_Animator: {fileID: 1849485120}
 --- !u!1 &1889037806
 GameObject:
   m_ObjectHideFlags: 0

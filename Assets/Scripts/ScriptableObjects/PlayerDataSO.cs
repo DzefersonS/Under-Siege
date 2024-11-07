@@ -5,9 +5,9 @@ public class PlayerDataSO : ScriptableObject
 {
     [SerializeField] private int m_PlayerDamage;
     [SerializeField] private int m_PlayerSpeed;
-    [SerializeField] private int m_PlayerAttackSpeed;
+    [SerializeField] private float m_PlayerAttackSpeed;
 
     public int playerDamage { get => m_PlayerDamage; set => m_PlayerDamage = value; }
     public int playerSpeed { get => m_PlayerSpeed; set => m_PlayerSpeed = value; }
-    public int playerAttackSpeed { get => m_PlayerAttackSpeed; set => m_PlayerAttackSpeed = value; }
+    public float playerAttackSpeed { get => m_PlayerAttackSpeed; set => m_PlayerAttackSpeed = value; }
 }
