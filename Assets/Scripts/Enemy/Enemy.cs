@@ -28,7 +28,6 @@ public class Enemy : Poolable, IAttackable
     public EnemyDataSO enemyDataSO => m_EnemyDataSO;
     public IAttackable currentTarget => m_CurrentTarget;
     public Vector3 movementVector => m_MovementVector;
-    public EEnemyState currentState => m_CurrentState;
 
     public override void Initialize()
     {
@@ -102,7 +101,6 @@ public class Enemy : Poolable, IAttackable
 
         if ((m_CurrentHealth -= damageAmount) <= 0)
         {
-            m_CurrentState = EEnemyState.Dying;
             m_Animator.SetBool("IsDead", true);
             Invoke("OnDeathAnimationComplete", m_DeathAnimationDuration);
         }

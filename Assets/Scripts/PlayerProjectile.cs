@@ -36,9 +36,6 @@ public class PlayerProjectile : Poolable
 
         if (other.CompareTag("Enemy"))
         {
-            if (other.GetComponent<Enemy>().currentState == Enemy.EEnemyState.Dying)
-                return;
-
             m_HitEnemy = true;
             other.GetComponent<IAttackable>().Damage(m_PlayerDataSO.playerDamage);
             Explode();
