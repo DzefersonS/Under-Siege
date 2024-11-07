@@ -12,6 +12,7 @@ public class PlayerProjectile : Poolable
     private Action m_UpdateAction = default;
     private Vector3 m_MovementVector = default;
     private float m_TimeRemaining = 0.0f;
+    private bool m_HitEnemy = false;
 
     public Vector3 movementVector { set => m_MovementVector = value; }
 
@@ -20,6 +21,7 @@ public class PlayerProjectile : Poolable
         m_TimeRemaining = m_TimeToSelfDestruct;
         m_MovementVector.x *= m_MovementSpeed;
         m_UpdateAction = Fly;
+        m_HitEnemy = false;
     }
 
     private void Update()
@@ -29,8 +31,15 @@ public class PlayerProjectile : Poolable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (m_HitEnemy)
+            return;
+
         if (other.CompareTag("Enemy"))
         {
+            if (other.GetComponent<Enemy>().currentState == Enemy.EEnemyState.Dying)
+                return;
+
+            m_HitEnemy = true;
             other.GetComponent<IAttackable>().Damage(m_PlayerDataSO.playerDamage);
             Explode();
         }
