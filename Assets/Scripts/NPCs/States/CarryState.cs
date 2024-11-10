@@ -19,19 +19,22 @@ public class CarryState : CultistBaseState
     {
         if (cultist.CheckForEnemies())
         {
-            cultist.deadBody.Unclaim();
+            if (cultist.deadBody != null)
+            {
+                cultist.deadBody.Unclaim();
+                cultist.deadBody = null;
+            }
             return;
         }
 
         //Go to graveyard
-        if ((Mathf.Abs(transform.position.x - _graveyardGO.transform.position.x) > 0.5f))
-        {
-            transform.Translate(_direction * cultist.cultistDataSO.carrySpeed * Time.deltaTime, Space.World);
-        }
-        else
-        {
+        transform.Translate(_direction * cultist.cultistDataSO.carrySpeed * Time.deltaTime, Space.World);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Graveyard")
             cultist.ChangeState(Cultist.ECultistState.Idle);
-        }
     }
 
     public override void ExitState()

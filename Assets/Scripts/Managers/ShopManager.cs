@@ -9,6 +9,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private UpgradesSO _upgradePrices;
     [SerializeField] private CultistManager _cultistManager;
     [SerializeField] private UIManager _UIManager;
+    [SerializeField] private CultistEventSO _cultistDeathEventSO;
+
 
     [SerializeField] private int maxUpgradesPerLevel = 5;
 
@@ -16,7 +18,15 @@ public class ShopManager : MonoBehaviour
     public int shrineLevel = 0;
     public int souls;
 
+    private void Awake()
+    {
+        _cultistDeathEventSO.Register(DecreaseCultistQuantity);
+    }
 
+    private void OnDestroy()
+    {
+        _cultistDeathEventSO.Unregister(DecreaseCultistQuantity);
+    }
     void Start()
     {
         _cultistManager = GameObject.Find("CultistManager").GetComponent<CultistManager>();
@@ -57,10 +67,6 @@ public class ShopManager : MonoBehaviour
 
     }
 
-    void Update()
-    {
-
-    }
     //Altar
     public void Buy()
     {
@@ -134,7 +140,10 @@ public class ShopManager : MonoBehaviour
     {
         return souls;
     }
-
+    public void DecreaseCultistQuantity()
+    {
+        shopItems[3, 4]--;
+    }
     public void DecreaseQuantity(int itemId, int amountToDecrease)
     {
         shopItems[3, itemId] -= amountToDecrease;

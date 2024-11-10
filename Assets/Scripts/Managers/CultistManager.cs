@@ -38,7 +38,8 @@ public class CultistManager : MonoBehaviour
     private void AddDeadBodyToQueue()
     {
         DeadBody deadBody = _deadBodyEventSO.value;
-        _deadBodies.Enqueue(deadBody);
+        if (deadBody != null)
+            _deadBodies.Enqueue(deadBody);
     }
 
     void Update()
@@ -87,6 +88,7 @@ public class CultistManager : MonoBehaviour
 
             if (deadbody != null && !deadbody.isClaimed)
             {
+                Debug.Log("sending cultist to deadbody location: " + deadbody.gameObject.transform.position);
                 deadbody.Claim(freeCultist);
                 freeCultist.ChangeState(Cultist.ECultistState.Collect, deadbody);
             }

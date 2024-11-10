@@ -18,22 +18,25 @@ public class CollectState : CultistBaseState
         if (cultist.CheckForEnemies())
         {
             cultist.deadBody.Unclaim();
+            cultist.deadBody = null;
             return;
         }
 
-
-        //Go to dead body
-        if ((Mathf.Abs(cultist.transform.position.x - cultist.deadBody.transform.position.x) > 0.1f))
-        {
-            transform.Translate(_direction * cultist.cultistDataSO.collectSpeed * Time.deltaTime, Space.World);
-        }
-        else
-        {
-            cultist.deadBody.transform.parent = transform;
-            cultist.ChangeState(Cultist.ECultistState.Carry, cultist.deadBody);
-        }
-
+        transform.Translate(_direction * cultist.cultistDataSO.collectSpeed * Time.deltaTime, Space.World);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "DeadBody")
+        {
+            if (other.GetComponent<DeadBody>().GetClaimant() == cultist)
+            {
+                cultist.deadBody.transform.parent = transform;
+                cultist.ChangeState(Cultist.ECultistState.Carry, cultist.deadBody);
+            }
+        }
+    }
+
 
     public override void ExitState()
     {

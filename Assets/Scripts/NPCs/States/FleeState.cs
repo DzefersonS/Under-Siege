@@ -11,6 +11,11 @@ public class FleeState : CultistBaseState
 
     public override void EnterState()
     {
+        if (cultist.deadBody != null)
+        {
+            cultist.deadBody.Unclaim();
+            cultist.deadBody = null;
+        }
         _fleeTimer = 0f;
         cultist.m_Animator.SetBool("IsRunning", true);
     }

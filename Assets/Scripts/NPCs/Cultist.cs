@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
-public class Cultist : MonoBehaviour, IAttackable
+public class Cultist : Poolable, IAttackable
 {
     [SerializeField] public Animator m_Animator;
     [SerializeField] public CultistDataSO cultistDataSO;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
     [SerializeField] public CultistEventSO _cultistDeathEventSO;
+
 
     [SerializeField] private CultistBaseState[] m_CultistStates;
 
