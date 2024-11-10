@@ -17,8 +17,11 @@ public class CollectState : CultistBaseState
     {
         if (cultist.CheckForEnemies())
         {
-            cultist.deadBody.Unclaim();
-            cultist.deadBody = null;
+            if (cultist.deadBody != null)
+            {
+                cultist.deadBody.Unclaim();
+                cultist.deadBody = null;
+            }
             return;
         }
 

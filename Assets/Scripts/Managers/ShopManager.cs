@@ -104,8 +104,6 @@ public class ShopManager : MonoBehaviour
                 shopItems[2, referencedItemId] = _upgradePrices.ShrinePrices[shopItems[3, referencedItemId]];
                 shrineLevel++;
             }
-
-
         }
     }
 
