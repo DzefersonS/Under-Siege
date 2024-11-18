@@ -7,6 +7,7 @@ public class MovingState : State
 
     public override void EnterState()
     {
+        m_Enemy.animator.SetBool("IsRunning", true);
     }
 
     public override void UpdateState(float deltaTime)
@@ -16,5 +17,6 @@ public class MovingState : State
 
     public override void ExitState()
     {
+        m_Enemy.animator.SetBool("IsRunning", false);
     }
 }

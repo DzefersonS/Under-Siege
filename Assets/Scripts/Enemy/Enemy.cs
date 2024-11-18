@@ -20,8 +20,8 @@ public class Enemy : Poolable, IAttackable
     }
 
     private EEnemyState m_CurrentState = default;
-    private IAttackable m_CurrentTarget;
-    private Vector3 m_MovementVector;
+    private IAttackable m_CurrentTarget = default;
+    private Vector3 m_MovementVector = default;
     private float m_CurrentHealth = 0;
 
     public Animator animator => m_Animator;
@@ -42,6 +42,7 @@ public class Enemy : Poolable, IAttackable
 
         ChangeState(EEnemyState.Moving);
     }
+
     private void Awake()
     {
         if (m_Animator == null)
@@ -53,8 +54,6 @@ public class Enemy : Poolable, IAttackable
     private void Update()
     {
         m_EnemyStates[(int)m_CurrentState]?.UpdateState(Time.deltaTime);
-
-        m_Animator.SetBool("IsRunning", m_CurrentState == EEnemyState.Moving);
 
         LookForAttackableTargets();
     }
