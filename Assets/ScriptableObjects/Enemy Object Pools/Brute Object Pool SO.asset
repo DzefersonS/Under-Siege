@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c164af4776f2e4db70f06588f448f8, type: 3}
   m_Name: Brute Object Pool SO
   m_EditorClassIdentifier: 
-  m_PoolablePrefab: {fileID: 0}
+  m_PoolablePrefab: {fileID: 4233219692771812215, guid: 326dd4dd71460da49a7c885b8f89d09b, type: 3}
   m_BufferSize: 20
