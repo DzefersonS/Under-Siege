@@ -69,23 +69,51 @@ public class Enemy : Poolable, IAttackable
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_EnemyDataSO.attackRange);
 
+        //Sort by distance, otherwise order of elements is undocumented behaviour
+        System.Array.Sort(hitColliders, (a, b) =>
+        {
+            float distanceLHS = Vector2.Distance(transform.position, a.transform.position);
+            float distanceRHS = Vector2.Distance(transform.position, b.transform.position);
+            return distanceLHS.CompareTo(distanceRHS);
+        });
+
         IAttackable newTarget = null;
 
-        foreach (Collider2D col in hitColliders)
+        if (!string.IsNullOrEmpty(m_EnemyDataSO.priorityTargetTag))
         {
-            IAttackable attackable = col.GetComponent<IAttackable>();
-            if (attackable != null && !col.CompareTag("Enemy"))
+            foreach (Collider2D col in hitColliders)
             {
-                newTarget = attackable;
-                if (m_CurrentState == EEnemyState.Moving)
+                IAttackable attackable = col.GetComponent<IAttackable>();
+                if (attackable != null && !col.CompareTag("Enemy") && col.CompareTag(m_EnemyDataSO.priorityTargetTag))
                 {
-                    m_CurrentTarget = newTarget;
-                    ChangeState(EEnemyState.Attacking);
+                    newTarget = attackable;
+                    break;
                 }
             }
         }
 
-        m_CurrentTarget = newTarget;
+        if (newTarget == null)
+        {
+            foreach (Collider2D col in hitColliders)
+            {
+                IAttackable attackable = col.GetComponent<IAttackable>();
+                if (attackable != null && !col.CompareTag("Enemy"))
+                {
+                    newTarget = attackable;
+                    break;
+                }
+            }
+        }
+
+        if (newTarget != null && m_CurrentState == EEnemyState.Moving)
+        {
+            m_CurrentTarget = newTarget;
+            ChangeState(EEnemyState.Attacking);
+        }
+        else
+        {
+            m_CurrentTarget = newTarget;
+        }
     }
 
     private void OnDeathAnimationComplete()
