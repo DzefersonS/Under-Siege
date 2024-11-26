@@ -12,7 +12,7 @@ public class UpgradesSO : ScriptableObject
     [SerializeField] private int[] m_ShrinePrices;
 
     //Values for player
-    [SerializeField] private float[] m_PlayerDamageValues;
+    [SerializeField] private int[] m_PlayerDamageValues;
     [SerializeField] private float[] m_PlayerAttackSpeedValues;
     [SerializeField] private float[] m_PlayerMovementSpeedValues;
 
@@ -21,7 +21,7 @@ public class UpgradesSO : ScriptableObject
     public int[] CultistPrices => m_CultistPrices;
     public int[] ShrinePrices => m_ShrinePrices;
 
-    public float[] PlayerDamage => m_PlayerDamageValues;
+    public int[] PlayerDamage => m_PlayerDamageValues;
     public float[] PlayerAttackSpeed => m_PlayerAttackSpeedValues;
     public float[] PlayerMovementSpeed => m_PlayerMovementSpeedValues;
 

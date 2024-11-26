@@ -5124,8 +5124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a915129ecd970994aab80d8eb29a57f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shopManager: {fileID: 0}
   _player: {fileID: 1849485121}
+  _upgradePurchaseEventSO: {fileID: 11400000, guid: 5693d2d4d70eb2c4ca0f40af0a9623b1, type: 2}
+  _upgradesSO: {fileID: 11400000, guid: 7f65dd8bcdbcfb743ab634fc1b5dec32, type: 2}
+  playerData: {fileID: 11400000, guid: d40adb63b6186cd4b8ef7ef0e19b3264, type: 2}
 --- !u!1 &1129480131
 GameObject:
   m_ObjectHideFlags: 0
@@ -7423,6 +7425,7 @@ MonoBehaviour:
   _cultistManager: {fileID: 149945863}
   _UIManager: {fileID: 1514405278}
   _cultistDeathEventSO: {fileID: 11400000, guid: d1b5c0e7d826b6749adb3f748941596a, type: 2}
+  _upgradePurchaseEventSO: {fileID: 11400000, guid: 5693d2d4d70eb2c4ca0f40af0a9623b1, type: 2}
   maxUpgradesPerLevel: 5
   shrineLevel: 0
   souls: 1000

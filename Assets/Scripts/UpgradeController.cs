@@ -15,38 +15,48 @@ public class UpgradeController : MonoBehaviour
     private int attackSpeedUpgradeIndex;
     private int movementSpeedUpgradeIndex;
 
+    private int defaultDamage;
+    private float defaultAttackSpeed;
+    private float defaultMoveSpeed;
+
+
     private void Awake()
     {
         _upgradePurchaseEventSO.Register(UpgradePlayer);
+
         damageUpgradeIndex = 0;
         attackSpeedUpgradeIndex = 0;
         movementSpeedUpgradeIndex = 0;
     }
 
+    private void Start()
+    {
+        defaultDamage = playerData.playerDamage;
+        defaultAttackSpeed = playerData.playerAttackSpeed;
+        defaultMoveSpeed = playerData.playerSpeed;
+    }
+
     private void OnDestroy()
     {
         _upgradePurchaseEventSO.Unregister(UpgradePlayer);
+        ResetValues();
     }
 
 
     private void UpgradePlayer()
     {
         int upgradeId = _upgradePurchaseEventSO.value;
-        Debug.Log($"{upgradeId}");
 
-
-        if (upgradeId == 1)
+        if (upgradeId == 1 && _upgradesSO.PlayerDamage[damageUpgradeIndex] != 0)
         {
-            //playerData.playerDamage = _upgradesSO.PlayerDamage[DamageUpgradeIndex];
+            Debug.Log(_upgradesSO.PlayerDamage[damageUpgradeIndex]);
+            playerData.playerDamage = _upgradesSO.PlayerDamage[damageUpgradeIndex];
             damageUpgradeIndex++;
         }
         if (upgradeId == 2)
         {
-            Debug.Log($"Old Speed: {playerData.playerAttackSpeed}");
-
             playerData.playerAttackSpeed = _upgradesSO.PlayerAttackSpeed[attackSpeedUpgradeIndex];
             attackSpeedUpgradeIndex++;
-            Debug.Log($"New Speed: {playerData.playerAttackSpeed}");
 
         }
 
@@ -56,5 +66,14 @@ public class UpgradeController : MonoBehaviour
             movementSpeedUpgradeIndex++;
         }
     }
+
+    private void ResetValues()
+    {
+        playerData.playerDamage = defaultDamage;
+        playerData.playerAttackSpeed = defaultAttackSpeed;
+        playerData.playerSpeed = defaultMoveSpeed;
+
+    }
+
 
 }
