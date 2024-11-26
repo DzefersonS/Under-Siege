@@ -10,7 +10,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private CultistManager _cultistManager;
     [SerializeField] private UIManager _UIManager;
     [SerializeField] private CultistEventSO _cultistDeathEventSO;
-
+    [SerializeField] private UpgradePurchaseEventSO _upgradePurchaseEventSO;
 
     [SerializeField] private int maxUpgradesPerLevel = 5;
 
@@ -104,6 +104,10 @@ public class ShopManager : MonoBehaviour
                 shopItems[2, referencedItemId] = _upgradePrices.ShrinePrices[shopItems[3, referencedItemId]];
                 shrineLevel++;
             }
+
+            //Call event for UpgradeController to Apply Upgrade
+            _upgradePurchaseEventSO.value = referencedItemId;
+
         }
     }
 

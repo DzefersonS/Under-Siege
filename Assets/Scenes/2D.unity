@@ -5089,6 +5089,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1126310326}
+  - component: {fileID: 1126310327}
   m_Layer: 0
   m_Name: UpgradeController
   m_TagString: Untagged
@@ -5111,6 +5112,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1126310327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126310325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a915129ecd970994aab80d8eb29a57f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shopManager: {fileID: 0}
+  _player: {fileID: 1849485121}
 --- !u!1 &1129480131
 GameObject:
   m_ObjectHideFlags: 0
