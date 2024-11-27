@@ -86,11 +86,7 @@ public class ShopManager : MonoBehaviour
             ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItems[3, referencedItemId].ToString();
 
             //Set a new price for Player upgrades
-            if (referencedItemId == 1)
-                shopItems[2, referencedItemId] = _upgradePrices.PlayerUpgradePrices[shopItems[3, referencedItemId]];
-            else if (referencedItemId == 2)
-                shopItems[2, referencedItemId] = _upgradePrices.PlayerUpgradePrices[shopItems[3, referencedItemId]];
-            else if (referencedItemId == 3)
+            if (referencedItemId >= 1 && referencedItemId <= 3)
                 shopItems[2, referencedItemId] = _upgradePrices.PlayerUpgradePrices[shopItems[3, referencedItemId]];
             //Set a new price for cultist(worker)
             else if (referencedItemId == 4)
@@ -157,23 +153,19 @@ public class ShopManager : MonoBehaviour
         if (itemId >= 1 && itemId <= 3)
         {
             if (_upgradePrices.PlayerUpgradePrices != null &&
-                shopItems[3, itemId] + 1 < _upgradePrices.PlayerUpgradePrices.Length)
+                shopItems[3, itemId] + 1 <= _upgradePrices.PlayerUpgradePrices.Length)
                 return true;
         }
         // Check Cultist Prices
         else if (itemId == 4)
         {
             if (_upgradePrices.CultistPrices != null &&
-                shopItems[3, itemId] + 1 < _upgradePrices.CultistPrices.Length)
+                shopItems[3, itemId] + 1 <= _upgradePrices.CultistPrices.Length)
                 return true;
         }
         // Check Shrine Prices
         else if (itemId == 5)
         {
-            Debug.Log("Upcoming Quantity: " + (shopItems[3, itemId] + 1));
-            Debug.Log("Current Quantity: " + shopItems[3, itemId]);
-            Debug.Log("Length: " + _upgradePrices.ShrinePrices.Length);
-
             if (_upgradePrices.ShrinePrices != null &&
                 shopItems[3, itemId] + 1 <= _upgradePrices.ShrinePrices.Length)
             {
@@ -182,7 +174,6 @@ public class ShopManager : MonoBehaviour
             }
         }
 
-        Debug.LogWarning($"Item ID {itemId} is not valid or exceeds array bounds.");
         return false;
     }
 

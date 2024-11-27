@@ -88,7 +88,6 @@ public class CultistManager : MonoBehaviour
 
             if (deadbody != null && !deadbody.isClaimed)
             {
-                Debug.Log("sending cultist to deadbody location: " + deadbody.gameObject.transform.position);
                 deadbody.Claim(freeCultist);
                 freeCultist.ChangeState(Cultist.ECultistState.Collect, deadbody);
             }
