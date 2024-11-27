@@ -64,7 +64,6 @@ public class ShopManager : MonoBehaviour
         shopItems[3, 5] = 0;
 
         shrineLevel = shopItems[3, 5];
-
     }
 
     //Altar
@@ -103,7 +102,6 @@ public class ShopManager : MonoBehaviour
 
             //Call event for UpgradeController to Apply Upgrade
             _upgradePurchaseEventSO.value = referencedItemId;
-
         }
     }
 
@@ -132,7 +130,6 @@ public class ShopManager : MonoBehaviour
     {
         souls += amount;
         _UIManager.UpdateSoulsText(souls);
-
     }
     public int GetSouls()
     {
@@ -169,12 +166,10 @@ public class ShopManager : MonoBehaviour
             if (_upgradePrices.ShrinePrices != null &&
                 shopItems[3, itemId] + 1 <= _upgradePrices.ShrinePrices.Length)
             {
-                Debug.LogWarning("Returned true");
                 return true;
             }
         }
 
         return false;
     }
-
 }

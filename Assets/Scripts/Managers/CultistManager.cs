@@ -48,7 +48,6 @@ public class CultistManager : MonoBehaviour
             CollectBody();
     }
 
-
     public void SpawnCultist()
     {
         int spawnXCoordinates = Random.Range(CultistSpawnPositionXMinimum, CultistSpawnPositionXMaximum);
