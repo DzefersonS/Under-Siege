@@ -42,25 +42,22 @@ public class UpgradeController : MonoBehaviour
         ResetValues();
     }
 
-
     private void UpgradePlayer()
     {
         int upgradeId = _upgradePurchaseEventSO.value;
 
-        if (upgradeId == 1 && _upgradesSO.PlayerDamage[damageUpgradeIndex] != 0)
+        if (upgradeId == 1 && damageUpgradeIndex <= _upgradesSO.PlayerDamage.Length + 1)
         {
-            Debug.Log(_upgradesSO.PlayerDamage[damageUpgradeIndex]);
             playerData.playerDamage = _upgradesSO.PlayerDamage[damageUpgradeIndex];
             damageUpgradeIndex++;
         }
-        if (upgradeId == 2)
+        if (upgradeId == 2 && attackSpeedUpgradeIndex <= _upgradesSO.PlayerAttackSpeed.Length + 1)
         {
             playerData.playerAttackSpeed = _upgradesSO.PlayerAttackSpeed[attackSpeedUpgradeIndex];
             attackSpeedUpgradeIndex++;
-
         }
 
-        if (upgradeId == 3)
+        if (upgradeId == 3 && movementSpeedUpgradeIndex <= _upgradesSO.PlayerMovementSpeed.Length + 1)
         {
             playerData.playerSpeed = _upgradesSO.PlayerMovementSpeed[movementSpeedUpgradeIndex];
             movementSpeedUpgradeIndex++;
@@ -74,6 +71,4 @@ public class UpgradeController : MonoBehaviour
         playerData.playerSpeed = defaultMoveSpeed;
 
     }
-
-
 }

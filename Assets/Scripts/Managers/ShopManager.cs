@@ -49,11 +49,11 @@ public class ShopManager : MonoBehaviour
 
 
         //Price
-        shopItems[2, 1] = _upgradePrices.PlayerUpgradePrices[0];//Dmg
-        shopItems[2, 2] = _upgradePrices.PlayerUpgradePrices[0];//atk speed
-        shopItems[2, 3] = _upgradePrices.PlayerUpgradePrices[0];// movmenet speed
-        shopItems[2, 4] = _upgradePrices.CultistPrices[0];      //cultist
-        shopItems[2, 5] = _upgradePrices.ShrinePrices[0];       //Shrine
+        shopItems[2, 1] = _upgradePrices.PlayerUpgradePrices[0];    //Dmg
+        shopItems[2, 2] = _upgradePrices.PlayerUpgradePrices[0];    //atk speed
+        shopItems[2, 3] = _upgradePrices.PlayerUpgradePrices[0];    // movmenet speed
+        shopItems[2, 4] = _upgradePrices.CultistPrices[0];          //cultist
+        shopItems[2, 5] = _upgradePrices.ShrinePrices[0];           //Shrine
 
 
         //Quantity
@@ -73,7 +73,7 @@ public class ShopManager : MonoBehaviour
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
         int referencedItemId = ButtonRef.GetComponent<ButtonInfo>().itemID;
 
-        if (IsEligibleForPurchase(referencedItemId))
+        if (IsEligibleForPurchase(referencedItemId) && IsInboundsArray(referencedItemId))
         {
             souls -= shopItems[2, referencedItemId];
 
@@ -149,6 +149,41 @@ public class ShopManager : MonoBehaviour
     public void DecreaseQuantity(int itemId, int amountToDecrease)
     {
         shopItems[3, itemId] -= amountToDecrease;
+    }
+
+    private bool IsInboundsArray(int itemId)
+    {
+        // Check Player Upgrades
+        if (itemId >= 1 && itemId <= 3)
+        {
+            if (_upgradePrices.PlayerUpgradePrices != null &&
+                shopItems[3, itemId] + 1 < _upgradePrices.PlayerUpgradePrices.Length)
+                return true;
+        }
+        // Check Cultist Prices
+        else if (itemId == 4)
+        {
+            if (_upgradePrices.CultistPrices != null &&
+                shopItems[3, itemId] + 1 < _upgradePrices.CultistPrices.Length)
+                return true;
+        }
+        // Check Shrine Prices
+        else if (itemId == 5)
+        {
+            Debug.Log("Upcoming Quantity: " + (shopItems[3, itemId] + 1));
+            Debug.Log("Current Quantity: " + shopItems[3, itemId]);
+            Debug.Log("Length: " + _upgradePrices.ShrinePrices.Length);
+
+            if (_upgradePrices.ShrinePrices != null &&
+                shopItems[3, itemId] + 1 <= _upgradePrices.ShrinePrices.Length)
+            {
+                Debug.LogWarning("Returned true");
+                return true;
+            }
+        }
+
+        Debug.LogWarning($"Item ID {itemId} is not valid or exceeds array bounds.");
+        return false;
     }
 
 }
