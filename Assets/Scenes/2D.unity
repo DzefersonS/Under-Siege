@@ -2458,6 +2458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MaxHealth: 500
   _gameObjectEventSO: {fileID: 11400000, guid: 23e26a05aab02fe45ab3d33990e3f523, type: 2}
+  _upgradePurchaseEventSO: {fileID: 11400000, guid: 5693d2d4d70eb2c4ca0f40af0a9623b1, type: 2}
   m_Healthbar: {fileID: 871100067}
 --- !u!61 &562701183
 BoxCollider2D:
@@ -7334,7 +7335,7 @@ Transform:
   m_GameObject: {fileID: 1599690832}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
