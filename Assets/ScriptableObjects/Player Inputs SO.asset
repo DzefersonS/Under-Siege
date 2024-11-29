@@ -16,3 +16,4 @@ MonoBehaviour:
   m_MoveRight: 100
   m_Jump: 119
   m_Attack: 32
+  m_Buy: 115
