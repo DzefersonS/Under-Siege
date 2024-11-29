@@ -64,6 +64,10 @@ public class DeadBody : Poolable
     private IEnumerator DestroyByTime()
     {
         yield return new WaitForSeconds(_timeToSelfDestruct);
+
+        if (_claimingCultist.deadBody == this)
+            _claimingCultist.ChangeState(Cultist.ECultistState.Idle);
+
         FreeToPool();
     }
 
