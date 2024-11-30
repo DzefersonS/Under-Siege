@@ -15,6 +15,8 @@ public class Cultist : Poolable, IAttackable
 
     public DeadBody deadBody;
     public int _health;
+    private bool _hasDied = false;
+
 
 
     public ECultistState m_CurrentState = default;
@@ -49,6 +51,9 @@ public class Cultist : Poolable, IAttackable
         m_CultistStates[(int)m_CurrentState]?.ExitState();
         m_CurrentState = newState;
 
+        if (m_CurrentState == ECultistState.Death && newState != ECultistState.Death)
+            return; // Once in Death state, no other state should be entered
+
         if (newState == ECultistState.Collect && deadbody != null)
         {
             deadBody = deadbody;
@@ -81,8 +86,6 @@ public class Cultist : Poolable, IAttackable
 
     public bool CheckForEnemies()
     {
-        // 2m detection range
-        // Check if an enemy is nearby
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, cultistDataSO.enemyDetectionRange);
 
         foreach (var hitCollider in hitColliders)
@@ -103,6 +106,9 @@ public class Cultist : Poolable, IAttackable
 
     public void Damage(int damageAmount)
     {
+        if (m_CurrentState == ECultistState.Death)
+            return; // Prevent redundant state changes to Death
+
         _health -= damageAmount;
 
         if (_health <= 0)
@@ -111,6 +117,9 @@ public class Cultist : Poolable, IAttackable
 
     public void OnDeathAnimationComplete()
     {
+        if (_hasDied) return; // Prevent multiple executions
+        _hasDied = true;
+
         _cultistDeathEventSO.value = this;
     }
 }
