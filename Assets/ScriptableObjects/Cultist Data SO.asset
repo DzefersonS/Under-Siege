@@ -18,3 +18,5 @@ MonoBehaviour:
   m_CarrySpeed: 2
   m_FleeSpeed: 3
   m_EnemyDetectionRange: 2
+  m_XBoundsMin: -25
+  m_XBoundsMax: 25
