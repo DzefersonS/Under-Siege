@@ -33,6 +33,8 @@ public class CollectState : CultistBaseState
             return;
         }
 
+        CheckIfOutOfBaseArea();
+
         if (!isGoingToGraveyard)
             transform.Translate(_direction * cultist.cultistDataSO.collectSpeed * Time.deltaTime, Space.World);
         else
@@ -77,6 +79,15 @@ public class CollectState : CultistBaseState
             {
                 _graveyardGO = body.gameObject;
             }
+        }
+    }
+
+    private void CheckIfOutOfBaseArea()
+    {
+        if (cultist.transform.position.x > 20 || cultist.transform.position.x < -20)
+        {
+            cultist.deadBody.Unclaim();
+            cultist.ChangeState(Cultist.ECultistState.Idle);
         }
     }
 

@@ -21,10 +21,12 @@ public class Graveyard : MonoBehaviour
     {
         if (other.tag == "DeadBody")
         {
+            DeadBody deadbody = other.GetComponent<DeadBody>();
+
             _shopManager.AddSouls(1);
             _deadBodyDeliveredEventSO.value = other.GetComponent<DeadBody>();
-
-            other.GetComponent<DeadBody>().FreeToPool();
+            deadbody.Unclaim();
+            deadbody.FreeToPool();
         }
     }
 
