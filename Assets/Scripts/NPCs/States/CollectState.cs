@@ -32,12 +32,14 @@ public class CollectState : CultistBaseState
             return;
         }
 
-        CheckIfOutOfBaseArea();
 
         if (!isGoingToGraveyard)
             transform.Translate(_direction * cultist.cultistDataSO.collectSpeed * Time.deltaTime, Space.World);
         else
             transform.Translate(_direction * cultist.cultistDataSO.carrySpeed * Time.deltaTime, Space.World);
+
+        CheckIfOutOfBaseArea();
+
     }
 
     public override void ExitState()
@@ -91,7 +93,8 @@ public class CollectState : CultistBaseState
 
     private void CheckIfOutOfBaseArea()
     {
-        if (cultist.transform.position.x > 25 || cultist.transform.position.x < -25)
+        //if x > 25 || x < -25
+        if (cultist.transform.position.x > cultist.cultistDataSO.xBoundsMax || cultist.transform.position.x < cultist.cultistDataSO.xBoundsMin)
         {
             if (cultist.deadBody != null)
                 cultist.deadBody.Unclaim();
