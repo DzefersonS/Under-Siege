@@ -10,6 +10,7 @@ public class CollectState : CultistBaseState
     {
         _direction = cultist.FindTurningDirection(cultist.deadBody.gameObject);
         cultist.RotateCultist(_direction);
+
         cultist.m_Animator.SetBool("IsRunning", true);
     }
 

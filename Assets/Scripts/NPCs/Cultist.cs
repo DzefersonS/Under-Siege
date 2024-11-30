@@ -102,15 +102,10 @@ public class Cultist : Poolable, IAttackable
         deadBody.FreeToPool();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, cultistDataSO.enemyDetectionRange);
-    }
-
     public void Damage(int damageAmount)
     {
         _health -= damageAmount;
+
         if (_health <= 0)
             ChangeState(ECultistState.Death);
     }

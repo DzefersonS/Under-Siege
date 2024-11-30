@@ -5,7 +5,6 @@ using Utils;
 
 public class DeadBody : Poolable
 {
-    [SerializeField] private float _timeToSelfDestruct;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
     [SerializeField] private Cultist _claimingCultist; //Cultist that will take the body
     private Transform container;
@@ -18,7 +17,6 @@ public class DeadBody : Poolable
     void Start()
     {
         isClaimed = false;
-        StartCoroutine(DestroyByTime());
     }
 
     private void Update()
@@ -49,26 +47,16 @@ public class DeadBody : Poolable
 
     public void Unclaim()
     {
+        transform.parent = container;
+
         _claimingCultist = null;
         isClaimed = false;
         _deadBodyEventSO.value = this;
-
-        transform.parent = container;
     }
 
     public Cultist GetClaimant()
     {
         return _claimingCultist;
-    }
-
-    private IEnumerator DestroyByTime()
-    {
-        yield return new WaitForSeconds(_timeToSelfDestruct);
-
-        if (_claimingCultist.deadBody == this)
-            _claimingCultist.ChangeState(Cultist.ECultistState.Idle);
-
-        FreeToPool();
     }
 
 }

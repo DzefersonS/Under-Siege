@@ -6,7 +6,7 @@ public class FleeState : CultistBaseState
 {
     private Transform _enemyTransform;
 
-    private float _fleeDuration = 1.5f; // Duration the cultist should stay in FleeState
+    private float _fleeDuration = 3f; // Duration the cultist should stay in FleeState
     private float _fleeTimer;
 
     public override void EnterState()

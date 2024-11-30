@@ -1075,6 +1075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deadBodyEventSO: {fileID: 11400000, guid: 33e34857e4ded3045a7d05aa5026dc11, type: 2}
   _cultistDeathEventSO: {fileID: 11400000, guid: d1b5c0e7d826b6749adb3f748941596a, type: 2}
+  _deadBodyDeliveredEventSO: {fileID: 11400000, guid: a772fe26657a0104896b44d3d11376d3, type: 2}
   m_DeadBodyPoolSO: {fileID: 11400000, guid: 13ffc837b5b4ea34ba7ecb81c32ebdea, type: 2}
   _cultistPrefab: {fileID: 7891461925583871033, guid: f1d88345128111841829b47e2453dcec, type: 3}
   _cultistParent: {fileID: 1475149536}
@@ -3195,6 +3196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shopManager: {fileID: 1622666717}
+  _deadBodyDeliveredEventSO: {fileID: 11400000, guid: a772fe26657a0104896b44d3d11376d3, type: 2}
 --- !u!61 &742157871
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4377,8 +4379,8 @@ MonoBehaviour:
   m_EnemyDeathEventSO: {fileID: 11400000, guid: 8442cda6b63a514489e5cf3673a3c920, type: 2}
   m_Waves:
   - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
-  - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
-  - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
+  - {fileID: 11400000, guid: 704424c2a68c3774c814e5d7211a7d68, type: 2}
+  - {fileID: 11400000, guid: c29d83a4c4e01f542abe2369e2cfe299, type: 2}
   m_TimeBetweenWaves: 6
   m_DeadBodyContainer: {fileID: 424928877}
   m_DeadBodyPoolSO: {fileID: 11400000, guid: 13ffc837b5b4ea34ba7ecb81c32ebdea, type: 2}
