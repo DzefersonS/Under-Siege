@@ -58,4 +58,5 @@ public class FleeState : CultistBaseState
     {
         cultist.m_Animator.SetBool("IsRunning", false);
     }
+
 }

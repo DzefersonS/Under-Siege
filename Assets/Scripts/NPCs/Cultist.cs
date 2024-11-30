@@ -23,7 +23,6 @@ public class Cultist : Poolable, IAttackable
     {
         Idle = 0,
         Collect,
-        Carry,
         Flee,
         Death,
         COUNT
@@ -113,6 +112,5 @@ public class Cultist : Poolable, IAttackable
     public void OnDeathAnimationComplete()
     {
         _cultistDeathEventSO.value = this;
-        Destroy(gameObject);
     }
 }

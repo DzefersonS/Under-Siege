@@ -121,9 +121,14 @@ public class CultistManager : MonoBehaviour
 
         _cultists.Remove(c);
 
+        Debug.Log("On Cultist death" + c.name);
+
         var body = m_DeadBodyPoolSO.GetFreeObject();
         body.transform.position = c.transform.position;
         body.Initialize();
+
+        Destroy(c.gameObject);
+
     }
 
     private void DeadBodyDelivered()
