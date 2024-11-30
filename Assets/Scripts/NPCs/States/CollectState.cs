@@ -18,7 +18,6 @@ public class CollectState : CultistBaseState
 
         isGoingToGraveyard = false;
         LocateGraveyard(cultist);
-
     }
 
     public override void UpdateState()
@@ -53,17 +52,25 @@ public class CollectState : CultistBaseState
             if (other.GetComponent<DeadBody>().GetClaimant() == cultist)
             {
                 cultist.deadBody.transform.parent = transform;
-                _direction = cultist.FindTurningDirection(_graveyardGO);
-                cultist.RotateCultist(_direction);
+                Vector2 _newDirection = cultist.FindTurningDirection(_graveyardGO);
+
+                if (_newDirection != _direction)
+                {
+                    _direction = _newDirection;
+                    cultist.RotateCultist(_direction);
+                }
 
                 isGoingToGraveyard = true;
 
                 cultist.m_Animator.SetBool("IsRunning", false);
+                cultist.m_Animator.SetBool("IsIdling", true); //For slow walk 
+
             }
         }
 
         if (other.name == "Graveyard")
         {
+            cultist.m_Animator.SetBool("IsIdling", true);
             isGoingToGraveyard = false;
             cultist.ChangeState(Cultist.ECultistState.Idle);
         }
@@ -84,9 +91,11 @@ public class CollectState : CultistBaseState
 
     private void CheckIfOutOfBaseArea()
     {
-        if (cultist.transform.position.x > 20 || cultist.transform.position.x < -20)
+        if (cultist.transform.position.x > 25 || cultist.transform.position.x < -25)
         {
-            cultist.deadBody.Unclaim();
+            if (cultist.deadBody != null)
+                cultist.deadBody.Unclaim();
+
             cultist.ChangeState(Cultist.ECultistState.Idle);
         }
     }

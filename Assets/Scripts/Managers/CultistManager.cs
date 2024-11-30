@@ -93,9 +93,10 @@ public class CultistManager : MonoBehaviour
 
         _deadBodies.TryPeek(out DeadBody deadbodyGO);
 
-        if (deadbodyGO == null)
+        if (deadbodyGO == null || !deadbodyGO.isActiveAndEnabled)
         {
             _deadBodies.Dequeue();// remove the null shit from queue.
+            return;
         }
 
 
@@ -144,7 +145,7 @@ public class CultistManager : MonoBehaviour
 
         // Ensure no further access to the cultist after destruction
         Destroy(c.gameObject);
-        Debug.Log($"Cultist {c.name} has been destroyed and removed.");
+        //Debug.Log($"Cultist {c.name} has been destroyed and removed.");
     }
 
 
