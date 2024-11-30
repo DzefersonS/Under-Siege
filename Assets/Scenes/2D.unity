@@ -5458,7 +5458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4f45413ed3cf04a9e1a5a45c8a9ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 20
   _unbuiltWallGO: {fileID: 1757526938}
 --- !u!61 &1160251177
 BoxCollider2D:
@@ -8597,7 +8597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4f45413ed3cf04a9e1a5a45c8a9ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 20
   _unbuiltWallGO: {fileID: 198913851}
 --- !u!1 &1726022288
 GameObject:
