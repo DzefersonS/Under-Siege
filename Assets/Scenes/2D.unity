@@ -1341,6 +1341,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f43677e411ecf479d273b4229659b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deadBodyEventSO: {fileID: 11400000, guid: 33e34857e4ded3045a7d05aa5026dc11, type: 2}
+  _cultistDeathEventSO: {fileID: 11400000, guid: d1b5c0e7d826b6749adb3f748941596a, type: 2}
+  m_DeadBodyPoolSO: {fileID: 11400000, guid: 13ffc837b5b4ea34ba7ecb81c32ebdea, type: 2}
+  _cultistPrefab: {fileID: 7891461925583871033, guid: f1d88345128111841829b47e2453dcec, type: 3}
+  _cultistParent: {fileID: 1475149536}
+  _cultists: []
+  CultistSpawnPositionXMinimum: 0
+  CultistSpawnPositionXMaximum: 0
+  CultistSpawnPositionY: 0
 --- !u!4 &149945864
 Transform:
   m_ObjectHideFlags: 0
