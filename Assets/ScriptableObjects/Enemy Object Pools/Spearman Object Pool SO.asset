@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae4bcd105b35ae84abf82d1aa4fcc995, type: 3}
-  m_Name: Swordsman Enemy Data SO
+  m_Script: {fileID: 11500000, guid: a3c164af4776f2e4db70f06588f448f8, type: 3}
+  m_Name: Spearman Object Pool SO
   m_EditorClassIdentifier: 
-  m_PriorityTargetTag: Cultist
-  m_MaxHealth: 25
-  m_AttackRange: 1.5
-  m_AttackSpeed: 2
-  m_AttackDamage: 5
+  m_PoolablePrefab: {fileID: 3648757850169404134, guid: e43f5c3e2ad742540a4828b7b4910d6a, type: 3}
+  m_BufferSize: 20

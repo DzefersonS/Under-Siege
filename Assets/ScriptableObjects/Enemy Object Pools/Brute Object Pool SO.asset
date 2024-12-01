@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae4bcd105b35ae84abf82d1aa4fcc995, type: 3}
-  m_Name: Swordsman Enemy Data SO
+  m_Script: {fileID: 11500000, guid: a3c164af4776f2e4db70f06588f448f8, type: 3}
+  m_Name: Brute Object Pool SO
   m_EditorClassIdentifier: 
-  m_PriorityTargetTag: Cultist
-  m_MaxHealth: 25
-  m_AttackRange: 1.5
-  m_AttackSpeed: 2
-  m_AttackDamage: 5
+  m_PoolablePrefab: {fileID: 4233219692771812215, guid: 326dd4dd71460da49a7c885b8f89d09b, type: 3}
+  m_BufferSize: 20
