@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
-
-
-
 public class CultistManager : MonoBehaviour
 {
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
