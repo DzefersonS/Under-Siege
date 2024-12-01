@@ -4396,6 +4396,8 @@ MonoBehaviour:
   m_EnemyDeathEventSO: {fileID: 11400000, guid: 8442cda6b63a514489e5cf3673a3c920, type: 2}
   m_Waves:
   - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
+  - {fileID: 11400000, guid: 704424c2a68c3774c814e5d7211a7d68, type: 2}
+  - {fileID: 11400000, guid: c29d83a4c4e01f542abe2369e2cfe299, type: 2}
   m_TimeBetweenWaves: 6
   m_EnemySpawner: {fileID: 1014139923}
   m_WaveText: {fileID: 12154463}
@@ -5115,7 +5117,7 @@ GameObject:
   - component: {fileID: 1108856654}
   m_Layer: 0
   m_Name: Altar
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
