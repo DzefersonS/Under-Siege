@@ -6,7 +6,7 @@ public class FleeState : CultistBaseState
 {
     private Transform _enemyTransform;
 
-    private float _fleeDuration = 3f; // Duration the cultist should stay in FleeState
+    private float _fleeDuration; // Duration the cultist should stay in FleeState
     private float _fleeTimer;
 
     public override void EnterState()
@@ -17,6 +17,7 @@ public class FleeState : CultistBaseState
             cultist.deadBody = null;
         }
         _fleeTimer = 0f;
+        _fleeDuration = cultist.cultistDataSO.fleeTime;
         cultist.m_Animator.SetBool("IsRunning", true);
     }
 

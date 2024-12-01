@@ -22,7 +22,7 @@ public class CultistManager : MonoBehaviour
     [SerializeField] private int CultistSpawnPositionXMaximum;
     [SerializeField] private float CultistSpawnPositionY;
 
-    [SerializeField] public int deadbodycount;
+    public int deadbodycount;
 
     private float interval = 0.15f;
     private float nextTime = 0f;

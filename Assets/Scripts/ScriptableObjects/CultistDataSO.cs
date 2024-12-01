@@ -14,6 +14,7 @@ public class CultistDataSO : ScriptableObject
     [SerializeField] private float m_EnemyDetectionRange;
     [SerializeField] private float m_XBoundsMin;
     [SerializeField] private float m_XBoundsMax;
+    [SerializeField] private float m_FleeTime;
 
 
 
@@ -25,5 +26,6 @@ public class CultistDataSO : ScriptableObject
     public float enemyDetectionRange { get => m_EnemyDetectionRange; set => m_EnemyDetectionRange = value; }
     public float xBoundsMin { get => m_XBoundsMin; set => m_XBoundsMin = value; }
     public float xBoundsMax { get => m_XBoundsMax; set => m_XBoundsMax = value; }
+    public float fleeTime { get => m_FleeTime; set => m_FleeTime = value; }
 
 }

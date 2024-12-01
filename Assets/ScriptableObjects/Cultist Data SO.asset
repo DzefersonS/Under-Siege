@@ -20,3 +20,4 @@ MonoBehaviour:
   m_EnemyDetectionRange: 2
   m_XBoundsMin: -25
   m_XBoundsMax: 25
+  m_FleeTime: 3

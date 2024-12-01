@@ -24,7 +24,7 @@ public class Graveyard : MonoBehaviour
             DeadBody deadbody = other.GetComponent<DeadBody>();
 
             _shopManager.AddSouls(1);
-            _deadBodyDeliveredEventSO.value = other.GetComponent<DeadBody>();
+            _deadBodyDeliveredEventSO.value = deadbody;
             deadbody.Unclaim();
             deadbody.FreeToPool();
         }
