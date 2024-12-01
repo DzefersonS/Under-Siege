@@ -15,10 +15,12 @@ public class Enemy : Poolable, IAttackable
     {
         Moving = 0,
         Attacking,
+        Hurt,
         Dying,
         COUNT
     }
 
+    private EEnemyState m_PreviousState = default;
     private EEnemyState m_CurrentState = default;
     private IAttackable m_CurrentTarget = default;
     private Vector3 m_MovementVector = default;
@@ -28,6 +30,7 @@ public class Enemy : Poolable, IAttackable
     public EnemyDataSO enemyDataSO => m_EnemyDataSO;
     public IAttackable currentTarget => m_CurrentTarget;
     public Vector3 movementVector => m_MovementVector;
+    public EEnemyState previousState => m_PreviousState;
 
     public override void Initialize()
     {
@@ -129,7 +132,14 @@ public class Enemy : Poolable, IAttackable
         if ((m_CurrentHealth -= damageAmount) <= 0)
         {
             m_Animator.SetBool("IsDead", true);
-            Invoke("OnDeathAnimationComplete", m_DeathAnimationDuration);
+            Invoke(nameof(OnDeathAnimationComplete), m_DeathAnimationDuration);
+        }
+        else
+        {
+            m_Animator.CrossFade("Hurt", 0.0f);
+            m_Animator.SetBool("IsHurt", true);
+            m_PreviousState = m_CurrentState;
+            ChangeState(EEnemyState.Hurt);
         }
     }
 

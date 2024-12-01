@@ -10,6 +10,7 @@ public class AttackingState : State
     public override void EnterState()
     {
         m_Enemy.animator.SetBool("IsAttacking", true);
+        m_Enemy.animator.CrossFade("Attack", 0);
         Attack();
     }
 

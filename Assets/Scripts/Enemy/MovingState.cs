@@ -8,6 +8,7 @@ public class MovingState : State
     public override void EnterState()
     {
         m_Enemy.animator.SetBool("IsRunning", true);
+        m_Enemy.animator.CrossFade("Run", 0);
     }
 
     public override void UpdateState(float deltaTime)

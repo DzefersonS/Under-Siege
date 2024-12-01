@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -122455393880307056}
   - component: {fileID: -294997286859967586}
   - component: {fileID: 9144477171903768213}
+  - component: {fileID: -3323708632963993051}
   - component: {fileID: 560564533408191799}
   - component: {fileID: -3230868623648678907}
   m_Layer: 0
@@ -149,6 +150,7 @@ MonoBehaviour:
   m_EnemyDeathEventSO: {fileID: 11400000, guid: 8442cda6b63a514489e5cf3673a3c920, type: 2}
   m_EnemyStates:
   - {fileID: 9144477171903768213}
+  - {fileID: -3323708632963993051}
   m_Animator: {fileID: -3230868623648678907}
   m_EnemyDataSO: {fileID: 0}
   m_HitSFX: {fileID: 560564533408191799}
@@ -164,6 +166,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 809a456ddc9851f49a370a966ce08b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3323708632963993051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3438101363856082243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19cfce4343616da40a205c374d1f53aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &560564533408191799
