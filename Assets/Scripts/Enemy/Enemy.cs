@@ -4,6 +4,7 @@ using Utils;
 public class Enemy : Poolable, IAttackable
 {
     [SerializeField] private EnemyEventSO m_EnemyDeathEventSO;
+    [SerializeField] private TransformEventSO m_BodySpawnPositionSO;
     [SerializeField] private State[] m_EnemyStates;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private EnemyDataSO m_EnemyDataSO;
@@ -92,6 +93,7 @@ public class Enemy : Poolable, IAttackable
     private void OnDeathAnimationComplete()
     {
         m_EnemyDeathEventSO.value = this;
+        m_BodySpawnPositionSO.value = transform.GetChild(0);
         FreeToPool();
     }
 

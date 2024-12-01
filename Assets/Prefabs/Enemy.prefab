@@ -93,10 +93,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemyDeathEventSO: {fileID: 11400000, guid: 8442cda6b63a514489e5cf3673a3c920, type: 2}
+  m_BodySpawnPositionSO: {fileID: 11400000, guid: 171744de17659e546839992d31ba9e15, type: 2}
   m_EnemyStates:
   - {fileID: 9144477171903768213}
   m_Animator: {fileID: 0}
   m_EnemyDataSO: {fileID: 0}
+  m_HitSFX: {fileID: 0}
   m_DeathAnimationDuration: 1
   m_MovementSpeed: 0
 --- !u!212 &-122455393880307056
