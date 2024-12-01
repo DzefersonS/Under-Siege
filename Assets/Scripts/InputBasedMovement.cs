@@ -8,7 +8,7 @@ public class InputBasedMovement : MonoBehaviour
     [SerializeField] private Animator m_Animator;
 
     [SerializeField] private float m_MaxVelocity;
-    [SerializeField] private float m_Acceleration;
+    [SerializeField] public float m_Acceleration;
     [SerializeField] private float m_Decceleration;
     [SerializeField] private float m_JumpForce;
     [SerializeField] private float m_Gravity;
@@ -16,12 +16,28 @@ public class InputBasedMovement : MonoBehaviour
     [SerializeField] private float m_FallAnimationThreshold = -2f;
 
     private Vector2 m_MoveDirection = default;
+    private bool m_InputEnabled = true;  // New flag to control input
+
+    public void EnableInput(bool enable)
+    {
+        m_InputEnabled = enable;
+        if (!enable)
+        {
+            // Reset movement when disabling input
+            m_MoveDirection = Vector2.zero;
+            m_PlayerRB.velocity = Vector2.zero;
+            UpdateAnimationStates();
+        }
+    }
 
     private void Update()
     {
+        if (!m_InputEnabled) return;  // Skip input processing if disabled
+
         float movingRight = Input.GetKey(m_PlayerInputsSO.moveRight) ? 1.0f : 0.0f;
         float movingLeft = Input.GetKey(m_PlayerInputsSO.moveLeft) ? -1.0f : 0.0f;
         m_MoveDirection = new Vector2(movingLeft + movingRight, m_PlayerRB.velocity.y).normalized;
+
         if (movingLeft != 0.0f)
         {
             transform.rotation = Quaternion.Euler(0.0f, -180.0f, 0.0f);
