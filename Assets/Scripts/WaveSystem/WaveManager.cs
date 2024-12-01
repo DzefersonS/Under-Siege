@@ -8,8 +8,6 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private EnemyEventSO m_EnemyDeathEventSO;
     [SerializeField] private WaveSO[] m_Waves;
     [SerializeField] private float m_TimeBetweenWaves;
-    [SerializeField] private Transform m_DeadBodyContainer;
-    [SerializeField] private ObjectPoolSO m_DeadBodyPoolSO;
     [SerializeField] private EnemySpawner m_EnemySpawner;
     [SerializeField] private TextMeshProUGUI m_WaveText;
 
@@ -31,7 +29,6 @@ public class WaveManager : MonoBehaviour
         m_CurrentWaveIndex = 0;
         m_CurrentWave = m_Waves[m_CurrentWaveIndex];
         m_UpdateAction = DoCountdownBetweenWaves;
-        m_DeadBodyPoolSO.container = m_DeadBodyContainer;
     }
 
     private void Update()
@@ -42,7 +39,6 @@ public class WaveManager : MonoBehaviour
     private void OnDestroy()
     {
         m_EnemyDeathEventSO.Unregister(OnEnemyDeath);
-        m_DeadBodyPoolSO.DestroyContainer();
     }
 
     private void DoCountdownBetweenWaves(float deltaTime)
@@ -80,10 +76,10 @@ public class WaveManager : MonoBehaviour
 
     private void OnEnemyDeath()
     {
-        var body = m_DeadBodyPoolSO.GetFreeObject();
-        //extremely dirty and lazy code
-        body.transform.position = m_EnemyDeathEventSO.value.transform.GetChild(0).position;
-        body.Initialize();
+        if (m_UpdateAction == DoCountdownBetweenWaves)
+        {
+            return;
+        }
 
         if (--m_EnemiesAlive == 0)
         {
