@@ -76,6 +76,11 @@ public class WaveManager : MonoBehaviour
 
     private void OnEnemyDeath()
     {
+        if (m_UpdateAction == DoCountdownBetweenWaves)
+        {
+            return;
+        }
+
         if (--m_EnemiesAlive == 0)
         {
             if (++m_CurrentWaveIndex >= m_Waves.Length)
