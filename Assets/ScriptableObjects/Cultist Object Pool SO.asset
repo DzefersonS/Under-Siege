@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f1179aa22e998c43a258fc391fbefa7, type: 3}
-  m_Name: Cultist Data SO
+  m_Script: {fileID: 11500000, guid: a3c164af4776f2e4db70f06588f448f8, type: 3}
+  m_Name: Cultist Object Pool SO
   m_EditorClassIdentifier: 
-  m_Health: 10
-  m_IdleSpeed: 1.5
-  m_CollectSpeed: 3
-  m_CarrySpeed: 2
-  m_FleeSpeed: 3
-  m_EnemyDetectionRange: 2
-  m_XBoundsMin: -25
-  m_XBoundsMax: 25
-  m_FleeTime: 3
+  m_PoolablePrefab: {fileID: 251682873550090926, guid: f1d88345128111841829b47e2453dcec, type: 3}
+  m_BufferSize: 20

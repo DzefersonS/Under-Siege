@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5892424661676535880}
   - component: {fileID: 8222765471241036175}
   - component: {fileID: 2743533080301743792}
-  - component: {fileID: -1768741158977980143}
   - component: {fileID: -8927024027867542695}
   - component: {fileID: 3293523229664769761}
   - component: {fileID: 4659723765986164377}
@@ -107,12 +106,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 3293523229664769761}
   cultistDataSO: {fileID: 11400000, guid: 9771059228764e34eb60f7fb3b7cd89a, type: 2}
-  _deadBodyEventSO: {fileID: 0}
+  _deadBodyEventSO: {fileID: 11400000, guid: 33e34857e4ded3045a7d05aa5026dc11, type: 2}
   _cultistDeathEventSO: {fileID: 11400000, guid: d1b5c0e7d826b6749adb3f748941596a, type: 2}
   m_CultistStates:
   - {fileID: 5892424661676535880}
   - {fileID: 2743533080301743792}
-  - {fileID: -1768741158977980143}
   - {fileID: 8222765471241036175}
   - {fileID: -8927024027867542695}
   deadBody: {fileID: 0}
@@ -152,18 +150,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b415c1b1b93e9d442bc71164b691a1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-1768741158977980143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7891461925583871033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc8515c44c3500849a0673690c393e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-8927024027867542695
@@ -258,7 +244,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0010313615, y: -0.0020626783}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -269,5 +255,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.16529892, y: 0.32412535}
   m_EdgeRadius: 0
