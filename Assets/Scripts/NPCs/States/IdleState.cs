@@ -14,7 +14,9 @@ public class IdleState : CultistBaseState
     }
     public override void UpdateState()
     {
-        if (!_isMoving)
+        if (!_isMoving ||
+            !(cultist.transform.position.x > cultist.cultistDataSO.xBoundsMin
+            && cultist.transform.position.x < cultist.cultistDataSO.xBoundsMax))
         {
             SetNewTargetPosition();
         }
@@ -31,7 +33,7 @@ public class IdleState : CultistBaseState
 
     private void SetNewTargetPosition()
     {
-        _moveXCoord = Random.Range(-10, 11);
+        _moveXCoord = Random.Range((int)cultist.cultistDataSO.xBoundsMin, (int)cultist.cultistDataSO.xBoundsMax);
 
         _direction = cultist.transform.position.x < _moveXCoord
             ? Vector2.right

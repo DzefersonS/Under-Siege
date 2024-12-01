@@ -15,7 +15,6 @@ public class DeathState : CultistBaseState
 
         if (cultist.deadBody != null)
             cultist.deadBody.Unclaim();
-        //maybe create dead body here
     }
 
     public override void UpdateState()
@@ -24,10 +23,7 @@ public class DeathState : CultistBaseState
 
         if (_deathAnimationTimer >= _deathAnimationDuration)
             ExitState();
-
-        //after x amount of seconds go to exit state
     }
-
 
     public override void ExitState()
     {

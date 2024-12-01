@@ -9,6 +9,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private UpgradesSO _upgradePrices;
     [SerializeField] private CultistManager _cultistManager;
     [SerializeField] private UIManager _UIManager;
+    [SerializeField] private CultistEventSO _cultistDeathEventSO;
+    [SerializeField] private UpgradePurchaseEventSO _upgradePurchaseEventSO;
 
     [SerializeField] private int maxUpgradesPerLevel = 5;
 
@@ -16,7 +18,15 @@ public class ShopManager : MonoBehaviour
     public int shrineLevel = 0;
     public int souls;
 
+    private void Awake()
+    {
+        _cultistDeathEventSO.Register(DecreaseCultistQuantity);
+    }
 
+    private void OnDestroy()
+    {
+        _cultistDeathEventSO.Unregister(DecreaseCultistQuantity);
+    }
     void Start()
     {
         _cultistManager = GameObject.Find("CultistManager").GetComponent<CultistManager>();
@@ -39,11 +49,11 @@ public class ShopManager : MonoBehaviour
 
 
         //Price
-        shopItems[2, 1] = _upgradePrices.PlayerUpgradePrices[0];//Dmg
-        shopItems[2, 2] = _upgradePrices.PlayerUpgradePrices[0];//atk speed
-        shopItems[2, 3] = _upgradePrices.PlayerUpgradePrices[0];// movmenet speed
-        shopItems[2, 4] = _upgradePrices.CultistPrices[0];      //cultist
-        shopItems[2, 5] = _upgradePrices.ShrinePrices[0];       //Shrine
+        shopItems[2, 1] = _upgradePrices.PlayerUpgradePrices[0];    //Dmg
+        shopItems[2, 2] = _upgradePrices.PlayerUpgradePrices[0];    //atk speed
+        shopItems[2, 3] = _upgradePrices.PlayerUpgradePrices[0];    // movmenet speed
+        shopItems[2, 4] = _upgradePrices.CultistPrices[0];          //cultist
+        shopItems[2, 5] = _upgradePrices.ShrinePrices[0];           //Shrine
 
 
         //Quantity
@@ -54,20 +64,15 @@ public class ShopManager : MonoBehaviour
         shopItems[3, 5] = 0;
 
         shrineLevel = shopItems[3, 5];
-
     }
 
-    void Update()
-    {
-
-    }
     //Altar
     public void Buy()
     {
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
         int referencedItemId = ButtonRef.GetComponent<ButtonInfo>().itemID;
 
-        if (IsEligibleForPurchase(referencedItemId))
+        if (IsEligibleForPurchase(referencedItemId) && IsInboundsArray(referencedItemId))
         {
             souls -= shopItems[2, referencedItemId];
 
@@ -80,11 +85,7 @@ public class ShopManager : MonoBehaviour
             ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItems[3, referencedItemId].ToString();
 
             //Set a new price for Player upgrades
-            if (referencedItemId == 1)
-                shopItems[2, referencedItemId] = _upgradePrices.PlayerUpgradePrices[shopItems[3, referencedItemId]];
-            else if (referencedItemId == 2)
-                shopItems[2, referencedItemId] = _upgradePrices.PlayerUpgradePrices[shopItems[3, referencedItemId]];
-            else if (referencedItemId == 3)
+            if (referencedItemId >= 1 && referencedItemId <= 3)
                 shopItems[2, referencedItemId] = _upgradePrices.PlayerUpgradePrices[shopItems[3, referencedItemId]];
             //Set a new price for cultist(worker)
             else if (referencedItemId == 4)
@@ -99,7 +100,8 @@ public class ShopManager : MonoBehaviour
                 shrineLevel++;
             }
 
-
+            //Call event for UpgradeController to Apply Upgrade
+            _upgradePurchaseEventSO.value = referencedItemId;
         }
     }
 
@@ -128,16 +130,46 @@ public class ShopManager : MonoBehaviour
     {
         souls += amount;
         _UIManager.UpdateSoulsText(souls);
-
     }
     public int GetSouls()
     {
         return souls;
     }
-
+    public void DecreaseCultistQuantity()
+    {
+        shopItems[3, 4]--;
+    }
     public void DecreaseQuantity(int itemId, int amountToDecrease)
     {
         shopItems[3, itemId] -= amountToDecrease;
     }
 
+    private bool IsInboundsArray(int itemId)
+    {
+        // Check Player Upgrades
+        if (itemId >= 1 && itemId <= 3)
+        {
+            if (_upgradePrices.PlayerUpgradePrices != null &&
+                shopItems[3, itemId] + 1 <= _upgradePrices.PlayerUpgradePrices.Length)
+                return true;
+        }
+        // Check Cultist Prices
+        else if (itemId == 4)
+        {
+            if (_upgradePrices.CultistPrices != null &&
+                shopItems[3, itemId] + 1 <= _upgradePrices.CultistPrices.Length)
+                return true;
+        }
+        // Check Shrine Prices
+        else if (itemId == 5)
+        {
+            if (_upgradePrices.ShrinePrices != null &&
+                shopItems[3, itemId] + 1 <= _upgradePrices.ShrinePrices.Length)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
