@@ -11,6 +11,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private UIManager _UIManager;
     [SerializeField] private CultistEventSO _cultistDeathEventSO;
     [SerializeField] private UpgradePurchaseEventSO _upgradePurchaseEventSO;
+    [SerializeField] private GameWonEventSO _gameWonEventSO;
+
 
     [SerializeField] private int maxUpgradesPerLevel = 5;
 
@@ -96,12 +98,17 @@ public class ShopManager : MonoBehaviour
             //Set a new price for shrine
             else if (referencedItemId == 5)
             {
-                shopItems[2, referencedItemId] = _upgradePrices.ShrinePrices[shopItems[3, referencedItemId]];
                 shrineLevel++;
+                if (!CheckIfWin())
+                    shopItems[2, referencedItemId] = _upgradePrices.ShrinePrices[shopItems[3, referencedItemId]];
             }
 
             //Call event for UpgradeController to Apply Upgrade
             _upgradePurchaseEventSO.value = referencedItemId;
+        }
+        else
+        {
+            //PLay some sound that indicates that u cant buy this >:(
         }
     }
 
@@ -119,6 +126,17 @@ public class ShopManager : MonoBehaviour
         return false;
     }
 
+    private bool CheckIfWin()
+    {
+        if (shrineLevel == _upgradePrices.ShrinePrices.Length)
+        {
+            Debug.Log("Game Won");
+            _gameWonEventSO.value = true;
+
+            return true;
+        }
+        return false;
+    }
 
     public int GetItemQuantity(int itemId)
     {
