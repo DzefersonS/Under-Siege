@@ -89,11 +89,7 @@ public class UIManager : MonoBehaviour
             _stateMessageText.text = "Victory!";
         if (!IsWon)
             _stateMessageText.text = "Defeat!";
-
-
     }
-
-
 
     public void EnableShrineCanvas()
     {
