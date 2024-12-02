@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
         _HUDCanvasGO.SetActive(true);
         _shrineCanvasGO.SetActive(false);
         _altarCanvasGO.SetActive(false);
+        _stateCanvasGO.SetActive(false);
 
         if (_soulsCount == null)
             _soulsCount = _HUDCanvasGO.transform.Find("SoulsTmp").gameObject.GetComponent<TMP_Text>();

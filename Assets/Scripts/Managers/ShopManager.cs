@@ -15,8 +15,6 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] private AudioSource m_ActionDeniedSFX;
 
-
-
     [SerializeField] private int maxUpgradesPerLevel = 5;
 
     public int[,] shopItems = new int[5, 6];

@@ -7,6 +7,8 @@ public class Shrine : MonoBehaviour, IAttackable
     [SerializeField] private int m_MaxHealth;
     [SerializeField] private GameObjectEventSO _gameObjectEventSO;
     [SerializeField] private UpgradePurchaseEventSO _upgradePurchaseEventSO;
+    [SerializeField] private GameWonEventSO _gameWonEventSO;
+
 
     [SerializeField] private RectTransform m_Healthbar;
 
@@ -54,6 +56,9 @@ public class Shrine : MonoBehaviour, IAttackable
         m_CurrentHealth -= damageAmount;
         m_HealthbarSizeDelta.x = m_CurrentHealth * m_HealthbarWidthFactor;
         m_Healthbar.sizeDelta = m_HealthbarSizeDelta;
+
+        if (m_CurrentHealth <= 0)
+            _gameWonEventSO.value = false; //Loss
     }
 
     private void ChangeShrineVisual()
