@@ -7866,9 +7866,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67230baa93842584ebcdcb9ac6343d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EnemySpawner: {fileID: 1014139923}
   m_EnemyPoolSOs:
   - {fileID: 11400000, guid: 202d291fde683d149a0bf1cbb4805d93, type: 2}
-  m_Playbounds: {fileID: 1714913050}
   m_EnemyTypeToSpawn: 0
   m_EnemySpawnKey: 9
 --- !u!1 &1599690832

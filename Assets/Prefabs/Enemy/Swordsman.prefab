@@ -42,7 +42,7 @@ PrefabInstance:
     - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_Animator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 690216988541856054}
     - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_EnemyDataSO
       value: 

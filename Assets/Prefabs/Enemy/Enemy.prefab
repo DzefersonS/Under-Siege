@@ -83,27 +83,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-294997286859967586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3438101363856082243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fae8070cf73a19144a76de389fa02d00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EnemyDeathEventSO: {fileID: 11400000, guid: 8442cda6b63a514489e5cf3673a3c920, type: 2}
-  m_BodySpawnPositionSO: {fileID: 11400000, guid: 171744de17659e546839992d31ba9e15, type: 2}
-  m_EnemyStates:
-  - {fileID: 9144477171903768213}
-  m_Animator: {fileID: 0}
-  m_EnemyDataSO: {fileID: 0}
-  m_HitSFX: {fileID: 0}
-  m_DeathAnimationDuration: 1
-  m_MovementSpeed: 0
 --- !u!212 &-122455393880307056
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -169,9 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemyDeathEventSO: {fileID: 11400000, guid: 8442cda6b63a514489e5cf3673a3c920, type: 2}
+  m_BodySpawnPositionSO: {fileID: 11400000, guid: 171744de17659e546839992d31ba9e15, type: 2}
   m_EnemyStates:
   - {fileID: 9144477171903768213}
-  - {fileID: -3323708632963993051}
   m_Animator: {fileID: -3230868623648678907}
   m_EnemyDataSO: {fileID: 0}
   m_HitSFX: {fileID: 560564533408191799}
