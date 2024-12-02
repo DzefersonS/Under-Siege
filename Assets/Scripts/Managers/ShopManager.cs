@@ -13,6 +13,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private UpgradePurchaseEventSO _upgradePurchaseEventSO;
     [SerializeField] private GameWonEventSO _gameWonEventSO;
 
+    [SerializeField] private AudioSource m_ActionDeniedSFX;
+
+
 
     [SerializeField] private int maxUpgradesPerLevel = 5;
 
@@ -108,7 +111,7 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            //PLay some sound that indicates that u cant buy this >:(
+            m_ActionDeniedSFX.Play();
         }
     }
 
