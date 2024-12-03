@@ -1347,9 +1347,9 @@ MonoBehaviour:
   _cultistPrefab: {fileID: 7891461925583871033, guid: f1d88345128111841829b47e2453dcec, type: 3}
   _cultistParent: {fileID: 1475149536}
   _cultists: []
-  CultistSpawnPositionXMinimum: 0
-  CultistSpawnPositionXMaximum: 0
-  CultistSpawnPositionY: 0
+  CultistSpawnPositionXMinimum: 7
+  CultistSpawnPositionXMaximum: 13
+  CultistSpawnPositionY: -2.07
 --- !u!4 &149945864
 Transform:
   m_ObjectHideFlags: 0
@@ -2782,7 +2782,7 @@ Transform:
   m_GameObject: {fileID: 545902543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.92, y: 1.67, z: 0}
+  m_LocalPosition: {x: 13.13, y: 2.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
