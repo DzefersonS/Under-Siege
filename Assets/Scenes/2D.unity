@@ -4636,7 +4636,8 @@ MonoBehaviour:
   m_EnemyPoolSOs:
   - {fileID: 11400000, guid: 202d291fde683d149a0bf1cbb4805d93, type: 2}
   - {fileID: 11400000, guid: 4666f686d4e81d94e89c01654460fb8d, type: 2}
-  m_EnemyTypeToSpawn: 1
+  - {fileID: 11400000, guid: 3e8d40ab2e1019c4cb8e3d2a1297cfbc, type: 2}
+  m_EnemyTypeToSpawn: 2
   m_EnemySpawnKey: 9
 --- !u!4 &857864688
 Transform:
