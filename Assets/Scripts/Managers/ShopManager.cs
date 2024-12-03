@@ -75,7 +75,7 @@ public class ShopManager : MonoBehaviour
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
         int referencedItemId = ButtonRef.GetComponent<ButtonInfo>().itemID;
 
-        if (IsEligibleForPurchase(referencedItemId) && IsInboundsArray(referencedItemId))
+        if (IsEligibleForPurchase(referencedItemId))
         {
             souls -= shopItems[2, referencedItemId];
 
@@ -163,32 +163,4 @@ public class ShopManager : MonoBehaviour
         shopItems[3, itemId] -= amountToDecrease;
     }
 
-    private bool IsInboundsArray(int itemId)
-    {
-        // Check Player Upgrades
-        if (itemId >= 1 && itemId <= 3)
-        {
-            if (_upgradePrices.PlayerUpgradePrices != null &&
-                shopItems[3, itemId] + 1 <= _upgradePrices.PlayerUpgradePrices.Length)
-                return true;
-        }
-        // Check Cultist Prices
-        else if (itemId == 4)
-        {
-            if (_upgradePrices.CultistPrices != null &&
-                shopItems[3, itemId] + 1 <= _upgradePrices.CultistPrices.Length)
-                return true;
-        }
-        // Check Shrine Prices
-        else if (itemId == 5)
-        {
-            if (_upgradePrices.ShrinePrices != null &&
-                shopItems[3, itemId] + 1 <= _upgradePrices.ShrinePrices.Length)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
 }
