@@ -4401,11 +4401,15 @@ MonoBehaviour:
   m_WaveManager: {fileID: 1014139924}
   m_TutorialText: {fileID: 22528022}
   m_NextButton: {fileID: 1136095315}
+  m_NextButtonText: {fileID: 0}
   m_UIArrow: {fileID: 313335927}
   m_WorldArrow: {fileID: 545902543}
   m_ShopManager: {fileID: 1622666717}
   m_PlayerMovement: {fileID: 1849485119}
   m_PlayerInputs: {fileID: 11400000, guid: a1f98fa1a1ebfd34abae25b4fbf87d4b, type: 2}
+  m_EnemySpawner: {fileID: 857864687}
+  m_EnemyDeathEventSO: {fileID: 11400000, guid: 8442cda6b63a514489e5cf3673a3c920, type: 2}
+  m_UIManager: {fileID: 1514405278}
 --- !u!114 &820667955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5785,6 +5789,7 @@ GameObject:
   - component: {fileID: 1014139925}
   - component: {fileID: 1014139924}
   - component: {fileID: 1014139923}
+  - component: {fileID: 1014139926}
   m_Layer: 0
   m_Name: WaveManager
   m_TagString: Untagged
@@ -5849,6 +5854,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1014139926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014139922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efc99292bd45584d802d404d27b3d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DeadBodyContainer: {fileID: 424928877}
+  m_DeadBodyPoolSO: {fileID: 11400000, guid: 13ffc837b5b4ea34ba7ecb81c32ebdea, type: 2}
+  m_BodySpawnPositionSO: {fileID: 11400000, guid: 171744de17659e546839992d31ba9e15, type: 2}
 --- !u!1 &1017026276
 GameObject:
   m_ObjectHideFlags: 0
@@ -8896,6 +8916,9 @@ MonoBehaviour:
   _shrineCanvasGO: {fileID: 311392396}
   _altarCanvasGO: {fileID: 753710576}
   _stateCanvasGO: {fileID: 1302205253}
+  _tutorialCanvasGO: {fileID: 820667952}
+  _skipButton: {fileID: 116267166}
+  _nextButton: {fileID: 1136095313}
   _stateMessageText: {fileID: 1766647063}
   _soulsCount: {fileID: 1104577345}
   _gameObjectEventSO: {fileID: 11400000, guid: 23e26a05aab02fe45ab3d33990e3f523, type: 2}
@@ -9439,6 +9462,7 @@ MonoBehaviour:
   maxUpgradesPerLevel: 5
   shrineLevel: 0
   souls: 1000
+  m_OnlyCultistsAllowed: 0
 --- !u!4 &1622666718
 Transform:
   m_ObjectHideFlags: 0
