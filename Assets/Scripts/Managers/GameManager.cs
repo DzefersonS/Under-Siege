@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
 
     private void CheckWinCondition()
     {
-        Debug.Log("Check Win");
         bool gameWon = _gameWonEventSO.value;
         Time.timeScale = 0;
 
@@ -37,8 +36,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ReturnToMenuAfterDelay(float delay)
     {
-        Time.timeScale = 1;
         yield return new WaitForSecondsRealtime(delay); // Wait for delay in real time
+        Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }
 

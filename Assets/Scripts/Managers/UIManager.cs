@@ -85,6 +85,9 @@ public class UIManager : MonoBehaviour
     {
         bool IsWon = _gameWonEventSO.value;
         _stateCanvasGO.SetActive(true);
+        _HUDCanvasGO.SetActive(false);
+        _shrineCanvasGO.SetActive(false);
+        _altarCanvasGO.SetActive(false);
 
         if (IsWon)
             _stateMessageText.text = "Victory!";
