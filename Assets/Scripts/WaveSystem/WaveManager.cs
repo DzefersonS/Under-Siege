@@ -97,7 +97,7 @@ public class WaveManager : MonoBehaviour
             --m_EnemiesLeftToSpawn;
             if (m_EnemiesLeftToSpawn == 0)
             {
-                enabled = m_CanSpawnWaves;
+                enabled = false;
             }
             else
             {
@@ -124,7 +124,7 @@ public class WaveManager : MonoBehaviour
                 m_CurrentWave = m_Waves[m_CurrentWaveIndex];
                 m_UpdateAction = DoCountdownBetweenWaves;
                 m_TimeRemaining = m_TimeBetweenWaves;
-                enabled = m_CanSpawnWaves;
+                enabled = true;
             }
         }
         else
