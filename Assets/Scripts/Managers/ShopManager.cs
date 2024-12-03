@@ -119,9 +119,9 @@ public class ShopManager : MonoBehaviour
         if (souls >= shopItems[2, itemId])
         {
             //check if shrine needs upgrading
-            if (maxUpgradesPerLevel * shrineLevel >= shopItems[3, itemId] + 1)
+            if (maxUpgradesPerLevel * shrineLevel >= shopItems[3, itemId] + 1 && itemId > 0 && itemId < 5)
                 return true;
-            else if (itemId == 5)// if buying shrine upgrade
+            else if (itemId == 5 && (shrineLevel + 1 <= _upgradePrices.ShrinePrices.Length))// if buying shrine upgrade
                 return true;
         }
         return false;
@@ -131,7 +131,6 @@ public class ShopManager : MonoBehaviour
     {
         if (shrineLevel == _upgradePrices.ShrinePrices.Length)
         {
-            Debug.Log("Game Won");
             _gameWonEventSO.value = true;
 
             return true;
