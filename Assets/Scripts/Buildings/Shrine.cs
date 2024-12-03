@@ -7,8 +7,11 @@ public class Shrine : MonoBehaviour, IAttackable
     [SerializeField] private int m_MaxHealth;
     [SerializeField] private GameObjectEventSO _gameObjectEventSO;
     [SerializeField] private UpgradePurchaseEventSO _upgradePurchaseEventSO;
+    [SerializeField] private GameWonEventSO _gameWonEventSO;
 
     [SerializeField] private RectTransform m_Healthbar;
+
+    [SerializeField] private AudioSource m_DestroyedSFX;
 
     private Vector2 m_HealthbarSizeDelta = default;
     private float m_HealthbarWidth = default;
@@ -54,6 +57,14 @@ public class Shrine : MonoBehaviour, IAttackable
         m_CurrentHealth -= damageAmount;
         m_HealthbarSizeDelta.x = m_CurrentHealth * m_HealthbarWidthFactor;
         m_Healthbar.sizeDelta = m_HealthbarSizeDelta;
+
+        if (m_CurrentHealth <= 0)
+        {
+            ChangeShrineVisualToDestroyed();
+            m_DestroyedSFX.Play();
+
+            _gameWonEventSO.value = false; //Loss
+        }
     }
 
     private void ChangeShrineVisual()
@@ -76,5 +87,11 @@ public class Shrine : MonoBehaviour, IAttackable
         }
     }
 
-
+    private void ChangeShrineVisualToDestroyed()
+    {
+        // Deactivate current shrine
+        transform.GetChild(m_ShrineUpgradeIndex).gameObject.SetActive(false);
+        // Activate the destroyed visual
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
 }

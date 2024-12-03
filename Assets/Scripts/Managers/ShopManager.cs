@@ -11,6 +11,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private UIManager _UIManager;
     [SerializeField] private CultistEventSO _cultistDeathEventSO;
     [SerializeField] private UpgradePurchaseEventSO _upgradePurchaseEventSO;
+    [SerializeField] private GameWonEventSO _gameWonEventSO;
+
+    [SerializeField] private AudioSource m_ActionDeniedSFX;
 
     [SerializeField] private int maxUpgradesPerLevel = 5;
 
@@ -72,7 +75,7 @@ public class ShopManager : MonoBehaviour
         GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
         int referencedItemId = ButtonRef.GetComponent<ButtonInfo>().itemID;
 
-        if (IsEligibleForPurchase(referencedItemId) && IsInboundsArray(referencedItemId))
+        if (IsEligibleForPurchase(referencedItemId))
         {
             souls -= shopItems[2, referencedItemId];
 
@@ -96,12 +99,17 @@ public class ShopManager : MonoBehaviour
             //Set a new price for shrine
             else if (referencedItemId == 5)
             {
-                shopItems[2, referencedItemId] = _upgradePrices.ShrinePrices[shopItems[3, referencedItemId]];
                 shrineLevel++;
+                if (!CheckIfWin())
+                    shopItems[2, referencedItemId] = _upgradePrices.ShrinePrices[shopItems[3, referencedItemId]];
             }
 
             //Call event for UpgradeController to Apply Upgrade
             _upgradePurchaseEventSO.value = referencedItemId;
+        }
+        else
+        {
+            m_ActionDeniedSFX.Play();
         }
     }
 
@@ -111,14 +119,24 @@ public class ShopManager : MonoBehaviour
         if (souls >= shopItems[2, itemId])
         {
             //check if shrine needs upgrading
-            if (maxUpgradesPerLevel * shrineLevel >= shopItems[3, itemId] + 1)
+            if (maxUpgradesPerLevel * shrineLevel >= shopItems[3, itemId] + 1 && itemId > 0 && itemId < 5)
                 return true;
-            else if (itemId == 5)// if buying shrine upgrade
+            else if (itemId == 5 && (shrineLevel + 1 <= _upgradePrices.ShrinePrices.Length))// if buying shrine upgrade
                 return true;
         }
         return false;
     }
 
+    private bool CheckIfWin()
+    {
+        if (shrineLevel == _upgradePrices.ShrinePrices.Length)
+        {
+            _gameWonEventSO.value = true;
+
+            return true;
+        }
+        return false;
+    }
 
     public int GetItemQuantity(int itemId)
     {
@@ -144,32 +162,4 @@ public class ShopManager : MonoBehaviour
         shopItems[3, itemId] -= amountToDecrease;
     }
 
-    private bool IsInboundsArray(int itemId)
-    {
-        // Check Player Upgrades
-        if (itemId >= 1 && itemId <= 3)
-        {
-            if (_upgradePrices.PlayerUpgradePrices != null &&
-                shopItems[3, itemId] + 1 <= _upgradePrices.PlayerUpgradePrices.Length)
-                return true;
-        }
-        // Check Cultist Prices
-        else if (itemId == 4)
-        {
-            if (_upgradePrices.CultistPrices != null &&
-                shopItems[3, itemId] + 1 <= _upgradePrices.CultistPrices.Length)
-                return true;
-        }
-        // Check Shrine Prices
-        else if (itemId == 5)
-        {
-            if (_upgradePrices.ShrinePrices != null &&
-                shopItems[3, itemId] + 1 <= _upgradePrices.ShrinePrices.Length)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
 }

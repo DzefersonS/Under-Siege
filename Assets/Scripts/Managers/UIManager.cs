@@ -9,19 +9,27 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _HUDCanvasGO;
     [SerializeField] private GameObject _shrineCanvasGO;
     [SerializeField] private GameObject _altarCanvasGO;
+    [SerializeField] private GameObject _stateCanvasGO;
 
-    private TMP_Text _soulsCount;
+    [SerializeField] private TMP_Text _stateMessageText;
+    [SerializeField] private TMP_Text _soulsCount;
+
 
     [SerializeField] private GameObjectEventSO _gameObjectEventSO;
+    [SerializeField] private GameWonEventSO _gameWonEventSO;
+
 
 
     private void Awake()
     {
         _gameObjectEventSO.Register(EnableShopDisplay);
+        _gameWonEventSO.Register(EnableGameStateDisplay);
     }
     private void OnDestroy()
     {
         _gameObjectEventSO.Unregister(EnableShopDisplay);
+        _gameWonEventSO.Unregister(EnableGameStateDisplay);
+
     }
 
     void Start()
@@ -29,8 +37,10 @@ public class UIManager : MonoBehaviour
         _HUDCanvasGO.SetActive(true);
         _shrineCanvasGO.SetActive(false);
         _altarCanvasGO.SetActive(false);
+        _stateCanvasGO.SetActive(false);
 
-        _soulsCount = _HUDCanvasGO.transform.Find("SoulsTmp").gameObject.GetComponent<TMP_Text>();
+        if (_soulsCount == null)
+            _soulsCount = _HUDCanvasGO.transform.Find("SoulsTmp").gameObject.GetComponent<TMP_Text>();
     }
 
     public void UpdateSoulsText(int amount)
@@ -71,7 +81,19 @@ public class UIManager : MonoBehaviour
             DisableAltarCanvas();
     }
 
+    public void EnableGameStateDisplay()
+    {
+        bool IsWon = _gameWonEventSO.value;
+        _stateCanvasGO.SetActive(true);
+        _HUDCanvasGO.SetActive(false);
+        _shrineCanvasGO.SetActive(false);
+        _altarCanvasGO.SetActive(false);
 
+        if (IsWon)
+            _stateMessageText.text = "Victory!";
+        if (!IsWon)
+            _stateMessageText.text = "Defeat!";
+    }
 
     public void EnableShrineCanvas()
     {
