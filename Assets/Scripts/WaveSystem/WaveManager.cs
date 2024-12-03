@@ -21,6 +21,9 @@ public class WaveManager : MonoBehaviour
     private int m_EnemiesAlive = 0;
     private int m_EnemiesLeftToSpawn = 0;
     private int m_TimeRemainingINT;
+    
+    private bool m_CanSpawnWaves = false;
+    public bool IsWaveInProgress => m_EnemiesAlive > 0;
 
     private void Awake()
     {
@@ -29,6 +32,28 @@ public class WaveManager : MonoBehaviour
         m_CurrentWaveIndex = 0;
         m_CurrentWave = m_Waves[m_CurrentWaveIndex];
         m_UpdateAction = DoCountdownBetweenWaves;
+        
+        enabled = false;
+    }
+
+    public void EnableWaveSpawning()
+    {
+        m_CanSpawnWaves = true;
+        enabled = true;
+    }
+
+    public void DisableWaveSpawning()
+    {
+        m_CanSpawnWaves = false;
+        if (!IsWaveInProgress)
+        {
+            enabled = false;
+        }
+    }
+
+    public int GetCurrentWaveIndex()
+    {
+        return m_CurrentWaveIndex;
     }
 
     private void Update()
@@ -43,9 +68,16 @@ public class WaveManager : MonoBehaviour
 
     private void DoCountdownBetweenWaves(float deltaTime)
     {
+        if (!m_CanSpawnWaves)
+        {
+            m_WaveText.text = "Wave spawning paused";
+            return;
+        }
+
         m_TimeRemaining -= deltaTime;
         m_TimeRemainingINT = (int)m_TimeRemaining;
         m_WaveText.text = m_TimeUntilWaveText;
+        
         if (m_TimeRemaining < 0.0f)
         {
             m_UpdateAction = EnemySpawnTimer;
@@ -65,7 +97,7 @@ public class WaveManager : MonoBehaviour
             --m_EnemiesLeftToSpawn;
             if (m_EnemiesLeftToSpawn == 0)
             {
-                enabled = false;
+                enabled = m_CanSpawnWaves;
             }
             else
             {
@@ -85,7 +117,6 @@ public class WaveManager : MonoBehaviour
         {
             if (++m_CurrentWaveIndex >= m_Waves.Length)
             {
-                //todo: this is for testing, not a thing we plan to have happen
                 return;
             }
             else
@@ -93,7 +124,7 @@ public class WaveManager : MonoBehaviour
                 m_CurrentWave = m_Waves[m_CurrentWaveIndex];
                 m_UpdateAction = DoCountdownBetweenWaves;
                 m_TimeRemaining = m_TimeBetweenWaves;
-                enabled = true;
+                enabled = m_CanSpawnWaves;
             }
         }
         else
