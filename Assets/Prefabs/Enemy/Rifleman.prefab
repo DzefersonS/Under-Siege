@@ -8,10 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3230868623648678907, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7e92065c6541e09459cce5bf31937a29, type: 2}
     - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_EnemyDataSO
       value: 
       objectReference: {fileID: 11400000, guid: f16d1de800d54fc40b890d97af0d63a6, type: 2}
+    - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_MovementSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: -122455393880307056, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_Size.x
       value: 0.37
