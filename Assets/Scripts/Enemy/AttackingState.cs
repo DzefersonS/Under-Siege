@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackingState : State
@@ -11,6 +9,8 @@ public class AttackingState : State
 
     public override void EnterState()
     {
+        m_Enemy.animator.SetBool("IsAttacking", true);
+        m_Enemy.animator.CrossFade("Attack", 0);
         Attack();
     }
 
@@ -23,8 +23,6 @@ public class AttackingState : State
             if (target == null)
             {
                 m_Enemy.ChangeState(Enemy.EEnemyState.Moving);
-                m_Enemy.animator.SetBool("IsAttacking", false);
-                m_Enemy.animator.SetBool("IsRunning", true);
             }
             else
             {
@@ -35,12 +33,12 @@ public class AttackingState : State
 
     public override void ExitState()
     {
+        m_Enemy.animator.SetBool("IsAttacking", false);
     }
 
     private void Attack()
     {
         m_TargetToDamage = m_Enemy.currentTarget;
-        m_Enemy.animator.SetBool("IsAttacking", true);
         Invoke(nameof(DamageTarget), 0.5f);
         m_TimeElapsed = 0.0f;
     }

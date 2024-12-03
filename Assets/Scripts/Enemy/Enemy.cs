@@ -4,6 +4,7 @@ using Utils;
 public class Enemy : Poolable, IAttackable
 {
     [SerializeField] private EnemyEventSO m_EnemyDeathEventSO;
+    [SerializeField] private TransformEventSO m_BodySpawnPositionSO;
     [SerializeField] private State[] m_EnemyStates;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private EnemyDataSO m_EnemyDataSO;
@@ -15,19 +16,22 @@ public class Enemy : Poolable, IAttackable
     {
         Moving = 0,
         Attacking,
+        Hurt,
         Dying,
         COUNT
     }
 
+    private EEnemyState m_PreviousState = default;
     private EEnemyState m_CurrentState = default;
-    private IAttackable m_CurrentTarget;
-    private Vector3 m_MovementVector;
+    private IAttackable m_CurrentTarget = default;
+    private Vector3 m_MovementVector = default;
     private float m_CurrentHealth = 0;
 
     public Animator animator => m_Animator;
     public EnemyDataSO enemyDataSO => m_EnemyDataSO;
     public IAttackable currentTarget => m_CurrentTarget;
     public Vector3 movementVector => m_MovementVector;
+    public EEnemyState previousState => m_PreviousState;
 
     public override void Initialize()
     {
@@ -42,6 +46,7 @@ public class Enemy : Poolable, IAttackable
 
         ChangeState(EEnemyState.Moving);
     }
+
     private void Awake()
     {
         if (m_Animator == null)
@@ -53,8 +58,6 @@ public class Enemy : Poolable, IAttackable
     private void Update()
     {
         m_EnemyStates[(int)m_CurrentState]?.UpdateState(Time.deltaTime);
-
-        m_Animator.SetBool("IsRunning", m_CurrentState == EEnemyState.Moving);
 
         LookForAttackableTargets();
     }
@@ -70,28 +73,57 @@ public class Enemy : Poolable, IAttackable
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_EnemyDataSO.attackRange);
 
+        //Sort by distance, otherwise order of elements is undocumented behaviour
+        System.Array.Sort(hitColliders, (a, b) =>
+        {
+            float distanceLHS = Vector2.Distance(transform.position, a.transform.position);
+            float distanceRHS = Vector2.Distance(transform.position, b.transform.position);
+            return distanceLHS.CompareTo(distanceRHS);
+        });
+
         IAttackable newTarget = null;
 
-        foreach (Collider2D col in hitColliders)
+        if (!string.IsNullOrEmpty(m_EnemyDataSO.priorityTargetTag))
         {
-            IAttackable attackable = col.GetComponent<IAttackable>();
-            if (attackable != null && !col.CompareTag("Enemy"))
+            foreach (Collider2D col in hitColliders)
             {
-                newTarget = attackable;
-                if (m_CurrentState == EEnemyState.Moving)
+                IAttackable attackable = col.GetComponent<IAttackable>();
+                if (attackable != null && !col.CompareTag("Enemy") && col.CompareTag(m_EnemyDataSO.priorityTargetTag))
                 {
-                    m_CurrentTarget = newTarget;
-                    ChangeState(EEnemyState.Attacking);
+                    newTarget = attackable;
+                    break;
                 }
             }
         }
 
-        m_CurrentTarget = newTarget;
+        if (newTarget == null)
+        {
+            foreach (Collider2D col in hitColliders)
+            {
+                IAttackable attackable = col.GetComponent<IAttackable>();
+                if (attackable != null && !col.CompareTag("Enemy"))
+                {
+                    newTarget = attackable;
+                    break;
+                }
+            }
+        }
+
+        if (newTarget != null && m_CurrentState == EEnemyState.Moving)
+        {
+            m_CurrentTarget = newTarget;
+            ChangeState(EEnemyState.Attacking);
+        }
+        else
+        {
+            m_CurrentTarget = newTarget;
+        }
     }
 
     private void OnDeathAnimationComplete()
     {
         m_EnemyDeathEventSO.value = this;
+        m_BodySpawnPositionSO.value = transform.GetChild(0);
         FreeToPool();
     }
 
@@ -102,7 +134,14 @@ public class Enemy : Poolable, IAttackable
         if ((m_CurrentHealth -= damageAmount) <= 0)
         {
             m_Animator.SetBool("IsDead", true);
-            Invoke("OnDeathAnimationComplete", m_DeathAnimationDuration);
+            Invoke(nameof(OnDeathAnimationComplete), m_DeathAnimationDuration);
+        }
+        else
+        {
+            m_Animator.CrossFade("Hurt", 0.0f);
+            m_Animator.SetBool("IsHurt", true);
+            m_PreviousState = m_CurrentState;
+            ChangeState(EEnemyState.Hurt);
         }
     }
 

@@ -12,6 +12,7 @@ TagManager:
   - CultistManager
   - PlayerProjectile
   - Enemy
+  - Building
   layers:
   - Default
   - TransparentFX

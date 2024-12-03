@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
-public class Cultist : MonoBehaviour, IAttackable
+public class Cultist : Poolable, IAttackable
 {
     [SerializeField] public Animator m_Animator;
     [SerializeField] public CultistDataSO cultistDataSO;
     [SerializeField] private DeadBodyEventSO _deadBodyEventSO;
     [SerializeField] public CultistEventSO _cultistDeathEventSO;
 
+
     [SerializeField] private CultistBaseState[] m_CultistStates;
 
     public DeadBody deadBody;
     public int _health;
+    private bool _hasDied = false;
+
 
 
     public ECultistState m_CurrentState = default;
@@ -21,7 +25,6 @@ public class Cultist : MonoBehaviour, IAttackable
     {
         Idle = 0,
         Collect,
-        Carry,
         Flee,
         Death,
         COUNT
@@ -47,6 +50,9 @@ public class Cultist : MonoBehaviour, IAttackable
     {
         m_CultistStates[(int)m_CurrentState]?.ExitState();
         m_CurrentState = newState;
+
+        if (m_CurrentState == ECultistState.Death && newState != ECultistState.Death)
+            return; // Once in Death state, no other state should be entered
 
         if (newState == ECultistState.Collect && deadbody != null)
         {
@@ -80,8 +86,6 @@ public class Cultist : MonoBehaviour, IAttackable
 
     public bool CheckForEnemies()
     {
-        // 2m detection range
-        // Check if an enemy is nearby
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, cultistDataSO.enemyDetectionRange);
 
         foreach (var hitCollider in hitColliders)
@@ -100,22 +104,22 @@ public class Cultist : MonoBehaviour, IAttackable
         deadBody.FreeToPool();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, cultistDataSO.enemyDetectionRange);
-    }
-
     public void Damage(int damageAmount)
     {
+        if (m_CurrentState == ECultistState.Death)
+            return; // Prevent redundant state changes to Death
+
         _health -= damageAmount;
+
         if (_health <= 0)
             ChangeState(ECultistState.Death);
     }
 
     public void OnDeathAnimationComplete()
     {
+        if (_hasDied) return; // Prevent multiple executions
+        _hasDied = true;
+
         _cultistDeathEventSO.value = this;
-        Destroy(gameObject);
     }
 }
