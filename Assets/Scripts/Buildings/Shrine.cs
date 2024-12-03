@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shrine : MonoBehaviour, IAttackable
 {
     [SerializeField] private int m_MaxHealth;
-    [SerializeField] private GameObjectEventSO _gameObjectEventSO;
+    [SerializeField] private UIManager m_UIManager;
     [SerializeField] private UpgradePurchaseEventSO _upgradePurchaseEventSO;
     [SerializeField] private GameWonEventSO _gameWonEventSO;
 
@@ -41,15 +41,14 @@ public class Shrine : MonoBehaviour, IAttackable
     {
         if (other.tag == "Player")
         {
-            _gameObjectEventSO.value = this.gameObject;
+            m_UIManager.EnableShrineCanvas();
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Player")
-            _gameObjectEventSO.value = this.gameObject;
-
+            m_UIManager.DisableShrineCanvas();
     }
 
     public void Damage(int damageAmount)

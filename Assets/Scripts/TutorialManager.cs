@@ -19,10 +19,10 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_WaveText;
 
 
-    private readonly Vector2 SOULS_UI_POSITION = new Vector2(-66f, -111f); 
-    private readonly Vector2 HEALTH_UI_POSITION = new Vector2(-411f, -111f); 
-    private readonly Vector3 SHRINE_POSITION = new Vector3(1.92f, 1.67f, 0f); 
-    private readonly Vector3 ALTAR_POSITION = new Vector3(13.13f, 2.34f, 0f); 
+    private readonly Vector2 SOULS_UI_POSITION = new Vector2(-66f, -111f);
+    private readonly Vector2 HEALTH_UI_POSITION = new Vector2(-411f, -111f);
+    private readonly Vector3 SHRINE_POSITION = new Vector3(1.92f, 1.67f, 0f);
+    private readonly Vector3 ALTAR_POSITION = new Vector3(13.13f, 2.34f, 0f);
 
     private Canvas m_TutorialCanvas;
     private int m_CurrentTextIndex = 0;
@@ -53,7 +53,7 @@ public class TutorialManager : MonoBehaviour
     private void Awake()
     {
         m_TutorialCanvas = GetComponent<Canvas>();
-        
+
         if (m_TutorialText != null && m_TutorialTexts.Length > 0)
         {
             m_TutorialText.text = m_TutorialTexts[0];
@@ -69,7 +69,7 @@ public class TutorialManager : MonoBehaviour
         if (m_WorldArrow != null)
         {
             m_WorldArrow.gameObject.SetActive(false);
-        } 
+        }
         if (m_PlayerMovement != null)
         {
             m_PlayerMovement.EnableInput(false);
@@ -157,31 +157,31 @@ public class TutorialManager : MonoBehaviour
         {
             return;
         }
-    
+
         m_CurrentTextIndex++;
-    
+
         if (m_CurrentTextIndex < m_TutorialTexts.Length)
         {
             m_TutorialText.text = m_TutorialTexts[m_CurrentTextIndex];
-            
+
             switch (m_CurrentTextIndex)
             {
                 case 2: // Movement tutorial
                     m_PlayerMovement.EnableInput(true);
                     m_CheckingMovementKeys = true;
                     m_NextButton.gameObject.SetActive(false);
-                    
+
                     m_HasPressedW = false;
                     m_HasPressedA = false;
                     m_HasPressedD = false;
                     break;
-    
+
                 case 3: // Enemy spawn
                     m_EnemySpawner.SpawnEnemy(DebugEnemySpawner.EEnemyType.Swordsman);
                     m_WaitingForEnemyDeath = true;
                     m_NextButton.gameObject.SetActive(false);
                     break;
-    
+
                 case 4: // Souls UI
                     m_PlayerMovement.EnableInput(false);
                     m_UIArrow.gameObject.SetActive(true);
@@ -189,7 +189,7 @@ public class TutorialManager : MonoBehaviour
                     m_NextButton.gameObject.SetActive(true);
                     PositionUIArrow(SOULS_UI_POSITION);
                     break;
-    
+
                 case 5: // Shrine upgrade
                     m_PlayerMovement.EnableInput(true);
                     m_UIArrow.gameObject.SetActive(false);
@@ -200,9 +200,10 @@ public class TutorialManager : MonoBehaviour
                     if (m_UIManager != null)
                     {
                         m_UIManager.SetShrineCanvasAccess(true);
+
                     }
                     break;
-    
+
                 case 6: // Altar and cultists
                     m_WorldArrow.gameObject.SetActive(true);
                     PositionWorldArrow(ALTAR_POSITION);
@@ -214,23 +215,23 @@ public class TutorialManager : MonoBehaviour
                         m_UIManager.SetAltarCanvasAccess(true);
                     }
                     break;
-    
+
                 case 7: // Health UI
                     if (m_UIManager != null)
                     {
-                        m_UIManager.SetAltarCanvasAccess(false);
+                        m_UIManager.SetAltarCanvasAccess(true);
                     }
                     m_UIArrow.gameObject.SetActive(true);
                     m_WorldArrow.gameObject.SetActive(false);
                     PositionUIArrow(HEALTH_UI_POSITION);
                     m_NextButton.gameObject.SetActive(true);
                     break;
-    
+
                 case 8: // Final text
                     m_UIArrow.gameObject.SetActive(false);
                     m_NextButtonText.text = "Start";
                     break;
-    
+
                 default:
                     m_UIArrow.gameObject.SetActive(false);
                     m_WorldArrow.gameObject.SetActive(false);
