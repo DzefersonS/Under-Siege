@@ -5,7 +5,7 @@ using UnityEngine;
 public class Altar : MonoBehaviour
 {
     [SerializeField] private bool isAccessible; // Currently does nothing, will do something when waves become a thing
-    [SerializeField] private GameObjectEventSO _gameObjectEventSO;
+    [SerializeField] private UIManager m_UIManager;
 
 
     void Start()
@@ -18,8 +18,7 @@ public class Altar : MonoBehaviour
     {
         if (other.tag == "Player" && isAccessible)
         {
-            _gameObjectEventSO.value = this.gameObject;
-
+            m_UIManager.EnableAltarCanvas();
         }
     }
 
@@ -27,8 +26,7 @@ public class Altar : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            _gameObjectEventSO.value = this.gameObject;
-
+            m_UIManager.DisableAltarCanvas();
         }
     }
 }
