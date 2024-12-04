@@ -274,7 +274,6 @@ public class TutorialManager : MonoBehaviour
 
     public void FinishTutorial()
     {
-        Debug.Log("Souls:" + m_OriginalSouls);
         m_TutorialCanvas.gameObject.SetActive(false);
         if (m_WaveManager != null)
         {
