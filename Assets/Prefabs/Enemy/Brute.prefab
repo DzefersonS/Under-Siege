@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_DeathAnimationDuration
-      value: 0.667
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -122455393880307056, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_Size.x
