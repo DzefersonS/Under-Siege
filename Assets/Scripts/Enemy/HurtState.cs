@@ -16,10 +16,6 @@ public class HurtState : State
             m_Enemy.animator.SetBool("IsHurt", false);
             m_Enemy.ChangeState(m_Enemy.previousState);
         }
-        else if (stateInfo.IsName("Hurt"))
-        {
-            Debug.Log(stateInfo.normalizedTime);
-        }
     }
 
     public override void ExitState()

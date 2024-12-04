@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Animator: {fileID: 6374479713352539155}
   m_TimeToSelfDestruct: 1.75
   m_MovementSpeed: 5
+  m_MaxPiercingTargets: 3
 --- !u!50 &-5976198394913586565
 Rigidbody2D:
   serializedVersion: 4
