@@ -17,6 +17,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private EnemyEventSO m_EnemyDeathEventSO;
     [SerializeField] private UIManager m_UIManager;
     [SerializeField] private TextMeshProUGUI m_WaveText;
+    [SerializeField] private GameObject m_PowerupCanvas;
 
 
     private readonly Vector2 SOULS_UI_POSITION = new Vector2(-66f, -111f);
@@ -89,6 +90,11 @@ public class TutorialManager : MonoBehaviour
         {
             m_OriginalSouls = m_ShopManager.souls;
             m_ShopManager.souls = 11;
+        }
+        
+        if (m_PowerupCanvas != null)
+        {
+            m_PowerupCanvas.SetActive(false);
         }
     }
 
@@ -293,6 +299,10 @@ public class TutorialManager : MonoBehaviour
             m_UIManager.UpdateSoulsText(m_OriginalSouls);
             m_UIManager.SetShrineCanvasAccess(true);
             m_UIManager.SetAltarCanvasAccess(true);
+        }
+        if (m_PowerupCanvas != null)
+        {
+            m_PowerupCanvas.SetActive(true);
         }
     }
 }

@@ -79,6 +79,9 @@ public class EnemySpawner : MonoBehaviour
         m_SpawnPositions[1 - spawnPosIndex].currentWeight += m_SpawnPositions[1 - spawnPosIndex].weightGrowthRate;
 
         Enemy enemy = (Enemy)pool.GetFreeObject();
+        Bounds bounds = enemy.GetComponent<SpriteRenderer>().bounds;
+        float spriteBottomOffset = bounds.extents.y;
+        enemyPos.y += spriteBottomOffset;
         enemy.transform.position = enemyPos;
         enemy.Initialize();
     }

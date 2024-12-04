@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
@@ -12,7 +13,9 @@ public class PlayerProjectile : Poolable
     private Action m_UpdateAction = default;
     private Vector3 m_MovementVector = default;
     private float m_TimeRemaining = 0.0f;
-    private bool m_HitEnemy = false;
+    private bool m_PiercingShotActive = false;
+    private int m_RemainingPiercingHits = 0;
+    private HashSet<GameObject> m_HitTargets = new HashSet<GameObject>();
 
     public Vector3 movementVector { set => m_MovementVector = value; }
 
@@ -21,7 +24,14 @@ public class PlayerProjectile : Poolable
         m_TimeRemaining = m_TimeToSelfDestruct;
         m_MovementVector.x *= m_MovementSpeed;
         m_UpdateAction = Fly;
-        m_HitEnemy = false;
+        m_HitTargets.Clear();
+        m_PiercingShotActive = false;
+    }
+
+    public void ActivatePiercingShot(int howManyTargetsPiercable)
+    {
+        m_PiercingShotActive = true;
+        m_RemainingPiercingHits = howManyTargetsPiercable;
     }
 
     private void Update()
@@ -31,14 +41,28 @@ public class PlayerProjectile : Poolable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (m_HitEnemy)
+        if (m_UpdateAction == CheckIfExploded)
+            return;
+
+        if (m_HitTargets.Contains(other.gameObject))
             return;
 
         if (other.CompareTag("Enemy"))
         {
-            m_HitEnemy = true;
+            m_HitTargets.Add(other.gameObject);
             other.GetComponent<IAttackable>().Damage(m_PlayerDataSO.playerDamage);
-            Explode();
+
+            if (m_PiercingShotActive)
+            {
+                if (--m_RemainingPiercingHits <= 0)
+                {
+                    Explode();
+                }
+            }
+            else
+            {
+                Explode();
+            }
         }
     }
 

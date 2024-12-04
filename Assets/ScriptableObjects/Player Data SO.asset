@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player Data SO
   m_EditorClassIdentifier: 
   m_PlayerDamage: 5
-  m_PlayerSpeed: 1
+  m_PlayerSpeed: 10
   m_PlayerAttackSpeed: 1
