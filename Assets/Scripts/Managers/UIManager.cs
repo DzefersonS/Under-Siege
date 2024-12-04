@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private Shrine _Shrine;
     [SerializeField] private GameObject _HUDCanvasGO;
     [SerializeField] private GameObject _shrineCanvasGO;
     [SerializeField] private GameObject _altarCanvasGO;
@@ -50,6 +51,10 @@ public class UIManager : MonoBehaviour
     public void SetShrineCanvasAccess(bool canAccess)
     {
         _canOpenShrineCanvas = canAccess;
+        if (canAccess)
+        {
+            _Shrine.CheckIfPlayerInHitbox();
+        }
     }
 
     public void SetAltarCanvasAccess(bool canAccess)

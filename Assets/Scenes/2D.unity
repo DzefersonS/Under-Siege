@@ -3158,6 +3158,7 @@ MonoBehaviour:
   m_UIManager: {fileID: 1514405278}
   _upgradePurchaseEventSO: {fileID: 11400000, guid: 5693d2d4d70eb2c4ca0f40af0a9623b1, type: 2}
   _gameWonEventSO: {fileID: 11400000, guid: c72dbe7d51dc93d43a65aa90bcbd7bd1, type: 2}
+  m_PlayerCollider: {fileID: 1849485117}
   m_Healthbar: {fileID: 871100067}
   m_DestroyedSFX: {fileID: 562701184}
 --- !u!61 &562701183
@@ -8913,6 +8914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b80bc34cd8b514aab47773bb24b223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Shrine: {fileID: 562701182}
   _HUDCanvasGO: {fileID: 79442317}
   _shrineCanvasGO: {fileID: 311392396}
   _altarCanvasGO: {fileID: 753710576}
