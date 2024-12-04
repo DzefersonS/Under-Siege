@@ -190,7 +190,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hurt
-  m_Speed: 0.05
+  m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -3955182954614345251}
@@ -204,7 +204,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2fdf953cbe7f0924589778a4f4b39108, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2aa2794b377a21542bc8a591c878780a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

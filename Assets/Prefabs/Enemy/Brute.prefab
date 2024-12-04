@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2459798785338695811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1266781262266276226}
+  m_Layer: 0
+  m_Name: Body Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1266781262266276226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459798785338695811}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.247, y: -0.0546, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 396028372511817218}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4708688671268393193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8,10 +39,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3230868623648678907, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fa59bc3779a9ed84e9e6ffa06c67cadb, type: 2}
     - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_EnemyDataSO
       value: 
       objectReference: {fileID: 11400000, guid: c0c24b90a9ea5a047a8d0c7257d51eda, type: 2}
+    - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_MovementSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -294997286859967586, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_DeathAnimationDuration
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: -122455393880307056, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_Size.x
       value: 0.5
@@ -73,6 +116,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3332698
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_Size.y
+      value: 0.36493498
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.03782244
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0079163015
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334746876838977016, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
       objectReference: {fileID: 0}
@@ -102,6 +161,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4910725499989339883, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1266781262266276226}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+--- !u!4 &396028372511817218 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4910725499989339883, guid: 9c90832add4511043a4a21323ce387c4, type: 3}
+  m_PrefabInstance: {fileID: 4708688671268393193}
+  m_PrefabAsset: {fileID: 0}

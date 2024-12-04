@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameWonEventSO _gameWonEventSO;
+    [SerializeField] private InputBasedMovement m_PlayerInputHandler;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckWinCondition()
     {
+        m_PlayerInputHandler.enabled = false;
         bool gameWon = _gameWonEventSO.value;
         Time.timeScale = 0;
 
