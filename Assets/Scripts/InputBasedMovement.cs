@@ -23,6 +23,7 @@ public class InputBasedMovement : MonoBehaviour
     private bool m_InputEnabled = true;
 
     public bool isGrounded => m_IsGrounded;
+    public float moveDirection => Mathf.Sign(m_Velocity.x);
 
     private void Awake()
     {

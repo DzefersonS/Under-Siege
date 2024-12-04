@@ -16,6 +16,11 @@ public class Player : MonoBehaviour
     private Action m_UpdateAction = default;
     private float m_AttackCooldown = 0.0f;
     private bool m_SpawnedProjectile = false;
+    private bool m_IsPiercingShotActive = false;
+    private bool m_InfinitePiercingShots = false;
+    private int m_HowManyTargetsPiercable;
+
+    public int howManyTargetsPiercable { set => m_HowManyTargetsPiercable = value; }
 
     private void Awake()
     {
@@ -76,7 +81,32 @@ public class Player : MonoBehaviour
         projectile.transform.rotation = transform.rotation;
         float movementDirectionX = transform.rotation.eulerAngles.y > 0 ? -1 : 1;
         projectile.movementVector = new Vector2(movementDirectionX, 0.0f);
+
         projectile.Initialize();
+
+        if (m_IsPiercingShotActive || m_InfinitePiercingShots) projectile.ActivatePiercingShot(m_HowManyTargetsPiercable);
+
+        if (!m_InfinitePiercingShots)
+        {
+            m_IsPiercingShotActive = false;
+        }
+    }
+
+    public void ActivatePiercingShot(bool isInfinite = false)
+    {
+        if (isInfinite)
+        {
+            m_InfinitePiercingShots = true;
+        }
+        else
+        {
+            m_IsPiercingShotActive = true;
+        }
+    }
+
+    public void DeactivateInfinitePiercingShots()
+    {
+        m_InfinitePiercingShots = false;
     }
 
     private void OnDestroy()
