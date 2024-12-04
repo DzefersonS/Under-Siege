@@ -5759,7 +5759,7 @@ Transform:
   m_GameObject: {fileID: 1000318790}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.69, y: -2.65, z: 10}
+  m_LocalPosition: {x: 8.11, y: -2.65, z: 10}
   m_LocalScale: {x: 9, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10650,11 +10650,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1849485116}
   - component: {fileID: 1849485115}
-  - component: {fileID: 1849485118}
   - component: {fileID: 1849485117}
   - component: {fileID: 1849485119}
   - component: {fileID: 1849485120}
   - component: {fileID: 1849485121}
+  - component: {fileID: 1849485122}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10723,7 +10723,7 @@ Transform:
   m_GameObject: {fileID: 1849485114}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.02, y: -0.02, z: 0}
+  m_LocalPosition: {x: 6.02, y: -2, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10775,33 +10775,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33971286, y: 0.5450015}
   m_EdgeRadius: 0
---- !u!50 &1849485118
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849485114}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &1849485119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10815,15 +10788,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerInputsSO: {fileID: 11400000, guid: a1f98fa1a1ebfd34abae25b4fbf87d4b, type: 2}
-  m_PlayerRB: {fileID: 1849485118}
   m_Animator: {fileID: 1849485120}
-  m_MaxVelocity: 10
+  m_PlayBounds: {fileID: 1714913050}
+  m_PlayerDataSO: {fileID: 11400000, guid: d40adb63b6186cd4b8ef7ef0e19b3264, type: 2}
   m_Acceleration: 20
   m_Decceleration: 15
   m_JumpForce: 7.5
   m_Gravity: 15
   m_JumpAnimationThreshold: 5
   m_FallAnimationThreshold: -2
+  m_GroundLevel: -2
 --- !u!95 &1849485120
 Animator:
   serializedVersion: 5
@@ -10864,6 +10838,33 @@ MonoBehaviour:
   m_PlayerProjectileContainer: {fileID: 819257215}
   m_ProjectileSpawnAnchor: {fileID: 1526645940}
   m_Animator: {fileID: 1849485120}
+--- !u!50 &1849485122
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849485114}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1878286412
 GameObject:
   m_ObjectHideFlags: 0
@@ -11233,7 +11234,7 @@ Transform:
   m_GameObject: {fileID: 1949442081}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.75, y: 0, z: -10}
+  m_LocalPosition: {x: 6.02, y: -0.99, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
