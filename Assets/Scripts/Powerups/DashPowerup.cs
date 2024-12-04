@@ -16,4 +16,9 @@ public class DashPowerup : PowerupBase
 
         StartCooldown();
     }
+
+    protected override void HandleUpgrade(int level)
+    {
+        throw new System.NotImplementedException();
+    }
 }

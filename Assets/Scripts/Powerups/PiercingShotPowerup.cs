@@ -11,4 +11,9 @@ public class PiercingShotPowerup : PowerupBase
         m_Player.ActivatePiercingShot();
         StartCooldown();
     }
+
+    protected override void HandleUpgrade(int level)
+    {
+        throw new System.NotImplementedException();
+    }
 }

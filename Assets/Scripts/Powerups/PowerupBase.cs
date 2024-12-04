@@ -9,9 +9,12 @@ public abstract class PowerupBase : MonoBehaviour
     [SerializeField] private Image m_CooldownOverlay;
     [SerializeField] private TMP_Text m_CooldownText;
     [SerializeField] private float m_CooldownDuration = 5f;
+    [SerializeField] private GameObject m_GrayedOutOverlay;
 
     protected float cooldownTimer = 0f;
     protected AudioSource m_DeniedActionAudioSource;
+
+    private int m_UpgradeLevel = 0;
 
     private void Awake()
     {
@@ -21,16 +24,20 @@ public abstract class PowerupBase : MonoBehaviour
     protected virtual void Start()
     {
         ResetCooldownUI();
+        UpdatePowerupState();
     }
 
     protected virtual void Update()
     {
         HandleCooldown();
 
-        // Input handling for activation
         if (Input.GetKeyDown(m_PowerupKeybind))
         {
-            if (cooldownTimer > 0.0f)
+            if (m_UpgradeLevel == 0)
+            {
+                m_DeniedActionAudioSource?.Play();
+            }
+            else if (cooldownTimer > 0.0f)
             {
                 m_DeniedActionAudioSource?.Play();
             }
@@ -68,6 +75,32 @@ public abstract class PowerupBase : MonoBehaviour
         cooldownTimer = m_CooldownDuration;
         m_CooldownOverlay.fillAmount = 1.0f;
     }
+
+    public void UpgradePowerup()
+    {
+        m_UpgradeLevel++;
+
+        if (m_UpgradeLevel == 1)
+        {
+            UpdatePowerupState();
+        }
+        else if (m_UpgradeLevel <= 4)
+        {
+            HandleUpgrade(m_UpgradeLevel);
+        }
+        else
+        {
+            Debug.LogWarning("Powerup is already at max level!");
+        }
+    }
+
+    private void UpdatePowerupState()
+    {
+        bool isUnlocked = m_UpgradeLevel > 0;
+        m_GrayedOutOverlay.SetActive(!isUnlocked);
+    }
+
+    protected abstract void HandleUpgrade(int level);
 
     protected abstract void ActivatePowerup();
 }

@@ -71,4 +71,9 @@ public class FireballPowerup : PowerupBase
         }
         targetPosition = cursorPosition;
     }
+
+    protected override void HandleUpgrade(int level)
+    {
+        throw new System.NotImplementedException();
+    }
 }
