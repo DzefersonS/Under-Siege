@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(m_PlayerInputsSO.attack) && m_PlayerMovement.isGrounded)
         {
+            float animationSpeed = m_PlayerDataSO.playerAttackSpeed;
+            m_Animator.speed = animationSpeed;
+
             m_Animator.Play("Attack");
             m_UpdateAction = WaitForAttackAnimationFinish;
             m_PlayerMovement.EnableInput(false);
@@ -56,6 +59,9 @@ public class Player : MonoBehaviour
         else if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1.0f)
         {
             m_AttackCooldown = 1.0f / m_PlayerDataSO.playerAttackSpeed;
+
+            m_Animator.speed = 1.0f;
+
             m_Animator.Play("Idle");
             m_UpdateAction = NotAttacking;
             m_SpawnedProjectile = false;
