@@ -9,7 +9,6 @@ public class PlayerProjectile : Poolable
     [SerializeField] private Animator m_Animator;
     [SerializeField] private float m_TimeToSelfDestruct;
     [SerializeField] private float m_MovementSpeed;
-    [SerializeField] private int m_MaxPiercingTargets;
 
     private Action m_UpdateAction = default;
     private Vector3 m_MovementVector = default;
@@ -26,13 +25,13 @@ public class PlayerProjectile : Poolable
         m_MovementVector.x *= m_MovementSpeed;
         m_UpdateAction = Fly;
         m_HitTargets.Clear();
-        m_RemainingPiercingHits = m_MaxPiercingTargets;
         m_PiercingShotActive = false;
     }
 
-    public void ActivatePiercingShot()
+    public void ActivatePiercingShot(int howManyTargetsPiercable)
     {
         m_PiercingShotActive = true;
+        m_RemainingPiercingHits = howManyTargetsPiercable;
     }
 
     private void Update()

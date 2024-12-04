@@ -6,8 +6,6 @@ using UnityEngine;
 public class Fireball : MonoBehaviour
 {
     [SerializeField] private float speed = 10.0f;
-    [SerializeField] private float m_SplashRadius = 10.0f;
-    [SerializeField] private int m_Damage = 30;
 
     private AudioSource audioSource = default;
     private Action m_UpdateAction = default;
@@ -15,6 +13,8 @@ public class Fireball : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 startPosition;
     private float lerpProgress = 0.0f;
+    private float m_Radius = 0.0f;
+    private int m_Damage = 0;
     private bool dealtDamage = false;
 
     private void Awake()
@@ -28,11 +28,13 @@ public class Fireball : MonoBehaviour
         m_UpdateAction.Invoke();
     }
 
-    public void SetTarget(Vector3 target)
+    public void Activate(Vector3 target, float radius, int damage)
     {
         targetPosition = target;
         startPosition = transform.position;
         lerpProgress = 0.0f;
+        m_Radius = radius;
+        m_Damage = damage;
 
         transform.rotation = Quaternion.LookRotation(
             Vector3.forward,
@@ -77,7 +79,7 @@ public class Fireball : MonoBehaviour
 
     private void Explode()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, m_SplashRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, m_Radius);
 
         foreach (Collider2D col in colliders)
         {
@@ -91,6 +93,6 @@ public class Fireball : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, m_SplashRadius);
+        Gizmos.DrawWireSphere(transform.position, m_Radius);
     }
 }

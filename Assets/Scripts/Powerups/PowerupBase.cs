@@ -6,25 +6,23 @@ using UnityEngine.UI;
 public abstract class PowerupBase : MonoBehaviour
 {
     [SerializeField] protected KeyCode m_PowerupKeybind = default;
-    [SerializeField] private Image m_CooldownOverlay;
-    [SerializeField] private TMP_Text m_CooldownText;
+    [SerializeField] protected Image m_CooldownOverlay;
+    [SerializeField] protected TMP_Text m_CooldownText;
     [SerializeField] private float m_CooldownDuration = 5f;
     [SerializeField] private GameObject m_GrayedOutOverlay;
 
-    protected float cooldownTimer = 0f;
     protected AudioSource m_DeniedActionAudioSource;
+    protected float currentlyUsedCooldownDuration = 0.0f;
+    protected float cooldownTimer = 0f;
+    protected int m_UpgradeLevel = 0;
 
-    private int m_UpgradeLevel = 0;
-
-    private void Awake()
-    {
-        m_DeniedActionAudioSource = GetComponent<AudioSource>();
-    }
 
     protected virtual void Start()
     {
+        m_DeniedActionAudioSource = GetComponent<AudioSource>();
         ResetCooldownUI();
         UpdatePowerupState();
+        currentlyUsedCooldownDuration = m_CooldownDuration;
     }
 
     protected virtual void Update()
@@ -35,11 +33,11 @@ public abstract class PowerupBase : MonoBehaviour
         {
             if (m_UpgradeLevel == 0)
             {
-                m_DeniedActionAudioSource?.Play();
+                m_DeniedActionAudioSource.Play();
             }
             else if (cooldownTimer > 0.0f)
             {
-                m_DeniedActionAudioSource?.Play();
+                m_DeniedActionAudioSource.Play();
             }
             else
             {
@@ -48,13 +46,13 @@ public abstract class PowerupBase : MonoBehaviour
         }
     }
 
-    private void HandleCooldown()
+    protected virtual void HandleCooldown()
     {
         if (cooldownTimer > 0.0f)
         {
             cooldownTimer -= Time.deltaTime;
 
-            float cooldownProgress = cooldownTimer / m_CooldownDuration;
+            float cooldownProgress = cooldownTimer / currentlyUsedCooldownDuration;
             m_CooldownOverlay.fillAmount = cooldownProgress;
             m_CooldownText.text = Mathf.Ceil(cooldownTimer).ToString();
         }
@@ -64,15 +62,15 @@ public abstract class PowerupBase : MonoBehaviour
         }
     }
 
-    private void ResetCooldownUI()
+    protected void ResetCooldownUI()
     {
         m_CooldownOverlay.fillAmount = 0f;
         m_CooldownText.text = "";
     }
 
-    protected void StartCooldown()
+    protected virtual void StartCooldown()
     {
-        cooldownTimer = m_CooldownDuration;
+        cooldownTimer = currentlyUsedCooldownDuration;
         m_CooldownOverlay.fillAmount = 1.0f;
     }
 

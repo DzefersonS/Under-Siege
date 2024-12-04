@@ -16,8 +16,11 @@ public class Player : MonoBehaviour
     private Action m_UpdateAction = default;
     private float m_AttackCooldown = 0.0f;
     private bool m_SpawnedProjectile = false;
-    private bool m_IsPiercingShotActive = false; // Single-use piercing shot flag.
-    private bool m_InfinitePiercingShots = false; // Infinite piercing shots flag.
+    private bool m_IsPiercingShotActive = false;
+    private bool m_InfinitePiercingShots = false;
+    private int m_HowManyTargetsPiercable;
+
+    public int howManyTargetsPiercable { set => m_HowManyTargetsPiercable = value; }
 
     private void Awake()
     {
@@ -81,7 +84,7 @@ public class Player : MonoBehaviour
 
         projectile.Initialize();
 
-        if (m_IsPiercingShotActive || m_InfinitePiercingShots) projectile.ActivatePiercingShot();
+        if (m_IsPiercingShotActive || m_InfinitePiercingShots) projectile.ActivatePiercingShot(m_HowManyTargetsPiercable);
 
         if (!m_InfinitePiercingShots)
         {
