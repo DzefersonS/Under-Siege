@@ -5,8 +5,8 @@ public class InputBasedMovement : MonoBehaviour
     [SerializeField] private PlayerInputsSO m_PlayerInputsSO;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private RectTransform m_PlayBounds;
+    [SerializeField] private PlayerDataSO m_PlayerDataSO;
 
-    [SerializeField] private float m_MaxVelocity = 10.0f;
     [SerializeField] private float m_Acceleration = 20.0f;
     [SerializeField] private float m_Decceleration = 15.0f;
     [SerializeField] private float m_JumpForce = 7.5f;
@@ -58,7 +58,7 @@ public class InputBasedMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float targetVelocityX = m_MoveDirection.x * m_MaxVelocity;
+        float targetVelocityX = m_MoveDirection.x * m_PlayerDataSO.playerSpeed;
         if (m_MoveDirection.x != 0f)
         {
             m_Velocity.x = Mathf.MoveTowards(m_Velocity.x, targetVelocityX, m_Acceleration * Time.fixedDeltaTime);
