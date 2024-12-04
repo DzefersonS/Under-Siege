@@ -27,7 +27,7 @@ public class DashPowerup : PowerupBase
         {
             if (m_UpgradeLevel == 0)
             {
-                m_DeniedActionAudioSource.Play();
+                return;
             }
             else if (cooldownTimer > 0.0f)
             {

@@ -9,7 +9,7 @@ public abstract class PowerupBase : MonoBehaviour
     [SerializeField] protected Image m_CooldownOverlay;
     [SerializeField] protected TMP_Text m_CooldownText;
     [SerializeField] private float m_CooldownDuration = 5f;
-    [SerializeField] private GameObject m_GrayedOutOverlay;
+    [SerializeField] private GameObject m_PowerupHotbarSlot;
 
     protected AudioSource m_DeniedActionAudioSource;
     protected float currentlyUsedCooldownDuration = 0.0f;
@@ -21,8 +21,8 @@ public abstract class PowerupBase : MonoBehaviour
     {
         m_DeniedActionAudioSource = GetComponent<AudioSource>();
         ResetCooldownUI();
-        UpdatePowerupState();
         currentlyUsedCooldownDuration = m_CooldownDuration;
+        m_PowerupHotbarSlot.SetActive(false);
     }
 
     protected virtual void Update()
@@ -33,7 +33,7 @@ public abstract class PowerupBase : MonoBehaviour
         {
             if (m_UpgradeLevel == 0)
             {
-                m_DeniedActionAudioSource.Play();
+                return;
             }
             else if (cooldownTimer > 0.0f)
             {
@@ -80,7 +80,7 @@ public abstract class PowerupBase : MonoBehaviour
 
         if (m_UpgradeLevel == 1)
         {
-            UpdatePowerupState();
+            m_PowerupHotbarSlot.SetActive(true);
         }
         else if (m_UpgradeLevel <= 4)
         {
@@ -92,11 +92,6 @@ public abstract class PowerupBase : MonoBehaviour
         }
     }
 
-    private void UpdatePowerupState()
-    {
-        bool isUnlocked = m_UpgradeLevel > 0;
-        m_GrayedOutOverlay.SetActive(!isUnlocked);
-    }
 
     protected abstract void HandleUpgrade(int level);
 

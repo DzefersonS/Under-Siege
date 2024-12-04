@@ -1105,11 +1105,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &133624048 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5623680584803724584, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
-  m_PrefabInstance: {fileID: 988676013}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &140693017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,11 +2017,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 225047293}
   m_CullTransparentMesh: 1
---- !u!1 &237297656 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5623680584803724584, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
-  m_PrefabInstance: {fileID: 3955263907468748701}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &246288121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,6 +2444,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288011074}
   m_CullTransparentMesh: 1
+--- !u!1 &296451324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7830580759970622936, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
+  m_PrefabInstance: {fileID: 1146772870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &304023134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2663,7 +2658,7 @@ MonoBehaviour:
   m_CooldownOverlay: {fileID: 1083678181}
   m_CooldownText: {fileID: 204634}
   m_CooldownDuration: 20
-  m_GrayedOutOverlay: {fileID: 237297656}
+  m_PowerupHotbarSlot: {fileID: 1779237417}
   m_FireballPrefab: {fileID: 2432972712403309788, guid: 0e7561516f98c734e8eb1a9a27391fb7, type: 3}
   m_FirePoint: {fileID: 472723331}
   m_AoeIndicator: {fileID: 1985346153}
@@ -3811,7 +3806,7 @@ MonoBehaviour:
   m_CooldownOverlay: {fileID: 355592581}
   m_CooldownText: {fileID: 988676015}
   m_CooldownDuration: 5
-  m_GrayedOutOverlay: {fileID: 133624048}
+  m_PowerupHotbarSlot: {fileID: 921982693}
   m_Player: {fileID: 1849485121}
   m_ReducedCooldown: 2.5
   m_BasePiercableTargets: 3
@@ -3963,7 +3958,7 @@ MonoBehaviour:
   m_CooldownOverlay: {fileID: 929726040}
   m_CooldownText: {fileID: 1146772872}
   m_CooldownDuration: 5
-  m_GrayedOutOverlay: {fileID: 1894227015}
+  m_PowerupHotbarSlot: {fileID: 296451324}
   m_Player: {fileID: 1849485119}
   m_PlayerAnimator: {fileID: 1849485120}
   m_DashDistance: 5
@@ -5880,6 +5875,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1622666718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &921982693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7830580759970622936, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
+  m_PrefabInstance: {fileID: 988676013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &929726040 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7198878186086246652, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
@@ -6197,7 +6197,8 @@ PrefabInstance:
       value: Piercing Shot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7440625691877911592, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
@@ -11903,6 +11904,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776944949}
   m_CullTransparentMesh: 1
+--- !u!1 &1779237417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7830580759970622936, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
+  m_PrefabInstance: {fileID: 3955263907468748701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1779237418 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3357541046754025034, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
@@ -12421,11 +12427,6 @@ Transform:
   - {fileID: 246288122}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1894227015 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5623680584803724584, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
-  m_PrefabInstance: {fileID: 1146772870}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1898918312
 GameObject:
   m_ObjectHideFlags: 0
@@ -13953,7 +13954,8 @@ PrefabInstance:
       value: Fireball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7440625691877911592, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdccf7cc415a9ee42ba593e617af08f5, type: 3}
