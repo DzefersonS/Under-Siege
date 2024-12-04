@@ -1,59 +1,23 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class FireballPowerup : MonoBehaviour
+public class FireballPowerup : PowerupBase
 {
-    [SerializeField] private AudioSource m_DeniedActionAudioSource;
+    [SerializeField] private GameObject m_FireballPrefab;
+    [SerializeField] private Transform m_FirePoint;
+    [SerializeField] private GameObject m_AoeIndicator;
 
-    public GameObject fireballPrefab;
-    public Transform firePoint;
-    public Image cooldownOverlay;
-    public TMP_Text cooldownText;
-    public float cooldownDuration = 5f;
-    public GameObject aoeIndicator;
-
-    private float cooldownTimer = 0f;
     private bool isAiming = false;
     private Vector3 targetPosition;
 
-    private void Start()
+    protected override void Start()
     {
-        aoeIndicator.SetActive(false);
+        base.Start();
+        m_AoeIndicator?.SetActive(false);
     }
 
-    private void Update()
+    protected override void Update()
     {
-        if (cooldownTimer > 0)
-        {
-            cooldownTimer -= Time.deltaTime;
-
-            float cooldownProgress = cooldownTimer / cooldownDuration;
-            cooldownOverlay.fillAmount = cooldownProgress;
-            cooldownText.text = Mathf.Ceil(cooldownTimer).ToString();
-        }
-        else
-        {
-            cooldownOverlay.fillAmount = 0f;
-            cooldownText.text = "";
-        }
-
-        // Handle input
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if (cooldownTimer > 0.0f)
-            {
-                m_DeniedActionAudioSource.Play();
-            }
-            else if (cooldownTimer <= 0.0f && !isAiming)
-            {
-                StartAiming();
-            }
-            else if (isAiming)
-            {
-                Fire();
-            }
-        }
+        base.Update();
 
         if (isAiming)
         {
@@ -61,35 +25,50 @@ public class FireballPowerup : MonoBehaviour
         }
     }
 
+    protected override void ActivatePowerup()
+    {
+        if (!isAiming)
+        {
+            StartAiming();
+        }
+        else
+        {
+            Fire();
+        }
+    }
+
     private void StartAiming()
     {
         isAiming = true;
-        aoeIndicator.SetActive(true);
+        m_AoeIndicator?.SetActive(true);
     }
 
     private void Fire()
     {
         isAiming = false;
-        aoeIndicator.SetActive(false);
+        m_AoeIndicator?.SetActive(false);
 
-        targetPosition = aoeIndicator.transform.position;
+        targetPosition = m_AoeIndicator.transform.position;
 
-        GameObject fireball = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
-
+        // Instantiate and fire the fireball
+        GameObject fireball = Instantiate(m_FireballPrefab, m_FirePoint.position, Quaternion.identity);
         Fireball fireballScript = fireball.GetComponent<Fireball>();
         if (fireballScript != null)
         {
             fireballScript.SetTarget(targetPosition);
         }
 
-        cooldownTimer = cooldownDuration;
-        cooldownOverlay.fillAmount = 1.0f;
+        StartCooldown();
     }
 
     private void UpdateAOEIndicator()
     {
         Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         cursorPosition.z = 0.0f;
-        aoeIndicator.transform.position = new Vector3(cursorPosition.x, aoeIndicator.transform.position.y, 0.0f);
+        if (m_AoeIndicator != null)
+        {
+            m_AoeIndicator.transform.position = new Vector3(cursorPosition.x, m_AoeIndicator.transform.position.y, 0.0f);
+        }
+        targetPosition = cursorPosition;
     }
 }
