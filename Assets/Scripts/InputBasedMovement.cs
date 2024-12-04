@@ -1,42 +1,44 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputBasedMovement : MonoBehaviour
 {
     [SerializeField] private PlayerInputsSO m_PlayerInputsSO;
-    [SerializeField] private Rigidbody2D m_PlayerRB;
     [SerializeField] private Animator m_Animator;
 
-    [SerializeField] private float m_MaxVelocity;
-    [SerializeField] public float m_Acceleration;
-    [SerializeField] private float m_Decceleration;
-    [SerializeField] private float m_JumpForce;
-    [SerializeField] private float m_Gravity;
-    [SerializeField] private float m_JumpAnimationThreshold = 5f;
-    [SerializeField] private float m_FallAnimationThreshold = -2f;
+    [SerializeField] private float m_MaxVelocity = 10.0f;
+    [SerializeField] private float m_Acceleration = 20.0f;
+    [SerializeField] private float m_Decceleration = 15.0f;
+    [SerializeField] private float m_JumpForce = 7.5f;
+    [SerializeField] private float m_Gravity = 15.0f;
+    [SerializeField] private float m_JumpAnimationThreshold = 5.0f;
+    [SerializeField] private float m_FallAnimationThreshold = -2.0f;
+    [SerializeField] private float m_GroundLevel = -2.8574f;
 
-    private Vector2 m_MoveDirection = default;
-    private bool m_InputEnabled = true;  // New flag to control input
+    private Vector2 m_Velocity = Vector2.zero;
+    private Vector2 m_MoveDirection = Vector2.zero;
+    private bool m_IsGrounded = true;
+    private bool m_InputEnabled = true;
+
+    public bool isGrounded => m_IsGrounded;
 
     public void EnableInput(bool enable)
     {
         m_InputEnabled = enable;
         if (!enable)
         {
-            // Reset movement when disabling input
             m_MoveDirection = Vector2.zero;
-            m_PlayerRB.velocity = Vector2.zero;
+            m_Velocity = Vector2.zero;
             UpdateAnimationStates();
         }
     }
 
     private void Update()
     {
-        if (!m_InputEnabled) return;  // Skip input processing if disabled
+        if (!m_InputEnabled) return;
 
         float movingRight = Input.GetKey(m_PlayerInputsSO.moveRight) ? 1.0f : 0.0f;
         float movingLeft = Input.GetKey(m_PlayerInputsSO.moveLeft) ? -1.0f : 0.0f;
-        m_MoveDirection = new Vector2(movingLeft + movingRight, m_PlayerRB.velocity.y).normalized;
+        m_MoveDirection = new Vector2(movingLeft + movingRight, 0f).normalized;
 
         if (movingLeft != 0.0f)
         {
@@ -47,9 +49,10 @@ public class InputBasedMovement : MonoBehaviour
             transform.rotation = Quaternion.identity;
         }
 
-        if (Input.GetKey(m_PlayerInputsSO.jump) && m_PlayerRB.velocity.y == 0.0f)
+        if (Input.GetKey(m_PlayerInputsSO.jump) && m_IsGrounded)
         {
-            m_PlayerRB.velocity = new Vector2(m_PlayerRB.velocity.x, m_JumpForce);
+            m_Velocity.y = m_JumpForce;
+            m_IsGrounded = false;
         }
 
         UpdateAnimationStates();
@@ -57,45 +60,39 @@ public class InputBasedMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float newVelocityX = Mathf.Clamp(GetNewVelocityX(Time.fixedDeltaTime), -m_MaxVelocity, m_MaxVelocity);
-        float newVelocityY = Mathf.Clamp(GetNewVelocityY(Time.fixedDeltaTime), -m_MaxVelocity, m_MaxVelocity);
-        m_PlayerRB.velocity = new Vector2(newVelocityX, newVelocityY);
-    }
-
-    private float GetNewVelocityX(float fixedDeltaTime)
-    {
-        float velocityX = m_PlayerRB.velocity.x;
-
-        if (m_MoveDirection.x != 0.0f)
+        float targetVelocityX = m_MoveDirection.x * m_MaxVelocity;
+        if (m_MoveDirection.x != 0f)
         {
-            velocityX += m_MoveDirection.x * m_Acceleration * fixedDeltaTime;
+            m_Velocity.x = Mathf.MoveTowards(m_Velocity.x, targetVelocityX, m_Acceleration * Time.fixedDeltaTime);
         }
-        else if(velocityX != 0.0f)
+        else
         {
-            velocityX -= m_Decceleration * fixedDeltaTime * Mathf.Sign(velocityX);
-            if (Mathf.Abs(velocityX) < 0.1f)
-            {
-                velocityX = 0.0f;
-            }
+            m_Velocity.x = Mathf.MoveTowards(m_Velocity.x, 0f, m_Decceleration * Time.fixedDeltaTime);
         }
 
-        return velocityX;
-    }
+        if (!m_IsGrounded)
+        {
+            m_Velocity.y -= m_Gravity * Time.fixedDeltaTime;
+        }
 
-    private float GetNewVelocityY(float fixedDeltaTime)
-    {
-        float velocityY = m_PlayerRB.velocity.y;
-        velocityY -= m_Gravity * fixedDeltaTime;
-        return velocityY;
+        Vector2 newPosition = (Vector2)transform.position + m_Velocity * Time.fixedDeltaTime;
+        transform.position = newPosition;
+
+        if (transform.position.y <= m_GroundLevel)
+        {
+            m_IsGrounded = true;
+            m_Velocity.y = 0f;
+            transform.position = new Vector2(transform.position.x, m_GroundLevel);
+        }
     }
 
     private void UpdateAnimationStates()
     {
-        bool isMoving = m_MoveDirection.x != 0.0f;
+        bool isMoving = Mathf.Abs(m_MoveDirection.x) > 0.1f;
         m_Animator.SetBool("IsRunning", isMoving);
 
-        float verticalVelocity = m_PlayerRB.velocity.y;
-        
+        float verticalVelocity = m_Velocity.y;
+
         if (verticalVelocity > m_JumpAnimationThreshold)
         {
             m_Animator.SetBool("IsJumping", true);
