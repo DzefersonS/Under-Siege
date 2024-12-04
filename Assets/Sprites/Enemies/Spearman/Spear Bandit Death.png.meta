@@ -104,8 +104,8 @@ TextureImporter:
         y: 0
         width: 77
         height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.35064936, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -125,8 +125,8 @@ TextureImporter:
         y: 0
         width: 77
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.2987013, y: 0.5416667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,8 +146,8 @@ TextureImporter:
         y: 0
         width: 77
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.15584415, y: 0.5416667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,15 +160,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spear Bandit Death_4
+      name: Spear Bandit Death_2
       rect:
         serializedVersion: 2
         x: 370
         y: 0
         width: 77
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.15584415, y: 0.5416667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,15 +181,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spear Bandit Death_5
+      name: Spear Bandit Death_4
       rect:
         serializedVersion: 2
         x: 698
         y: 0
         width: 77
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.09090909, y: 0.5416667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,15 +202,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spear Bandit Death_6
+      name: Spear Bandit Death_5
       rect:
         serializedVersion: 2
-        x: 861
+        x: 862
         y: 0
         width: 77
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.064935066, y: 0.5416667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,15 +223,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spear Bandit Death_7
+      name: Spear Bandit Death_6
       rect:
         serializedVersion: 2
         x: 1021
         y: 0
         width: 77
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.064935066, y: 0.5416667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -244,15 +244,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spear Bandit Death_8
+      name: Spear Bandit Death_7
       rect:
         serializedVersion: 2
         x: 1181
         y: 0
         width: 77
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.064935066, y: 0.5416667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -277,13 +277,12 @@ TextureImporter:
     nameFileIdTable:
       Spear Bandit Death_0: 511364788
       Spear Bandit Death_1: -2073644788
-      Spear Bandit Death_2: 884181575
+      Spear Bandit Death_2: 2046707236
       Spear Bandit Death_3: -311352004
-      Spear Bandit Death_4: 2046707236
-      Spear Bandit Death_5: -1393860340
-      Spear Bandit Death_6: -622934583
-      Spear Bandit Death_7: 982686500
-      Spear Bandit Death_8: -1954859519
+      Spear Bandit Death_4: -1393860340
+      Spear Bandit Death_5: -622934583
+      Spear Bandit Death_6: 982686500
+      Spear Bandit Death_7: -1954859519
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
