@@ -177,6 +177,8 @@ public class ShopManager : MonoBehaviour
     public void DecreaseCultistQuantity()
     {
         shopItems[(int)Quantity, (int)EUpgradeID.Cultist]--;
+        shopItems[(int)Price, (int)EUpgradeID.Cultist] = _upgradePrices.CultistPrices[shopItems[3, (int)EUpgradeID.Cultist]];
+
     }
     public void DecreaseQuantity(int itemId, int amountToDecrease)
     {

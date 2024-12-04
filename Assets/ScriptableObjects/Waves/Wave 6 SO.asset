@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 820163da093ad6949b75c862354d40e4, type: 3}
-  m_Name: Wave 3 SO
+  m_Name: Wave 6 SO
   m_EditorClassIdentifier: 
-  m_TimeBetweenSpawns: 0.5
-  m_Enemies:
-  - {fileID: 11400000, guid: 202d291fde683d149a0bf1cbb4805d93, type: 2}
-  - {fileID: 11400000, guid: 4666f686d4e81d94e89c01654460fb8d, type: 2}
+  m_TimeBetweenSpawns: 0
+  m_Enemies: []
