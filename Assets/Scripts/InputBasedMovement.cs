@@ -4,6 +4,7 @@ public class InputBasedMovement : MonoBehaviour
 {
     [SerializeField] private PlayerInputsSO m_PlayerInputsSO;
     [SerializeField] private Animator m_Animator;
+    [SerializeField] private RectTransform m_PlayBounds;
 
     [SerializeField] private float m_MaxVelocity = 10.0f;
     [SerializeField] private float m_Acceleration = 20.0f;
@@ -16,20 +17,17 @@ public class InputBasedMovement : MonoBehaviour
 
     private Vector2 m_Velocity = Vector2.zero;
     private Vector2 m_MoveDirection = Vector2.zero;
+    private Vector2 m_MinBounds = default;
+    private Vector2 m_MaxBounds = default;
     private bool m_IsGrounded = true;
     private bool m_InputEnabled = true;
 
     public bool isGrounded => m_IsGrounded;
 
-    public void EnableInput(bool enable)
+    private void Awake()
     {
-        m_InputEnabled = enable;
-        if (!enable)
-        {
-            m_MoveDirection = Vector2.zero;
-            m_Velocity = Vector2.zero;
-            UpdateAnimationStates();
-        }
+        m_MinBounds = m_PlayBounds.rect.min + (Vector2)m_PlayBounds.position;
+        m_MaxBounds = m_PlayBounds.rect.max + (Vector2)m_PlayBounds.position;
     }
 
     private void Update()
@@ -76,13 +74,26 @@ public class InputBasedMovement : MonoBehaviour
         }
 
         Vector2 newPosition = (Vector2)transform.position + m_Velocity * Time.fixedDeltaTime;
+
+        newPosition.x = Mathf.Clamp(newPosition.x, m_MinBounds.x, m_MaxBounds.x);
         transform.position = newPosition;
 
         if (transform.position.y <= m_GroundLevel)
         {
             m_IsGrounded = true;
-            m_Velocity.y = 0f;
+            m_Velocity.y = 0.0f;
             transform.position = new Vector2(transform.position.x, m_GroundLevel);
+        }
+    }
+
+    public void EnableInput(bool enable)
+    {
+        m_InputEnabled = enable;
+        if (!enable)
+        {
+            m_MoveDirection = Vector2.zero;
+            m_Velocity = Vector2.zero;
+            UpdateAnimationStates();
         }
     }
 
