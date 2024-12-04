@@ -3331,6 +3331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameWonEventSO: {fileID: 11400000, guid: c72dbe7d51dc93d43a65aa90bcbd7bd1, type: 2}
+  m_PlayerInputHandler: {fileID: 1849485119}
 --- !u!4 &646299625
 Transform:
   m_ObjectHideFlags: 0
@@ -4637,7 +4638,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 202d291fde683d149a0bf1cbb4805d93, type: 2}
   - {fileID: 11400000, guid: 4666f686d4e81d94e89c01654460fb8d, type: 2}
   - {fileID: 11400000, guid: 3e8d40ab2e1019c4cb8e3d2a1297cfbc, type: 2}
-  m_EnemyTypeToSpawn: 2
+  - {fileID: 11400000, guid: 89d49725dcd6b854d8206bf16f8022d2, type: 2}
+  m_EnemyTypeToSpawn: 3
   m_EnemySpawnKey: 9
 --- !u!4 &857864688
 Transform:
