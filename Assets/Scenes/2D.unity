@@ -4992,7 +4992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &820667953
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5036,6 +5036,7 @@ MonoBehaviour:
   m_ShopManager: {fileID: 1622666717}
   m_PlayerMovement: {fileID: 1849485119}
   m_PlayerInputs: {fileID: 11400000, guid: a1f98fa1a1ebfd34abae25b4fbf87d4b, type: 2}
+  m_PowerupCanvas: {fileID: 246288121}
 --- !u!114 &820667955
 MonoBehaviour:
   m_ObjectHideFlags: 0

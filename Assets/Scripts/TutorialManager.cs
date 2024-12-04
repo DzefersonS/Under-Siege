@@ -12,6 +12,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private ShopManager m_ShopManager;
     [SerializeField] private InputBasedMovement m_PlayerMovement;
     [SerializeField] private PlayerInputsSO m_PlayerInputs;
+    [SerializeField] private GameObject m_PowerupCanvas;
 
     private readonly Vector2 SOULS_UI_POSITION = new Vector2(-66f, -111f); 
     private readonly Vector2 HEALTH_UI_POSITION = new Vector2(-411f, -111f); 
@@ -62,6 +63,10 @@ public class TutorialManager : MonoBehaviour
         if (m_PlayerMovement != null)
         {
             m_PlayerMovement.EnableInput(false);
+        }
+        if (m_PowerupCanvas != null)
+        {
+            m_PowerupCanvas.SetActive(false);
         }
     }
 
@@ -205,6 +210,10 @@ public class TutorialManager : MonoBehaviour
         if (m_PlayerMovement != null)
         {
             m_PlayerMovement.EnableInput(true);
+        }
+        if (m_PowerupCanvas != null)
+        {
+            m_PowerupCanvas.SetActive(true);
         }
     }
 }
