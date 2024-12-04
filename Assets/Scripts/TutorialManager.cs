@@ -37,6 +37,8 @@ public class TutorialManager : MonoBehaviour
     private bool m_HasPressedSpace = false;
     private bool m_CheckingMovementKeys = false;
 
+    private int m_OriginalSouls = 0;
+
     private readonly string[] m_TutorialTexts = new string[]
     {
         "Welcome, dark lord, to the tutorial of your ascension. Click \"Skip tutorial\" to skip tutorial and start the game. Click \"Next\" to continue.",
@@ -82,6 +84,11 @@ public class TutorialManager : MonoBehaviour
         {
             m_UIManager.SetShrineCanvasAccess(false);
             m_UIManager.SetAltarCanvasAccess(false);
+        }
+        if (m_ShopManager != null)
+        {
+            m_OriginalSouls = m_ShopManager.souls;
+            m_ShopManager.souls = 11;
         }
     }
 
@@ -267,6 +274,7 @@ public class TutorialManager : MonoBehaviour
 
     public void FinishTutorial()
     {
+        Debug.Log("Souls:" + m_OriginalSouls);
         m_TutorialCanvas.gameObject.SetActive(false);
         if (m_WaveManager != null)
         {
@@ -276,14 +284,16 @@ public class TutorialManager : MonoBehaviour
         {
             m_PlayerMovement.EnableInput(true);
         }
-        if (m_UIManager != null)
-        {
-            m_UIManager.SetShrineCanvasAccess(true);
-            m_UIManager.SetAltarCanvasAccess(true);
-        }
         if (m_ShopManager != null)
         {
             m_ShopManager.m_OnlyCultistsAllowed = false;
+            m_ShopManager.souls = m_OriginalSouls;
+        }
+        if (m_UIManager != null)
+        {
+            m_UIManager.UpdateSoulsText(m_OriginalSouls);
+            m_UIManager.SetShrineCanvasAccess(true);
+            m_UIManager.SetAltarCanvasAccess(true);
         }
     }
 }
