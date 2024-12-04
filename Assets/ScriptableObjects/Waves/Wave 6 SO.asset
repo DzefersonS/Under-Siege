@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Wave 6 SO
   m_EditorClassIdentifier: 
   m_TimeBetweenSpawns: 0
-  m_Enemies: []
+  m_Enemies:
+  - {fileID: 11400000, guid: 3e8d40ab2e1019c4cb8e3d2a1297cfbc, type: 2}
+  - {fileID: 11400000, guid: 3e8d40ab2e1019c4cb8e3d2a1297cfbc, type: 2}
+  - {fileID: 11400000, guid: 202d291fde683d149a0bf1cbb4805d93, type: 2}

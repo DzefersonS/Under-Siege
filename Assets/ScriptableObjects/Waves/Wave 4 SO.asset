@@ -16,4 +16,3 @@ MonoBehaviour:
   m_Enemies:
   - {fileID: 11400000, guid: 4666f686d4e81d94e89c01654460fb8d, type: 2}
   - {fileID: 11400000, guid: 202d291fde683d149a0bf1cbb4805d93, type: 2}
-  - {fileID: 11400000, guid: 4666f686d4e81d94e89c01654460fb8d, type: 2}
