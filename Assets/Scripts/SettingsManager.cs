@@ -39,14 +39,14 @@ public class SettingsManager : MonoBehaviour
     {
         foreach (var source in m_AudioSources)
         {
-            source.mute = !isOn;
+            source.mute = isOn;
         }
     }
 
     public void ResumeGame()
     {
         isPaused = false;
-        m_HUDCanvas.SetActive(!true);
+        m_HUDCanvas.SetActive(true);
         m_SettingsCanvas.SetActive(false);
         Time.timeScale = 1f;
     }

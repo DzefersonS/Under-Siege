@@ -9261,6 +9261,7 @@ MonoBehaviour:
   _shrineCanvasGO: {fileID: 311392396}
   _altarCanvasGO: {fileID: 753710576}
   _stateCanvasGO: {fileID: 1302205253}
+  _settingsCanvasGO: {fileID: 1818509289}
   _stateMessageText: {fileID: 1766647063}
   _soulsCount: {fileID: 1104577345}
   _gameObjectEventSO: {fileID: 11400000, guid: 23e26a05aab02fe45ab3d33990e3f523, type: 2}
@@ -12537,7 +12538,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &2011541710
 GameObject:
   m_ObjectHideFlags: 0

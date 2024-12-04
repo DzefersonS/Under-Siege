@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _shrineCanvasGO;
     [SerializeField] private GameObject _altarCanvasGO;
     [SerializeField] private GameObject _stateCanvasGO;
+    [SerializeField] private GameObject _settingsCanvasGO;
 
     [SerializeField] private TMP_Text _stateMessageText;
     [SerializeField] private TMP_Text _soulsCount;
@@ -41,6 +42,14 @@ public class UIManager : MonoBehaviour
 
         if (_soulsCount == null)
             _soulsCount = _HUDCanvasGO.transform.Find("SoulsTmp").gameObject.GetComponent<TMP_Text>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _settingsCanvasGO.GetComponent<SettingsManager>().ToggleSettings();
+        }
     }
 
     public void UpdateSoulsText(int amount)
