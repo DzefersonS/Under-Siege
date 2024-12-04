@@ -6,10 +6,13 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private Shrine _Shrine;
     [SerializeField] private GameObject _HUDCanvasGO;
     [SerializeField] private GameObject _shrineCanvasGO;
     [SerializeField] private GameObject _altarCanvasGO;
     [SerializeField] private GameObject _stateCanvasGO;
+    [SerializeField] private GameObject _tutorialCanvasGO;
+    [SerializeField] private GameObject _skipButton;
     [SerializeField] private GameObject _settingsCanvasGO;
     [SerializeField] private GameObject _WinSkull1;
     [SerializeField] private GameObject _WinSkull2;
@@ -17,22 +20,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text _stateMessageText;
     [SerializeField] private TMP_Text _soulsCount;
 
-
-    [SerializeField] private GameObjectEventSO _gameObjectEventSO;
     [SerializeField] private GameWonEventSO _gameWonEventSO;
+
+    private bool _canOpenShrineCanvas = true;
+    private bool _canOpenAltarCanvas = true;
 
 
 
     private void Awake()
     {
-        _gameObjectEventSO.Register(EnableShopDisplay);
         _gameWonEventSO.Register(EnableGameStateDisplay);
     }
     private void OnDestroy()
     {
-        _gameObjectEventSO.Unregister(EnableShopDisplay);
         _gameWonEventSO.Unregister(EnableGameStateDisplay);
-
     }
 
     void Start()
@@ -61,37 +62,18 @@ public class UIManager : MonoBehaviour
         _soulsCount.text = amount.ToString();
     }
 
-
-    /*Receives a GameObject from Altar or Shrine */
-    /*Checks the game objects name */
-    /*Disables if canvas was enabled */
-    /*Enables if canvas was disabled */
-    public void EnableShopDisplay()
+    public void SetShrineCanvasAccess(bool canAccess)
     {
-        GameObject buildingGO = _gameObjectEventSO.value;
-        if (buildingGO.name == "Shrine")
+        _canOpenShrineCanvas = canAccess;
+        if (canAccess)
         {
-            if (!_shrineCanvasGO.activeSelf)
-                EnableShrineCanvas();
-            else
-                DisableShrineCanvas();
-        }
-        if (buildingGO.name == "Altar")
-        {
-            if (!_altarCanvasGO.activeSelf)
-                EnableAltarCanvas();
-            else
-                DisableAltarCanvas();
+            _Shrine.CheckIfPlayerInHitbox();
         }
     }
 
-    public void DisableShopDisplay()
+    public void SetAltarCanvasAccess(bool canAccess)
     {
-        GameObject buildingGO = _gameObjectEventSO.value;
-        if (buildingGO.name == "Shrine")
-            DisableShrineCanvas();
-        if (buildingGO.name == "Altar")
-            DisableAltarCanvas();
+        _canOpenAltarCanvas = canAccess;
     }
 
     public void EnableGameStateDisplay()
@@ -112,22 +94,40 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void ToggleTutorialButtons(bool show)
+    {
+        if (_tutorialCanvasGO.activeSelf)
+        {
+            _skipButton.SetActive(show);
+        }
+    }
+
     public void EnableShrineCanvas()
     {
-        _shrineCanvasGO.SetActive(true);
+        if (_canOpenShrineCanvas)
+        {
+            _shrineCanvasGO.SetActive(true);
+            ToggleTutorialButtons(false);
+        }
     }
     public void DisableShrineCanvas()
     {
         _shrineCanvasGO.SetActive(false);
+        ToggleTutorialButtons(true);
     }
     public void EnableAltarCanvas()
     {
-        _altarCanvasGO.SetActive(true);
+        if (_canOpenAltarCanvas)
+        {
+            _altarCanvasGO.SetActive(true);
+            ToggleTutorialButtons(false);
+        }
     }
 
     public void DisableAltarCanvas()
     {
         _altarCanvasGO.SetActive(false);
+        ToggleTutorialButtons(true);
     }
 
 }

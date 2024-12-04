@@ -40,6 +40,8 @@ public class ShopManager : MonoBehaviour
     public int shrineLevel = 0;
     public int souls;
 
+    public bool m_OnlyCultistsAllowed = false;
+
     private void Awake()
     {
         _cultistDeathEventSO.Register(DecreaseCultistQuantity);
@@ -136,6 +138,11 @@ public class ShopManager : MonoBehaviour
 
     private bool IsEligibleForPurchase(int itemId)
     {
+        if (m_OnlyCultistsAllowed && itemId != 4)
+        {
+            return false;
+        }
+
         //check if enough souls
         if (souls >= shopItems[(int)Price, itemId])
         {

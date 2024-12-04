@@ -4078,9 +4078,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxHealth: 500
-  _gameObjectEventSO: {fileID: 11400000, guid: 23e26a05aab02fe45ab3d33990e3f523, type: 2}
+  m_UIManager: {fileID: 1514405278}
   _upgradePurchaseEventSO: {fileID: 11400000, guid: 5693d2d4d70eb2c4ca0f40af0a9623b1, type: 2}
   _gameWonEventSO: {fileID: 11400000, guid: c72dbe7d51dc93d43a65aa90bcbd7bd1, type: 2}
+  m_PlayerCollider: {fileID: 1849485117}
   m_Healthbar: {fileID: 871100067}
   m_DestroyedSFX: {fileID: 562701184}
 --- !u!61 &562701183
@@ -6025,11 +6026,16 @@ MonoBehaviour:
   m_WaveManager: {fileID: 1014139924}
   m_TutorialText: {fileID: 22528022}
   m_NextButton: {fileID: 1136095315}
+  m_NextButtonText: {fileID: 863304220}
   m_UIArrow: {fileID: 313335927}
   m_WorldArrow: {fileID: 545902543}
   m_ShopManager: {fileID: 1622666717}
   m_PlayerMovement: {fileID: 1849485119}
   m_PlayerInputs: {fileID: 11400000, guid: a1f98fa1a1ebfd34abae25b4fbf87d4b, type: 2}
+  m_EnemySpawner: {fileID: 857864687}
+  m_EnemyDeathEventSO: {fileID: 11400000, guid: 8442cda6b63a514489e5cf3673a3c920, type: 2}
+  m_UIManager: {fileID: 1514405278}
+  m_WaveText: {fileID: 12154463}
   m_PowerupCanvas: {fileID: 246288121}
 --- !u!114 &820667955
 MonoBehaviour:
@@ -8822,7 +8828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAccessible: 0
-  _gameObjectEventSO: {fileID: 11400000, guid: 23e26a05aab02fe45ab3d33990e3f523, type: 2}
+  m_UIManager: {fileID: 1514405278}
 --- !u!61 &1108856653
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11547,16 +11553,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b80bc34cd8b514aab47773bb24b223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Shrine: {fileID: 562701182}
   _HUDCanvasGO: {fileID: 79442317}
   _shrineCanvasGO: {fileID: 311392396}
   _altarCanvasGO: {fileID: 753710576}
+  _stateCanvasGO: {fileID: 1302205253}
+  _tutorialCanvasGO: {fileID: 820667952}
+  _skipButton: {fileID: 116267166}
+  _stateMessageText: {fileID: 1766647063}
   _stateCanvasGO: {fileID: 1763828966}
   _settingsCanvasGO: {fileID: 575088653}
   _WinSkull1: {fileID: 1223836596}
   _WinSkull2: {fileID: 2071441157}
   _stateMessageText: {fileID: 803764635}
   _soulsCount: {fileID: 1104577345}
-  _gameObjectEventSO: {fileID: 11400000, guid: 23e26a05aab02fe45ab3d33990e3f523, type: 2}
   _gameWonEventSO: {fileID: 11400000, guid: c72dbe7d51dc93d43a65aa90bcbd7bd1, type: 2}
 --- !u!4 &1514405279
 Transform:
@@ -12205,6 +12215,7 @@ MonoBehaviour:
   maxUpgradesPerLevel: 5
   shrineLevel: 0
   souls: 1000
+  m_OnlyCultistsAllowed: 0
 --- !u!4 &1622666718
 Transform:
   m_ObjectHideFlags: 0
