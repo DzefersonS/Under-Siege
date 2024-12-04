@@ -6300,7 +6300,6 @@ GameObject:
   - component: {fileID: 1026423647}
   - component: {fileID: 1026423649}
   - component: {fileID: 1026423648}
-  - component: {fileID: 1026423650}
   m_Layer: 0
   m_Name: skulls_0
   m_TagString: Untagged
@@ -6308,21 +6307,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1026423647
-Transform:
+--- !u!224 &1026423647
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026423646}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -88.32, y: -318.35, z: -1.1196}
+  m_LocalPosition: {x: 0, y: 0, z: -1.1196}
   m_LocalScale: {x: 1.0618044, y: 1.0618044, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1936274839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -88.32, y: -318.35}
+  m_SizeDelta: {x: 9.6023445, y: 9.6}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1026423648
 Animator:
   serializedVersion: 5
@@ -6396,19 +6399,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1026423650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026423646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53bca5e317fb4f549b11a8889d71e149, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ParallaxEffect: 0.1
 --- !u!1 &1067773485
 GameObject:
   m_ObjectHideFlags: 0
@@ -12482,7 +12472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1936274839
 Transform:
   m_ObjectHideFlags: 0
