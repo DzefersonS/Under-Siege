@@ -14,7 +14,6 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
-        m_SettingsCanvas.SetActive(false);
         m_AudioSources = FindObjectsOfType<AudioSource>();
         m_SoundToggle.onValueChanged.AddListener(ToggleSound);
     }
