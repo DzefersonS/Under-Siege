@@ -7117,6 +7117,7 @@ MonoBehaviour:
   m_FireballPowerup: {fileID: 334499982}
   m_PiercingShotPowerup: {fileID: 669967839}
   m_DashPowerup: {fileID: 675020327}
+  m_UpgradesSO: {fileID: 11400000, guid: 7f65dd8bcdbcfb743ab634fc1b5dec32, type: 2}
 --- !u!4 &1079866494
 Transform:
   m_ObjectHideFlags: 0
@@ -13644,7 +13645,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1678122925}
   m_HandleRect: {fileID: 1678122924}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

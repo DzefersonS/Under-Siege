@@ -15,6 +15,7 @@ public class UpgradeController : MonoBehaviour
     [SerializeField] private FireballPowerup m_FireballPowerup;
     [SerializeField] private PiercingShotPowerup m_PiercingShotPowerup;
     [SerializeField] private DashPowerup m_DashPowerup;
+    [SerializeField] private UpgradesSO m_UpgradesSO;
 
     private int damageUpgradeIndex;
     private int attackSpeedUpgradeIndex;
@@ -54,6 +55,7 @@ public class UpgradeController : MonoBehaviour
         if (upgradeId == (int)EUpgradeID.Damage)
         {
             damageUpgradeIndex++;
+            playerData.playerDamage = m_UpgradesSO.PlayerDamage[damageUpgradeIndex];
             if (damageUpgradeIndex % 5 == 0)
             {
                 m_FireballPowerup.UpgradePowerup();
@@ -64,6 +66,7 @@ public class UpgradeController : MonoBehaviour
         if (upgradeId == (int)EUpgradeID.AttackSpeed)
         {
             attackSpeedUpgradeIndex++;
+            playerData.playerAttackSpeed = m_UpgradesSO.PlayerAttackSpeed[damageUpgradeIndex];
             if (attackSpeedUpgradeIndex % 5 == 0)
             {
                 m_PiercingShotPowerup.UpgradePowerup();
@@ -74,6 +77,7 @@ public class UpgradeController : MonoBehaviour
         if (upgradeId == (int)EUpgradeID.MovementSpeed)
         {
             movementSpeedUpgradeIndex++;
+            playerData.playerSpeed = m_UpgradesSO.PlayerMovementSpeed[damageUpgradeIndex];
             if (movementSpeedUpgradeIndex % 5 == 0)
             {
                 m_DashPowerup.UpgradePowerup();
