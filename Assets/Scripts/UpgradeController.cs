@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using static ShopManager;
+
 public class UpgradeController : MonoBehaviour
 {
     [SerializeField] private Player _player;
 
     [SerializeField] private UpgradePurchaseEventSO _upgradePurchaseEventSO;
 
-    [SerializeField] private UpgradesSO _upgradesSO; // SO file containing what upgrade player gets with every purchase.
     [SerializeField] private PlayerDataSO playerData;
+
+    [SerializeField] private FireballPowerup m_FireballPowerup;
+    [SerializeField] private PiercingShotPowerup m_PiercingShotPowerup;
+    [SerializeField] private DashPowerup m_DashPowerup;
 
     private int damageUpgradeIndex;
     private int attackSpeedUpgradeIndex;
@@ -18,7 +23,6 @@ public class UpgradeController : MonoBehaviour
     private int defaultDamage;
     private float defaultAttackSpeed;
     private float defaultMoveSpeed;
-
 
     private void Awake()
     {
@@ -46,21 +50,34 @@ public class UpgradeController : MonoBehaviour
     {
         int upgradeId = _upgradePurchaseEventSO.value;
 
-        if (upgradeId == 1 && damageUpgradeIndex < _upgradesSO.PlayerDamage.Length)
+        // Upgrade Damage
+        if (upgradeId == (int)EUpgradeID.Damage)
         {
-            playerData.playerDamage = _upgradesSO.PlayerDamage[damageUpgradeIndex];
             damageUpgradeIndex++;
-        }
-        if (upgradeId == 2 && attackSpeedUpgradeIndex < _upgradesSO.PlayerAttackSpeed.Length)
-        {
-            playerData.playerAttackSpeed = _upgradesSO.PlayerAttackSpeed[attackSpeedUpgradeIndex];
-            attackSpeedUpgradeIndex++;
+            if (damageUpgradeIndex % 5 == 0)
+            {
+                m_FireballPowerup.UpgradePowerup();
+            }
         }
 
-        if (upgradeId == 3 && movementSpeedUpgradeIndex < _upgradesSO.PlayerMovementSpeed.Length)
+        // Upgrade Attack Speed
+        if (upgradeId == (int)EUpgradeID.AttackSpeed)
         {
-            playerData.playerSpeed = _upgradesSO.PlayerMovementSpeed[movementSpeedUpgradeIndex];
+            attackSpeedUpgradeIndex++;
+            if (attackSpeedUpgradeIndex % 5 == 0)
+            {
+                m_PiercingShotPowerup.UpgradePowerup();
+            }
+        }
+
+        // Upgrade Movement Speed
+        if (upgradeId == (int)EUpgradeID.MovementSpeed)
+        {
             movementSpeedUpgradeIndex++;
+            if (movementSpeedUpgradeIndex % 5 == 0)
+            {
+                m_DashPowerup.UpgradePowerup();
+            }
         }
     }
 
@@ -69,5 +86,9 @@ public class UpgradeController : MonoBehaviour
         playerData.playerDamage = defaultDamage;
         playerData.playerAttackSpeed = defaultAttackSpeed;
         playerData.playerSpeed = defaultMoveSpeed;
+
+        damageUpgradeIndex = 0;
+        attackSpeedUpgradeIndex = 0;
+        movementSpeedUpgradeIndex = 0;
     }
 }
