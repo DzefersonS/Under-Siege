@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _shrineCanvasGO;
     [SerializeField] private GameObject _altarCanvasGO;
     [SerializeField] private GameObject _stateCanvasGO;
+    [SerializeField] private GameObject _settingsCanvasGO;
+    [SerializeField] private GameObject _WinSkull1;
+    [SerializeField] private GameObject _WinSkull2;
 
     [SerializeField] private TMP_Text _stateMessageText;
     [SerializeField] private TMP_Text _soulsCount;
@@ -35,12 +38,22 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         _HUDCanvasGO.SetActive(true);
+        _WinSkull1.GetComponent<SpriteRenderer>().color = Color.white;
+        _WinSkull2.GetComponent<SpriteRenderer>().color = Color.white;
         _shrineCanvasGO.SetActive(false);
         _altarCanvasGO.SetActive(false);
         _stateCanvasGO.SetActive(false);
 
         if (_soulsCount == null)
             _soulsCount = _HUDCanvasGO.transform.Find("SoulsTmp").gameObject.GetComponent<TMP_Text>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _settingsCanvasGO.GetComponent<SettingsManager>().ToggleSettings();
+        }
     }
 
     public void UpdateSoulsText(int amount)
@@ -92,7 +105,11 @@ public class UIManager : MonoBehaviour
         if (IsWon)
             _stateMessageText.text = "Victory!";
         if (!IsWon)
+        {
             _stateMessageText.text = "Defeat!";
+            _WinSkull1.GetComponent<SpriteRenderer>().color = Color.red;
+            _WinSkull2.GetComponent<SpriteRenderer>().color = Color.red;
+        }
     }
 
     public void EnableShrineCanvas()
