@@ -18,6 +18,7 @@ public class DebugEnemySpawner : MonoBehaviour
         Brute
     };
 
+#if UNITY_EDITOR
     private void Update()
     {
         if (Input.GetKeyDown(m_EnemySpawnKey))
@@ -25,6 +26,7 @@ public class DebugEnemySpawner : MonoBehaviour
             SpawnEnemy(m_EnemyTypeToSpawn);
         }
     }
+#endif
 
     public void SpawnEnemy(EEnemyType enemyType)
     {
