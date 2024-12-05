@@ -15,9 +15,18 @@ public class CollectState : CultistBaseState
         _direction = cultist.FindTurningDirection(cultist.deadBody.gameObject);
         cultist.RotateCultist(_direction);
         cultist.m_Animator.SetBool("IsRunning", true);
-
         isGoingToGraveyard = false;
         LocateGraveyard(cultist);
+
+        // Check if the cultist is already on the dead body
+        Collider2D bodyCollider = cultist.deadBody.GetComponent<Collider2D>();
+        if (bodyCollider != null && bodyCollider.bounds.Contains(cultist.transform.position))
+        {
+            Debug.Log("Cultist is already on the dead body, picking it up directly.");
+            cultist.deadBody.transform.parent = transform;
+            isGoingToGraveyard = true;
+            _direction = cultist.FindTurningDirection(_graveyardGO);
+        }
     }
 
     public override void UpdateState()
@@ -45,6 +54,9 @@ public class CollectState : CultistBaseState
     public override void ExitState()
     {
         cultist.m_Animator.SetBool("IsRunning", false);
+
+        if (cultist.deadBody != null)
+            cultist.deadBody.Unclaim();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -96,9 +108,6 @@ public class CollectState : CultistBaseState
         //if x > 25 || x < -25
         if (cultist.transform.position.x > cultist.cultistDataSO.xBoundsMax || cultist.transform.position.x < cultist.cultistDataSO.xBoundsMin)
         {
-            if (cultist.deadBody != null)
-                cultist.deadBody.Unclaim();
-
             cultist.ChangeState(Cultist.ECultistState.Idle);
         }
     }

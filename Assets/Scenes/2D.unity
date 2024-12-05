@@ -6441,7 +6441,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4666f686d4e81d94e89c01654460fb8d, type: 2}
   - {fileID: 11400000, guid: 3e8d40ab2e1019c4cb8e3d2a1297cfbc, type: 2}
   - {fileID: 11400000, guid: 89d49725dcd6b854d8206bf16f8022d2, type: 2}
-  m_EnemyTypeToSpawn: 0
+  m_EnemyTypeToSpawn: 1
   m_EnemySpawnKey: 9
 --- !u!4 &857864688
 Transform:
@@ -12239,7 +12239,7 @@ MonoBehaviour:
   m_ActionDeniedSFX: {fileID: 1622666719}
   maxUpgradesPerLevel: 5
   shrineLevel: 0
-  souls: 8
+  souls: 7
   m_OnlyCultistsAllowed: 0
 --- !u!4 &1622666718
 Transform:
@@ -13845,7 +13845,7 @@ MonoBehaviour:
   m_PlayBounds: {fileID: 1714913050}
   m_PlayerDataSO: {fileID: 11400000, guid: d40adb63b6186cd4b8ef7ef0e19b3264, type: 2}
   m_Acceleration: 20
-  m_Decceleration: 15
+  m_Decceleration: 25
   m_JumpForce: 7.5
   m_Gravity: 15
   m_JumpAnimationThreshold: 5

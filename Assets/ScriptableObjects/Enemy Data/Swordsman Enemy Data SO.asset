@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Swordsman Enemy Data SO
   m_EditorClassIdentifier: 
   m_PriorityTargetTag: Cultist
-  m_MaxHealth: 25
+  m_MaxHealth: 24
   m_AttackRange: 1.5
   m_AttackSpeed: 2
   m_AttackDamage: 5
