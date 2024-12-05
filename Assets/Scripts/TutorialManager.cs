@@ -89,9 +89,8 @@ public class TutorialManager : MonoBehaviour
         if (m_ShopManager != null)
         {
             m_OriginalSouls = m_ShopManager.souls;
-            m_ShopManager.souls = 11;
         }
-        
+
         if (m_PowerupCanvas != null)
         {
             m_PowerupCanvas.SetActive(false);
@@ -292,7 +291,7 @@ public class TutorialManager : MonoBehaviour
         if (m_ShopManager != null)
         {
             m_ShopManager.m_OnlyCultistsAllowed = false;
-            m_ShopManager.souls = m_OriginalSouls;
+            //m_ShopManager.souls = m_OriginalSouls;
         }
         if (m_UIManager != null)
         {

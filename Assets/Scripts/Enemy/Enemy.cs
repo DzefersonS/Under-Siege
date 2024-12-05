@@ -25,6 +25,7 @@ public class Enemy : Poolable, IAttackable
     private EEnemyState m_CurrentState = default;
     private IAttackable m_CurrentTarget = default;
     private Vector3 m_MovementVector = default;
+    private Sprite m_DefaultSprite = default;
     private float m_CurrentHealth = 0;
 
     public Animator animator => m_Animator;
@@ -53,6 +54,8 @@ public class Enemy : Poolable, IAttackable
         {
             m_Animator = GetComponent<Animator>();
         }
+
+        m_DefaultSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     private void Update()
@@ -124,6 +127,7 @@ public class Enemy : Poolable, IAttackable
     {
         m_EnemyDeathEventSO.value = this;
         m_BodySpawnPositionSO.value = transform.GetChild(0);
+        GetComponent<SpriteRenderer>().sprite = m_DefaultSprite;
         FreeToPool();
     }
 

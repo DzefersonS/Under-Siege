@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class Wall : MonoBehaviour
 {
     [SerializeField] private GameObject _unbuiltWallGO;
+    [SerializeField] private GameObject _soulGO;
     [SerializeField] private GameObject _builtWallGO;
     [SerializeField] private PlayerInputsSO m_PlayerInputsSO;
 
@@ -43,6 +44,7 @@ public class Wall : MonoBehaviour
         if (_unbuiltWallGO.activeInHierarchy)
         {
             _unbuiltWallGO.SetActive(false);
+            _soulGO.SetActive(false);
             _builtWallGO.SetActive(true);
             _shopManager.AddSouls(-1);
         }

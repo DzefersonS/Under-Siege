@@ -66,7 +66,7 @@ public class UpgradeController : MonoBehaviour
         if (upgradeId == (int)EUpgradeID.AttackSpeed)
         {
             attackSpeedUpgradeIndex++;
-            playerData.playerAttackSpeed = m_UpgradesSO.PlayerAttackSpeed[damageUpgradeIndex];
+            playerData.playerAttackSpeed = m_UpgradesSO.PlayerAttackSpeed[attackSpeedUpgradeIndex];
             if (attackSpeedUpgradeIndex % 5 == 0)
             {
                 m_PiercingShotPowerup.UpgradePowerup();
@@ -77,7 +77,7 @@ public class UpgradeController : MonoBehaviour
         if (upgradeId == (int)EUpgradeID.MovementSpeed)
         {
             movementSpeedUpgradeIndex++;
-            playerData.playerSpeed = m_UpgradesSO.PlayerMovementSpeed[damageUpgradeIndex];
+            playerData.playerSpeed = m_UpgradesSO.PlayerMovementSpeed[movementSpeedUpgradeIndex];
             if (movementSpeedUpgradeIndex % 5 == 0)
             {
                 m_DashPowerup.UpgradePowerup();
