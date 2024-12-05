@@ -7871,6 +7871,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 00e03063e42662a4ab3069c0f6a783cc, type: 2}
   - {fileID: 11400000, guid: 704424c2a68c3774c814e5d7211a7d68, type: 2}
   - {fileID: 11400000, guid: c29d83a4c4e01f542abe2369e2cfe299, type: 2}
+  - {fileID: 11400000, guid: f7415dba6c477444280fe4480e638650, type: 2}
+  - {fileID: 11400000, guid: 18720f00357a63f498f9492b80af2dee, type: 2}
+  - {fileID: 11400000, guid: 0d77db6fa73937e4d866c3c24c049e15, type: 2}
+  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
   m_TimeBetweenWaves: 6
   m_EnemySpawner: {fileID: 1014139923}
   m_WaveText: {fileID: 12154463}
@@ -12212,7 +12216,7 @@ MonoBehaviour:
   m_ActionDeniedSFX: {fileID: 1622666719}
   maxUpgradesPerLevel: 5
   shrineLevel: 0
-  souls: 1000
+  souls: 33333
   m_OnlyCultistsAllowed: 0
 --- !u!4 &1622666718
 Transform:
