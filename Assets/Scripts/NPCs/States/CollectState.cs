@@ -26,6 +26,9 @@ public class CollectState : CultistBaseState
             cultist.deadBody.transform.parent = transform;
             isGoingToGraveyard = true;
             _direction = cultist.FindTurningDirection(_graveyardGO);
+            cultist.RotateCultist(_direction);
+            cultist.m_Animator.SetBool("IsIdling", true); // Slow walk animation
+            cultist.m_Animator.SetBool("IsRunning", false);
         }
     }
 
@@ -105,7 +108,7 @@ public class CollectState : CultistBaseState
 
     private void CheckIfOutOfBaseArea()
     {
-        //if x > 25 || x < -25
+        //if x > 30 || x < -30
         if (cultist.transform.position.x > cultist.cultistDataSO.xBoundsMax || cultist.transform.position.x < cultist.cultistDataSO.xBoundsMin)
         {
             cultist.ChangeState(Cultist.ECultistState.Idle);
