@@ -41,12 +41,16 @@ public class Wall : MonoBehaviour
 
     private void BuildWall()
     {
-        if (_unbuiltWallGO.activeInHierarchy)
+        if (_shopManager.GetSouls() >= 1)
         {
-            _unbuiltWallGO.SetActive(false);
-            _soulGO.SetActive(false);
-            _builtWallGO.SetActive(true);
-            _shopManager.AddSouls(-1);
+
+            if (_unbuiltWallGO.activeInHierarchy)
+            {
+                _unbuiltWallGO.SetActive(false);
+                _soulGO.SetActive(false);
+                _builtWallGO.SetActive(true);
+                _shopManager.AddSouls(-1);
+            }
         }
     }
 

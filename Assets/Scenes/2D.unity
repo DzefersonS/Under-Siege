@@ -7883,25 +7883,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d66958becc690d34bad52ccc6e302c5d, type: 2}
   - {fileID: 11400000, guid: 6170f5bf16b87ed4caf2d41cc11ed8e6, type: 2}
   - {fileID: 11400000, guid: 89d76a03cbfef6249be9bef51ba63b1c, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
-  - {fileID: 11400000, guid: c9b2f96358a0e024a96422ce87538acc, type: 2}
+  - {fileID: 11400000, guid: be33dc4e5879b4e43a84630097b30a32, type: 2}
+  - {fileID: 11400000, guid: 15d3af870261862409dde395c054e107, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: cb377cdc88027ff4c92e5f17d244b99b, type: 2}
+  - {fileID: 11400000, guid: e31c067ef63ea1442bbb939d2c059147, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
+  - {fileID: 11400000, guid: 8b0448add14c87f4293d24ee6fa2b6a6, type: 2}
   m_TimeBetweenWaves: 12
   m_EnemySpawner: {fileID: 1014139923}
   m_WaveText: {fileID: 12154463}
@@ -13850,7 +13850,7 @@ MonoBehaviour:
   m_PlayBounds: {fileID: 1714913050}
   m_PlayerDataSO: {fileID: 11400000, guid: d40adb63b6186cd4b8ef7ef0e19b3264, type: 2}
   m_Acceleration: 20
-  m_Decceleration: 15
+  m_Decceleration: 25
   m_JumpForce: 7.5
   m_Gravity: 15
   m_JumpAnimationThreshold: 5
