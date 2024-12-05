@@ -21,7 +21,6 @@ public class Shrine : MonoBehaviour, IAttackable
     private float m_HealthbarWidthFactor = default;
     private int m_CurrentHealth = default;
 
-
     private int m_ShrineUpgradeIndex;
 
     private void Awake()
@@ -84,6 +83,10 @@ public class Shrine : MonoBehaviour, IAttackable
         {
             var transform = gameObject.transform;
             int nextIndex = m_ShrineUpgradeIndex + 1;
+
+            m_CurrentHealth = m_MaxHealth;
+            m_HealthbarSizeDelta.x = m_CurrentHealth * m_HealthbarWidthFactor;
+            m_Healthbar.sizeDelta = m_HealthbarSizeDelta;
 
             // Check if the next index is within bounds
             if (nextIndex < transform.childCount)
