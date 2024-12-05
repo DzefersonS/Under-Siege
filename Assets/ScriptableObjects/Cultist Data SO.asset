@@ -15,6 +15,9 @@ MonoBehaviour:
   m_Health: 10
   m_IdleSpeed: 1.5
   m_CollectSpeed: 3
-  m_CarrySpeed: 2
+  m_CarrySpeed: 2.5
   m_FleeSpeed: 3
-  m_EnemyDetectionRange: 2.5
+  m_EnemyDetectionRange: 3
+  m_XBoundsMin: -30
+  m_XBoundsMax: 30
+  m_FleeTime: 1.25

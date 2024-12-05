@@ -6,6 +6,7 @@ using UnityEngine;
 public class Graveyard : MonoBehaviour
 {
     [SerializeField] private ShopManager _shopManager;
+    [SerializeField] private DeadBodyDeliveredEventSO _deadBodyDeliveredEventSO;
 
     void Start()
     {
@@ -20,8 +21,12 @@ public class Graveyard : MonoBehaviour
     {
         if (other.tag == "DeadBody")
         {
+            DeadBody deadbody = other.GetComponent<DeadBody>();
+
             _shopManager.AddSouls(1);
-            other.GetComponent<DeadBody>().FreeToPool();
+            _deadBodyDeliveredEventSO.value = deadbody;
+            deadbody.Unclaim();
+            deadbody.FreeToPool();
         }
     }
 

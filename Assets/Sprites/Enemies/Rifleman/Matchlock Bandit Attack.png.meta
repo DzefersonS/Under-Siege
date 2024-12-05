@@ -1,0 +1,467 @@
+fileFormatVersion: 2
+guid: 8200dc028547dbd40b76e19d23751a17
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 0
+        width: 37
+        height: 30
+      alignment: 9
+      pivot: {x: 0.32432434, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ead157aaa302de4a8d89cab1b93cb37
+      internalID: 1718149524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_1
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 0
+        width: 36
+        height: 30
+      alignment: 9
+      pivot: {x: 0.25, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc2d2117d0b35d4d90928e7eb72d8fc
+      internalID: 600455952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_2
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 0
+        width: 38
+        height: 30
+      alignment: 9
+      pivot: {x: 0.2631579, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce38db53e5292eb4fa3d1a8e814bff68
+      internalID: 1604062473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_3
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 0
+        width: 38
+        height: 30
+      alignment: 9
+      pivot: {x: 0.23684211, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95fa7ce39e0725f4da8a91451b4595d6
+      internalID: 1775445804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_4
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 0
+        width: 38
+        height: 30
+      alignment: 9
+      pivot: {x: 0.23684211, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3636406a6f052a43865814082875f4c
+      internalID: 239077473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_5
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 0
+        width: 39
+        height: 30
+      alignment: 9
+      pivot: {x: 0.23076923, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ee1adf09ea82449a2ad0048ca0b9e0
+      internalID: -1244629692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_6
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 0
+        width: 39
+        height: 30
+      alignment: 9
+      pivot: {x: 0.23076923, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55bcca367dab5d241b775f35362f79d0
+      internalID: 1464929040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_7
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1
+        width: 39
+        height: 30
+      alignment: 9
+      pivot: {x: 0.23076923, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbc3452109045e644b79e95adcdd7ae5
+      internalID: -496993818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_8
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 0
+        width: 52
+        height: 30
+      alignment: 9
+      pivot: {x: 0.17307693, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c51cf96640913540b32be27819e1646
+      internalID: -84700682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_9
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 0
+        width: 52
+        height: 30
+      alignment: 9
+      pivot: {x: 0.1923077, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fa65d7fe7980d742bf92abbdf460653
+      internalID: 2067673536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_11
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 0
+        width: 58
+        height: 30
+      alignment: 9
+      pivot: {x: 0.18965517, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65bc28ab2ade5b64f8d853f7a06a28e7
+      internalID: 1611969517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_12
+      rect:
+        serializedVersion: 2
+        x: 1044
+        y: 0
+        width: 52
+        height: 30
+      alignment: 9
+      pivot: {x: 0.21153846, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e12b1e19c99f6d4bb9c26e96499bf92
+      internalID: 1244804752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_13
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 0
+        width: 54
+        height: 30
+      alignment: 9
+      pivot: {x: 0.2037037, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5909b33051544c145afdd1275c95120c
+      internalID: 1092844056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_14
+      rect:
+        serializedVersion: 2
+        x: 1230
+        y: 0
+        width: 39
+        height: 30
+      alignment: 9
+      pivot: {x: 0.25641027, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 750cd67690ab8394fb19a0b071cfacc8
+      internalID: 2035731606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_15
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 0
+        width: 37
+        height: 30
+      alignment: 9
+      pivot: {x: 0.27027026, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4abdc83be93bb8f4b9943b119fb8f5c6
+      internalID: -1350052484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Matchlock Bandit Attack_16
+      rect:
+        serializedVersion: 2
+        x: 1411
+        y: 0
+        width: 37
+        height: 30
+      alignment: 9
+      pivot: {x: 0.35135135, y: 0.43333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e8ef976a111e543a2aad9e03402c6f
+      internalID: -454249788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Matchlock Bandit Attack_0: 1718149524
+      Matchlock Bandit Attack_1: 600455952
+      Matchlock Bandit Attack_10: -1882346872
+      Matchlock Bandit Attack_11: 1611969517
+      Matchlock Bandit Attack_12: 1244804752
+      Matchlock Bandit Attack_13: 1092844056
+      Matchlock Bandit Attack_14: 2035731606
+      Matchlock Bandit Attack_15: -1350052484
+      Matchlock Bandit Attack_16: -454249788
+      Matchlock Bandit Attack_2: 1604062473
+      Matchlock Bandit Attack_3: 1775445804
+      Matchlock Bandit Attack_4: 239077473
+      Matchlock Bandit Attack_5: -1244629692
+      Matchlock Bandit Attack_6: 1464929040
+      Matchlock Bandit Attack_7: -496993818
+      Matchlock Bandit Attack_8: -84700682
+      Matchlock Bandit Attack_9: 2067673536
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
