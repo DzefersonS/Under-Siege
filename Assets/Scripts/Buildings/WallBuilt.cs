@@ -8,6 +8,7 @@ public class WallBuilt : MonoBehaviour, IAttackable
     private int tempHealth;
 
     [SerializeField] private GameObject _unbuiltWallGO;
+    [SerializeField] private GameObject _soulGO;
     [SerializeField] private AudioSource m_DestroyedSFX;
 
     private void Awake()
@@ -25,6 +26,7 @@ public class WallBuilt : MonoBehaviour, IAttackable
             m_DestroyedSFX.Play();
             health = tempHealth;
             _unbuiltWallGO.SetActive(true);
+            _soulGO.SetActive(true);
             gameObject.SetActive(false);
         }
 
