@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae4bcd105b35ae84abf82d1aa4fcc995, type: 3}
   m_Name: Rifleman Enemy Data SO
   m_EditorClassIdentifier: 
+  m_PriorityTargetTag: Cultist
   m_MaxHealth: 5
   m_AttackRange: 3.5
   m_AttackSpeed: 1
