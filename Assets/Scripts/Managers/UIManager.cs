@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _settingsCanvasGO;
     [SerializeField] private GameObject _WinSkull1;
     [SerializeField] private GameObject _WinSkull2;
+    [SerializeField] private GameObject _enemyLocationLeft;
+    [SerializeField] private GameObject _enemyLocationRight;
 
     [SerializeField] private TMP_Text _stateMessageText;
     [SerializeField] private TMP_Text _soulsCount;
@@ -24,6 +27,7 @@ public class UIManager : MonoBehaviour
 
     private bool _canOpenShrineCanvas = true;
     private bool _canOpenAltarCanvas = true;
+    private float _enemyIndicatorTimer = 0f;
 
 
 
@@ -54,6 +58,13 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             _settingsCanvasGO.GetComponent<SettingsManager>().ToggleSettings();
+        }
+
+        _enemyIndicatorTimer += Time.deltaTime;
+        if (_enemyIndicatorTimer >= 1f)
+        {
+            _enemyIndicatorTimer = 0f;
+            EnableEnemyDirectionIndicator();
         }
     }
 
@@ -110,6 +121,34 @@ public class UIManager : MonoBehaviour
             ToggleTutorialButtons(false);
         }
     }
+
+    public void EnableEnemyDirectionIndicator()
+    {
+        bool leftDetected = false;
+        bool rightDetected = false;
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            if (!enemy.activeInHierarchy)
+                continue;
+
+            float xPos = enemy.transform.position.x;
+
+            if (xPos < 0f)
+                leftDetected = true;
+            else if (xPos > 0f)
+                rightDetected = true;
+
+            if (leftDetected && rightDetected)
+                break;
+        }
+
+        _enemyLocationLeft.SetActive(leftDetected);
+        _enemyLocationRight.SetActive(rightDetected);
+    }
+
     public void DisableShrineCanvas()
     {
         _shrineCanvasGO.SetActive(false);
@@ -129,5 +168,4 @@ public class UIManager : MonoBehaviour
         _altarCanvasGO.SetActive(false);
         ToggleTutorialButtons(true);
     }
-
 }

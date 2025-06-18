@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 
             m_Animator.Play("Attack");
             m_UpdateAction = WaitForAttackAnimationFinish;
-            m_PlayerMovement.EnableInput(false);
+            // m_PlayerMovement.EnableInput(false); // <-- This fucks up the pacing
         }
     }
 
